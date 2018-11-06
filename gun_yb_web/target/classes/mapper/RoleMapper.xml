@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ybkj.gun.mapper.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.ybkj.gun.model.Role">
+    <id column="rid" jdbcType="INTEGER" property="rid" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="descpt" jdbcType="VARCHAR" property="descpt" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    rid, role_name, descpt, code, uid, insert_time, update_time, version
+  </sql>
+  <select id="selectByExample" parameterType="com.ybkj.gun.model.RoleExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from role
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    where rid = #{rid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from role
+    where rid = #{rid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ybkj.gun.model.RoleExample">
+    delete from role
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ybkj.gun.model.Role">
+    insert into role (rid, role_name, descpt, 
+      code, uid, insert_time, 
+      update_time, version)
+    values (#{rid,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{descpt,jdbcType=VARCHAR}, 
+      #{code,jdbcType=VARCHAR}, #{uid,jdbcType=INTEGER}, #{insertTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ybkj.gun.model.Role">
+    insert into role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        rid,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="descpt != null">
+        descpt,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="insertTime != null">
+        insert_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        #{rid,jdbcType=INTEGER},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="descpt != null">
+        #{descpt,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="insertTime != null">
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ybkj.gun.model.RoleExample" resultType="java.lang.Long">
+    select count(*) from role
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update role
+    <set>
+      <if test="record.rid != null">
+        rid = #{record.rid,jdbcType=INTEGER},
+      </if>
+      <if test="record.roleName != null">
+        role_name = #{record.roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.descpt != null">
+        descpt = #{record.descpt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uid != null">
+        uid = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.insertTime != null">
+        insert_time = #{record.insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.version != null">
+        version = #{record.version,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update role
+    set rid = #{record.rid,jdbcType=INTEGER},
+      role_name = #{record.roleName,jdbcType=VARCHAR},
+      descpt = #{record.descpt,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
+      uid = #{record.uid,jdbcType=INTEGER},
+      insert_time = #{record.insertTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      version = #{record.version,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ybkj.gun.model.Role">
+    update role
+    <set>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="descpt != null">
+        descpt = #{descpt,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="insertTime != null">
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+    </set>
+    where rid = #{rid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ybkj.gun.model.Role">
+    update role
+    set role_name = #{roleName,jdbcType=VARCHAR},
+      descpt = #{descpt,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=INTEGER},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER}
+    where rid = #{rid,jdbcType=INTEGER}
+  </update>
+
+
+  <!--=Start selectRoleByUser 根据用户id查询角色数据 -->
+  <select id="selectRoleByUser"  resultType="com.ybkj.gun.model.Role">
+    select
+    ur.rid ,r.role_name,r.code
+    from user_role ur
+    INNER JOIN role r ON r.rid=ur.rid
+    WHERE ur.uid=#{userId}
+  </select>
+  <!--=End selectRoleByUser 根据用户id查询角色数据 -->
+
+  <!--=Start selectRoleByRoleName 根据角色名称获取角色信息 -->
+  <select id="selectRoleByRoleName"  resultType="com.ybkj.gun.model.Role">
+    select
+    <include refid="Base_Column_List"/>
+    from role
+    where role_name=#{roleName,jdbcType=VARCHAR}
+  </select>
+  <!--=End selectRoleByRoleName 根据角色名称获取角色信息 -->
+
+  <!--=Start selectRoleByRoleCode 根据角色编码获取角色信息 -->
+  <select id="selectRoleByRoleCode"  resultType="com.ybkj.gun.model.Role">
+    select
+    <include refid="Base_Column_List"/>
+    from role
+    where code=#{code,jdbcType=VARCHAR}
+  </select>
+  <!--=End selectRoleByRoleCode 根据角色编码获取角色信息 -->
+
+  <!--=Start selectRoles 查询所有的角色信息 -->
+  <select id="selectRoles"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from role
+  </select>
+  <!--=End selectRoles 查询所有的角色信息 -->
+
+
+  <!--=Start selectRoleAndMenuByRoleId 根据角色id,获取角色和权限 -->
+  <select id="selectRoleAndMenuByRoleId" resultType="com.ybkj.common.entity.RoleMenuVO">
+    select
+    <include refid="Base_Column_List"/>
+    from role where rid=#{rid}
+  </select>
+  <!--=End selectRoleAndMenuByRoleId 根据角色id,获取角色和权限 -->
+</mapper>
