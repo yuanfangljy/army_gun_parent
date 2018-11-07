@@ -11,8 +11,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,7 +32,8 @@ import java.io.IOException;
  */
 @SuppressWarnings("all")
 @Slf4j
-public class UserActionInterceptor implements HandlerInterceptor {
+@Configuration
+public class UserActionInterceptor extends HandlerInterceptorAdapter {
     @Autowired
     private WebUserService userService;
 
@@ -37,6 +41,18 @@ public class UserActionInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object object) throws Exception {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+        response.setHeader("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+        response.setHeader("X-Powered-By","Jetty");
+        String method= response.getHeader("");
+        /*if (method.equals("OPTIONS")){
+            response.setStatus(200);
+            return false;
+        }*/
+        System.out.println(method);
+
+
         // TODO Auto-generated method stub
         log.debug("请求到达后台方法之前调用（controller之前）");
         // 1. SecurityUtils获取session中的用户信息
@@ -54,7 +70,7 @@ public class UserActionInterceptor implements HandlerInterceptor {
                 isAjaxResponse(request, response);
             }
         }
-        return false;
+        return true;
     }
 
     @Override
