@@ -28,12 +28,11 @@ public interface GunUserMapper {
 
     int updateByPrimaryKey(GunUser record);
 
-
     /**
      * @Description:  功能描述（根据警员Id,查询警员信息）
      * @Author:       刘家义
      * @CreateDate:   2018/11/5 19:47
-    */
+     */
     GunUser selectGunUserByUserId(Integer userId);
     /**
      * @Description:  功能描述（根据警员电话号码,查询警员信息）
@@ -48,6 +47,4 @@ public interface GunUserMapper {
      * @CreateDate:   2018/11/5 19:47
      */
     List<GunUser> selectGunUserAll();
-
-
 }

@@ -256,7 +256,6 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-
   <!--=Start selectWareHouseByName 根据库室名称，查询库室信息 -->
   <select id="selectWareHouseByName" resultType="com.ybkj.gun.model.Warehouse">
     select

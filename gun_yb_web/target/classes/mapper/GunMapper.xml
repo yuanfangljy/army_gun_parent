@@ -7,13 +7,15 @@
     <result column="gun_id" jdbcType="CHAR" property="gunId" />
     <result column="gun_model" jdbcType="CHAR" property="gunModel" />
     <result column="gun_type" jdbcType="CHAR" property="gunType" />
-    <result column="bluetooth_mac" jdbcType="CHAR" property="bluetoothMac" />
+    <result column="gun_mac" jdbcType="CHAR" property="gunMac" />
     <result column="is_del" jdbcType="TINYINT" property="isDel" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="warehouse_id" jdbcType="INTEGER" property="warehouseId" />
     <result column="warehouse_name" jdbcType="CHAR" property="warehouseName" />
     <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="total_bullet_number" jdbcType="INTEGER" property="totalBulletNumber" />
+    <result column="real_time_state" jdbcType="INTEGER" property="realTimeState" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -74,8 +76,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, uid, gun_id, gun_model, gun_type, bluetooth_mac, is_del, create_time, update_time, 
-    warehouse_id, warehouse_name, version
+    id, uid, gun_id, gun_model, gun_type, gun_mac, is_del, create_time, update_time, 
+    warehouse_id, warehouse_name, version, total_bullet_number, real_time_state
   </sql>
   <select id="selectByExample" parameterType="com.ybkj.gun.model.GunExample" resultMap="BaseResultMap">
     select
@@ -92,7 +94,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from gun
     where id = #{id,jdbcType=INTEGER}
@@ -109,15 +111,15 @@
   </delete>
   <insert id="insert" parameterType="com.ybkj.gun.model.Gun">
     insert into gun (id, uid, gun_id, 
-      gun_model, gun_type, bluetooth_mac, 
-      is_del, create_time, update_time, 
-      warehouse_id, warehouse_name, version
-      )
+      gun_model, gun_type, gun_mac, is_del, 
+      create_time, update_time, warehouse_id, 
+      warehouse_name, version, total_bullet_number, 
+      real_time_state)
     values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{gunId,jdbcType=CHAR}, 
-      #{gunModel,jdbcType=CHAR}, #{gunType,jdbcType=CHAR}, #{bluetoothMac,jdbcType=CHAR}, 
-      #{isDel,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{warehouseId,jdbcType=INTEGER}, #{warehouseName,jdbcType=CHAR}, #{version,jdbcType=INTEGER}
-      )
+      #{gunModel,jdbcType=CHAR}, #{gunType,jdbcType=CHAR}, #{gunMac,jdbcType=CHAR}, #{isDel,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{warehouseId,jdbcType=INTEGER}, 
+      #{warehouseName,jdbcType=CHAR}, #{version,jdbcType=INTEGER}, #{totalBulletNumber,jdbcType=INTEGER}, 
+      #{realTimeState,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.ybkj.gun.model.Gun">
     insert into gun
@@ -137,8 +139,8 @@
       <if test="gunType != null">
         gun_type,
       </if>
-      <if test="bluetoothMac != null">
-        bluetooth_mac,
+      <if test="gunMac != null">
+        gun_mac,
       </if>
       <if test="isDel != null">
         is_del,
@@ -158,6 +160,12 @@
       <if test="version != null">
         version,
       </if>
+      <if test="totalBulletNumber != null">
+        total_bullet_number,
+      </if>
+      <if test="realTimeState != null">
+        real_time_state,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -175,8 +183,8 @@
       <if test="gunType != null">
         #{gunType,jdbcType=CHAR},
       </if>
-      <if test="bluetoothMac != null">
-        #{bluetoothMac,jdbcType=CHAR},
+      <if test="gunMac != null">
+        #{gunMac,jdbcType=CHAR},
       </if>
       <if test="isDel != null">
         #{isDel,jdbcType=TINYINT},
@@ -195,6 +203,12 @@
       </if>
       <if test="version != null">
         #{version,jdbcType=INTEGER},
+      </if>
+      <if test="totalBulletNumber != null">
+        #{totalBulletNumber,jdbcType=INTEGER},
+      </if>
+      <if test="realTimeState != null">
+        #{realTimeState,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -222,8 +236,8 @@
       <if test="record.gunType != null">
         gun_type = #{record.gunType,jdbcType=CHAR},
       </if>
-      <if test="record.bluetoothMac != null">
-        bluetooth_mac = #{record.bluetoothMac,jdbcType=CHAR},
+      <if test="record.gunMac != null">
+        gun_mac = #{record.gunMac,jdbcType=CHAR},
       </if>
       <if test="record.isDel != null">
         is_del = #{record.isDel,jdbcType=TINYINT},
@@ -243,6 +257,12 @@
       <if test="record.version != null">
         version = #{record.version,jdbcType=INTEGER},
       </if>
+      <if test="record.totalBulletNumber != null">
+        total_bullet_number = #{record.totalBulletNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.realTimeState != null">
+        real_time_state = #{record.realTimeState,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -255,13 +275,15 @@
       gun_id = #{record.gunId,jdbcType=CHAR},
       gun_model = #{record.gunModel,jdbcType=CHAR},
       gun_type = #{record.gunType,jdbcType=CHAR},
-      bluetooth_mac = #{record.bluetoothMac,jdbcType=CHAR},
+      gun_mac = #{record.gunMac,jdbcType=CHAR},
       is_del = #{record.isDel,jdbcType=TINYINT},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       warehouse_id = #{record.warehouseId,jdbcType=INTEGER},
       warehouse_name = #{record.warehouseName,jdbcType=CHAR},
-      version = #{record.version,jdbcType=INTEGER}
+      version = #{record.version,jdbcType=INTEGER},
+      total_bullet_number = #{record.totalBulletNumber,jdbcType=INTEGER},
+      real_time_state = #{record.realTimeState,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -281,8 +303,8 @@
       <if test="gunType != null">
         gun_type = #{gunType,jdbcType=CHAR},
       </if>
-      <if test="bluetoothMac != null">
-        bluetooth_mac = #{bluetoothMac,jdbcType=CHAR},
+      <if test="gunMac != null">
+        gun_mac = #{gunMac,jdbcType=CHAR},
       </if>
       <if test="isDel != null">
         is_del = #{isDel,jdbcType=TINYINT},
@@ -302,6 +324,12 @@
       <if test="version != null">
         version = #{version,jdbcType=INTEGER},
       </if>
+      <if test="totalBulletNumber != null">
+        total_bullet_number = #{totalBulletNumber,jdbcType=INTEGER},
+      </if>
+      <if test="realTimeState != null">
+        real_time_state = #{realTimeState,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -311,13 +339,15 @@
       gun_id = #{gunId,jdbcType=CHAR},
       gun_model = #{gunModel,jdbcType=CHAR},
       gun_type = #{gunType,jdbcType=CHAR},
-      bluetooth_mac = #{bluetoothMac,jdbcType=CHAR},
+      gun_mac = #{gunMac,jdbcType=CHAR},
       is_del = #{isDel,jdbcType=TINYINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       warehouse_id = #{warehouseId,jdbcType=INTEGER},
       warehouse_name = #{warehouseName,jdbcType=CHAR},
-      version = #{version,jdbcType=INTEGER}
+      version = #{version,jdbcType=INTEGER},
+      total_bullet_number = #{totalBulletNumber,jdbcType=INTEGER},
+      real_time_state = #{realTimeState,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
@@ -342,7 +372,27 @@
   <select id="selectGuns" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
-    from gun
+    from gun where is_del=0
   </select>
   <!--=End selectGuns 查询枪支信息列表 -->
+
+    <sql id="Base_Column_List_G">
+        g.id, g.uid, g.gun_id, g.gun_model, g.gun_type, g.gun_mac, g.is_del, g.create_time, g.update_time,
+        g.warehouse_id, g.warehouse_name, g.version, g.total_bullet_number, g.real_time_state
+    </sql>
+
+  <!--=Start selectGunsNotPreselected 查询没有被预选的枪支列表 -->
+  <select id="selectGunsNotPreselected" resultMap="BaseResultMap">
+   SELECT
+      <include refid="Base_Column_List_G"/>
+    FROM
+      gun AS g
+    WHERE g.gun_id NOT IN
+      (SELECT
+        ag.gun_id
+      FROM
+        app_gun AS ag
+      WHERE ag.allot_state NOT IN (0))
+  </select>
+  <!--=End selectGunsNotPreselected 查询没有被预选的枪支列表 -->
 </mapper>

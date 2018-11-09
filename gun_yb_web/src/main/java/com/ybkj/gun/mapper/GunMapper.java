@@ -46,4 +46,11 @@ public interface GunMapper {
      * @CreateDate:   2018/11/3 13:58
      */
     List<Gun> selectGuns();
+
+    /**
+     * @Description:  功能描述（查询没有被预选的枪支列表）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/9 20:20
+    */
+    List<Gun> selectGunsNotPreselected();
 }

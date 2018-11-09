@@ -19,9 +19,17 @@ public class GunLocation {
 
     private Date updateTime;
 
-    private Integer exceptionType;
-
     private Integer version;
+
+    private String areaCode;
+
+    private String speed;
+
+    private String director;
+
+    private String gunDeviceBatteryPower;
+
+    private Integer gunDeviceState;
 
     public Long getId() {
         return id;
@@ -87,19 +95,51 @@ public class GunLocation {
         this.updateTime = updateTime;
     }
 
-    public Integer getExceptionType() {
-        return exceptionType;
-    }
-
-    public void setExceptionType(Integer exceptionType) {
-        this.exceptionType = exceptionType;
-    }
-
     public Integer getVersion() {
         return version;
     }
 
     public void setVersion(Integer version) {
         this.version = version;
+    }
+
+    public String getAreaCode() {
+        return areaCode;
+    }
+
+    public void setAreaCode(String areaCode) {
+        this.areaCode = areaCode == null ? null : areaCode.trim();
+    }
+
+    public String getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(String speed) {
+        this.speed = speed == null ? null : speed.trim();
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director == null ? null : director.trim();
+    }
+
+    public String getGunDeviceBatteryPower() {
+        return gunDeviceBatteryPower;
+    }
+
+    public void setGunDeviceBatteryPower(String gunDeviceBatteryPower) {
+        this.gunDeviceBatteryPower = gunDeviceBatteryPower == null ? null : gunDeviceBatteryPower.trim();
+    }
+
+    public Integer getGunDeviceState() {
+        return gunDeviceState;
+    }
+
+    public void setGunDeviceState(Integer gunDeviceState) {
+        this.gunDeviceState = gunDeviceState;
     }
 }

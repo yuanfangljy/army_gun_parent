@@ -51,7 +51,7 @@ public class GunServiceImpl implements GunService{
             return baseModel;
         }
         //2、判断枪支绑定的蓝牙号是否存在
-        Gun existBluetoothMac = gunMapper.selectGunByName(gun.getBluetoothMac());
+        Gun existBluetoothMac = gunMapper.selectGunByName(gun.getGunMac());
         if (null != existBluetoothMac) {
             baseModel.setErrorMessage("蓝牙编号已经存在，请重新填写");
             log.debug("新增枪支，结果=responseResult:" + baseModel);
@@ -63,7 +63,7 @@ public class GunServiceImpl implements GunService{
             return baseModel;
         }
         //4、获取当前用户
-        Boolean is = ActiveUser.isActiveUser();
+       /* Boolean is = ActiveUser.isActiveUser();
         if (is) {
             WebUser activeUser = ActiveUser.getActiveUser();
             gun.setUid(activeUser.getId());
@@ -71,7 +71,7 @@ public class GunServiceImpl implements GunService{
             baseModel.setErrorMessage("您未登录或登录超时，请您登录后再试");
             log.debug("新增库室，结果=responseResult:" + baseModel);
             return baseModel;
-        }
+        }*/
         //5、添加库室
         final int i = gunMapper.insertSelective(gun);
         if (i > 0) {
@@ -128,6 +128,7 @@ public class GunServiceImpl implements GunService{
         BaseModel baseModel = new BaseModel();
         //1、查询当前的版本号是否与开始的相同
         Gun existGun = this.gunMapper.selectByPrimaryKey(gun.getId());
+        System.out.println("----------------------------"+gun.getId());
         if (null == existGun || null == existGun.getVersion() || !String.valueOf(existGun.getVersion()).equals(String.valueOf(gun.getVersion()))) {
             baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
             baseModel.setErrorMessage("枪支信息更新失败，请重新进去，再更新");
@@ -135,10 +136,10 @@ public class GunServiceImpl implements GunService{
             return baseModel;
         }
         //2、校验输入字符
-        if(!ValidatorRequestParam.validatorRequestParam(gun,baseModel)){
+       /* if(!ValidatorRequestParam.validatorRequestParam(gun,baseModel)){
             log.debug("枪支信息更新，结果=responseResult:" + baseModel);
             return baseModel;
-        }
+        }*/
         //3、修改库室信息
         int i = this.gunMapper.updateByPrimaryKeySelective(gun);
         if(i>0) {
@@ -181,5 +182,15 @@ public class GunServiceImpl implements GunService{
     @Override
     public List<Gun> findGuns() {
         return gunMapper.selectGuns();
+    }
+
+    /**
+     * @Description:  功能描述（查询没有被预选的枪支列表）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/9 20:19
+    */
+    @Override
+    public List<Gun> findGunsNotPreselected() throws Exception {
+        return gunMapper.selectGunsNotPreselected();
     }
 }

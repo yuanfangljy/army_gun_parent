@@ -56,7 +56,7 @@ public class UserActionInterceptor extends HandlerInterceptorAdapter {
         // TODO Auto-generated method stub
         log.debug("请求到达后台方法之前调用（controller之前）");
         // 1. SecurityUtils获取session中的用户信息
-        WebUser user = (WebUser) SecurityUtils.getSubject().getPrincipal();
+       WebUser user = (WebUser) SecurityUtils.getSubject().getPrincipal();
         if (null != user && StringUtils.isNotEmpty(user.getWebUserName()) && null != user.getVersion()) {
             // 2. 获取数据库中的用户数据
             WebUser dataUser = this.userService.findWebUserByUserName(user.getWebUserName());

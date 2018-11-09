@@ -295,66 +295,6 @@ public class AppDynamicDataExample {
             return (Criteria) this;
         }
 
-        public Criteria andStateIsNull() {
-            addCriterion("state is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateIsNotNull() {
-            addCriterion("state is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateEqualTo(Integer value) {
-            addCriterion("state =", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateNotEqualTo(Integer value) {
-            addCriterion("state <>", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateGreaterThan(Integer value) {
-            addCriterion("state >", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateGreaterThanOrEqualTo(Integer value) {
-            addCriterion("state >=", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateLessThan(Integer value) {
-            addCriterion("state <", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateLessThanOrEqualTo(Integer value) {
-            addCriterion("state <=", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateIn(List<Integer> values) {
-            addCriterion("state in", values, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateNotIn(List<Integer> values) {
-            addCriterion("state not in", values, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateBetween(Integer value1, Integer value2) {
-            addCriterion("state between", value1, value2, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateNotBetween(Integer value1, Integer value2) {
-            addCriterion("state not between", value1, value2, "state");
-            return (Criteria) this;
-        }
-
         public Criteria andCreateTimeIsNull() {
             addCriterion("create_time is null");
             return (Criteria) this;
@@ -472,6 +412,66 @@ public class AppDynamicDataExample {
 
         public Criteria andVersionNotBetween(Integer value1, Integer value2) {
             addCriterion("version not between", value1, value2, "version");
+            return (Criteria) this;
+        }
+
+        public Criteria andExceptionTypeIsNull() {
+            addCriterion("exception_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExceptionTypeIsNotNull() {
+            addCriterion("exception_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExceptionTypeEqualTo(Integer value) {
+            addCriterion("exception_type =", value, "exceptionType");
+            return (Criteria) this;
+        }
+
+        public Criteria andExceptionTypeNotEqualTo(Integer value) {
+            addCriterion("exception_type <>", value, "exceptionType");
+            return (Criteria) this;
+        }
+
+        public Criteria andExceptionTypeGreaterThan(Integer value) {
+            addCriterion("exception_type >", value, "exceptionType");
+            return (Criteria) this;
+        }
+
+        public Criteria andExceptionTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("exception_type >=", value, "exceptionType");
+            return (Criteria) this;
+        }
+
+        public Criteria andExceptionTypeLessThan(Integer value) {
+            addCriterion("exception_type <", value, "exceptionType");
+            return (Criteria) this;
+        }
+
+        public Criteria andExceptionTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("exception_type <=", value, "exceptionType");
+            return (Criteria) this;
+        }
+
+        public Criteria andExceptionTypeIn(List<Integer> values) {
+            addCriterion("exception_type in", values, "exceptionType");
+            return (Criteria) this;
+        }
+
+        public Criteria andExceptionTypeNotIn(List<Integer> values) {
+            addCriterion("exception_type not in", values, "exceptionType");
+            return (Criteria) this;
+        }
+
+        public Criteria andExceptionTypeBetween(Integer value1, Integer value2) {
+            addCriterion("exception_type between", value1, value2, "exceptionType");
+            return (Criteria) this;
+        }
+
+        public Criteria andExceptionTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("exception_type not between", value1, value2, "exceptionType");
             return (Criteria) this;
         }
     }

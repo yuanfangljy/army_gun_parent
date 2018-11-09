@@ -9,11 +9,11 @@ public class AppDynamicData {
 
     private String appBatteryPower;
 
-    private Integer state;
-
     private Date createTime;
 
     private Integer version;
+
+    private Integer exceptionType;
 
     public Integer getId() {
         return id;
@@ -39,14 +39,6 @@ public class AppDynamicData {
         this.appBatteryPower = appBatteryPower == null ? null : appBatteryPower.trim();
     }
 
-    public Integer getState() {
-        return state;
-    }
-
-    public void setState(Integer state) {
-        this.state = state;
-    }
-
     public Date getCreateTime() {
         return createTime;
     }
@@ -61,5 +53,13 @@ public class AppDynamicData {
 
     public void setVersion(Integer version) {
         this.version = version;
+    }
+
+    public Integer getExceptionType() {
+        return exceptionType;
+    }
+
+    public void setExceptionType(Integer exceptionType) {
+        this.exceptionType = exceptionType;
     }
 }

@@ -13,10 +13,10 @@
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
-        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 14.116.149.237  tct 123456-->
             <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                            connectionURL="jdbc:mysql://14.116.149.237:3306/wujing?useUnicode=true"
-                            userId="tct"
+                            connectionURL="jdbc:mysql://112.74.51.194:3306/wujing?useUnicode=true"
+                            userId="root"
                             password="123456">
             </jdbcConnection>
 
@@ -61,22 +61,26 @@
       实体类名-->
        <!-- <table tableName="app" domainObjectName="App"></table>
         <table tableName="app_dynamic_data" domainObjectName="AppDynamicData"></table>
+        <table tableName="app_gun" domainObjectName="AppGun"></table>
+        <table tableName="app_gun_user" domainObjectName="AppGunUser"></table>
         <table tableName="department" domainObjectName="Department"></table>
         <table tableName="exception" domainObjectName="Exception"></table>
         <table tableName="gun" domainObjectName="Gun"></table>
-        <table tableName="gun_dynamic_data" domainObjectName="GunDynamicData"></table>
+        <table tableName="gun_bullet_count" domainObjectName="GunBulletCount"></table>
         <table tableName="gun_location" domainObjectName="GunLocation"></table>
         <table tableName="gun_user" domainObjectName="GunUser"></table>
+        <table tableName="menu" domainObjectName="Menu"></table>
+        <table tableName="message_records" domainObjectName="MessageRecords"></table>
         <table tableName="mission" domainObjectName="Mission"></table>
+        <table tableName="role" domainObjectName="Role"></table>
+        <table tableName="role_menu" domainObjectName="RoleMenu"></table>
         <table tableName="sos_message" domainObjectName="SosMessage"></table>
+        <table tableName="sys_serial_number" domainObjectName="SysSerialNumber"></table>
         <table tableName="third_server_user" domainObjectName="ThirdServerUser"></table>
+        <table tableName="user_role" domainObjectName="UserRole"></table>
         <table tableName="warehouse" domainObjectName="Warehouse"></table>
         <table tableName="warehouse_records" domainObjectName="WarehouseRecords"></table>
         <table tableName="web_user" domainObjectName="WebUser"></table>
-        <table tableName="web_user_login" domainObjectName="WebUserLogin"></table>
-        <table tableName="role" domainObjectName="Role"></table>
-        <table tableName="menu" domainObjectName="Menu"></table>
-        <table tableName="role_menu" domainObjectName="RoleMenu"></table>
-        <table tableName="user_role" domainObjectName="UserRole"></table>-->
+        <table tableName="web_user_login" domainObjectName="WebUserLogin"></table>-->
     </context>
 </generatorConfiguration>

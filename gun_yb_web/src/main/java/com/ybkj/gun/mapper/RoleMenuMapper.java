@@ -28,6 +28,7 @@ public interface RoleMenuMapper {
 
     int updateByPrimaryKey(RoleMenu record);
 
+
     /**
      * @Description:  功能描述（根据roleid查询所有的中间表中角色）
      * @Author:       刘家义

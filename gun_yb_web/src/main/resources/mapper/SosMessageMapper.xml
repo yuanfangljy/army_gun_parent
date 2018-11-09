@@ -20,7 +20,7 @@
     <collection property="guns" ofType="com.ybkj.gun.model.Gun">
       <id column="id" jdbcType="INTEGER" property="id" />
       <result column="gun_id" jdbcType="CHAR" property="gunId" />
-      <result column="bluetooth_mac" jdbcType="CHAR" property="bluetoothMac" />
+      <result column="bluetooth_mac" jdbcType="CHAR" property="gunMac" />
     </collection>
   </resultMap>
   <sql id="Example_Where_Clause">

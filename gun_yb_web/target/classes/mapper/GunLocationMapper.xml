@@ -10,8 +10,12 @@
     <result column="longitude" jdbcType="CHAR" property="longitude" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="exception_type" jdbcType="INTEGER" property="exceptionType" />
     <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="area_code" jdbcType="CHAR" property="areaCode" />
+    <result column="speed" jdbcType="CHAR" property="speed" />
+    <result column="director" jdbcType="CHAR" property="director" />
+    <result column="gun_device_battery_power" jdbcType="CHAR" property="gunDeviceBatteryPower" />
+    <result column="gun_device_state" jdbcType="INTEGER" property="gunDeviceState" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,8 +76,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, app_id, gun_id, gun_mac, latitude, longitude, create_time, update_time, exception_type, 
-    version
+    id, app_id, gun_id, gun_mac, latitude, longitude, create_time, update_time, version, 
+    area_code, speed, director, gun_device_battery_power, gun_device_state
   </sql>
   <select id="selectByExample" parameterType="com.ybkj.gun.model.GunLocationExample" resultMap="BaseResultMap">
     select
@@ -108,12 +112,14 @@
   <insert id="insert" parameterType="com.ybkj.gun.model.GunLocation">
     insert into gun_location (id, app_id, gun_id, 
       gun_mac, latitude, longitude, 
-      create_time, update_time, exception_type, 
-      version)
+      create_time, update_time, version, 
+      area_code, speed, director, gun_device_battery_power, 
+      gun_device_state)
     values (#{id,jdbcType=BIGINT}, #{appId,jdbcType=INTEGER}, #{gunId,jdbcType=CHAR}, 
       #{gunMac,jdbcType=CHAR}, #{latitude,jdbcType=CHAR}, #{longitude,jdbcType=CHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{exceptionType,jdbcType=INTEGER}, 
-      #{version,jdbcType=INTEGER})
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}, 
+      #{areaCode,jdbcType=CHAR}, #{speed,jdbcType=CHAR}, #{director,jdbcType=CHAR}, #{gunDeviceBatteryPower,jdbcType=CHAR}, 
+      #{gunDeviceState,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.ybkj.gun.model.GunLocation">
     insert into gun_location
@@ -142,11 +148,23 @@
       <if test="updateTime != null">
         update_time,
       </if>
-      <if test="exceptionType != null">
-        exception_type,
-      </if>
       <if test="version != null">
         version,
+      </if>
+      <if test="areaCode != null">
+        area_code,
+      </if>
+      <if test="speed != null">
+        speed,
+      </if>
+      <if test="director != null">
+        director,
+      </if>
+      <if test="gunDeviceBatteryPower != null">
+        gun_device_battery_power,
+      </if>
+      <if test="gunDeviceState != null">
+        gun_device_state,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -174,11 +192,23 @@
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="exceptionType != null">
-        #{exceptionType,jdbcType=INTEGER},
-      </if>
       <if test="version != null">
         #{version,jdbcType=INTEGER},
+      </if>
+      <if test="areaCode != null">
+        #{areaCode,jdbcType=CHAR},
+      </if>
+      <if test="speed != null">
+        #{speed,jdbcType=CHAR},
+      </if>
+      <if test="director != null">
+        #{director,jdbcType=CHAR},
+      </if>
+      <if test="gunDeviceBatteryPower != null">
+        #{gunDeviceBatteryPower,jdbcType=CHAR},
+      </if>
+      <if test="gunDeviceState != null">
+        #{gunDeviceState,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -215,11 +245,23 @@
       <if test="record.updateTime != null">
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.exceptionType != null">
-        exception_type = #{record.exceptionType,jdbcType=INTEGER},
-      </if>
       <if test="record.version != null">
         version = #{record.version,jdbcType=INTEGER},
+      </if>
+      <if test="record.areaCode != null">
+        area_code = #{record.areaCode,jdbcType=CHAR},
+      </if>
+      <if test="record.speed != null">
+        speed = #{record.speed,jdbcType=CHAR},
+      </if>
+      <if test="record.director != null">
+        director = #{record.director,jdbcType=CHAR},
+      </if>
+      <if test="record.gunDeviceBatteryPower != null">
+        gun_device_battery_power = #{record.gunDeviceBatteryPower,jdbcType=CHAR},
+      </if>
+      <if test="record.gunDeviceState != null">
+        gun_device_state = #{record.gunDeviceState,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -236,8 +278,12 @@
       longitude = #{record.longitude,jdbcType=CHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      exception_type = #{record.exceptionType,jdbcType=INTEGER},
-      version = #{record.version,jdbcType=INTEGER}
+      version = #{record.version,jdbcType=INTEGER},
+      area_code = #{record.areaCode,jdbcType=CHAR},
+      speed = #{record.speed,jdbcType=CHAR},
+      director = #{record.director,jdbcType=CHAR},
+      gun_device_battery_power = #{record.gunDeviceBatteryPower,jdbcType=CHAR},
+      gun_device_state = #{record.gunDeviceState,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -266,11 +312,23 @@
       <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="exceptionType != null">
-        exception_type = #{exceptionType,jdbcType=INTEGER},
-      </if>
       <if test="version != null">
         version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="areaCode != null">
+        area_code = #{areaCode,jdbcType=CHAR},
+      </if>
+      <if test="speed != null">
+        speed = #{speed,jdbcType=CHAR},
+      </if>
+      <if test="director != null">
+        director = #{director,jdbcType=CHAR},
+      </if>
+      <if test="gunDeviceBatteryPower != null">
+        gun_device_battery_power = #{gunDeviceBatteryPower,jdbcType=CHAR},
+      </if>
+      <if test="gunDeviceState != null">
+        gun_device_state = #{gunDeviceState,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -284,8 +342,12 @@
       longitude = #{longitude,jdbcType=CHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      exception_type = #{exceptionType,jdbcType=INTEGER},
-      version = #{version,jdbcType=INTEGER}
+      version = #{version,jdbcType=INTEGER},
+      area_code = #{areaCode,jdbcType=CHAR},
+      speed = #{speed,jdbcType=CHAR},
+      director = #{director,jdbcType=CHAR},
+      gun_device_battery_power = #{gunDeviceBatteryPower,jdbcType=CHAR},
+      gun_device_state = #{gunDeviceState,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

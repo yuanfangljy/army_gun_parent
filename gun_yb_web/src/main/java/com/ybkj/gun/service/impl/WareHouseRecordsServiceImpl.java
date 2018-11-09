@@ -106,7 +106,7 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
             //4、临时保存将要预出库发送给服务器的临时消息
             bindingReqMessageBody.setUserId(String.valueOf(gunUserId));
             gunInfo.setGunId(gun.getGunId());
-            gunInfo.setGunMac(gun.getBluetoothMac());
+            gunInfo.setGunMac(gun.getGunMac());
             gunInfo.setGunModel(gun.getGunModel());
             gunInfo.setGunType(gun.getGunType());
             bindingReqMessageBodiesGunInfo.add(gunInfo);
@@ -115,7 +115,7 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
         bindingReqMessageBody.setGunList(bindingReqMessageBodiesGunInfo);
         bindingReqMessageBodies.add(bindingReqMessageBody);
 
-        appDynamicData.setState(1);//设置腕表已出库中
+        //appDynamicData.setState(1);//设置腕表已出库中
         //6、推送消息给服务器
         baseModel = producer.sendMessageAdvanceTheDelivery(bindingReqMessageBodies);
         baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());

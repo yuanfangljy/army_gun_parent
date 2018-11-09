@@ -29,6 +29,7 @@ public interface WarehouseMapper {
     int updateByPrimaryKey(Warehouse record);
 
 
+
     /**
      * @Description:  功能描述（根据库室名称，查询库室信息）
      * @Author:       刘家义

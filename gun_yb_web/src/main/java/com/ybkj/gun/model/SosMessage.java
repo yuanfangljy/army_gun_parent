@@ -117,9 +117,10 @@ public class SosMessage {
     }
 
 
+
     //一对多
     @Setter
     private List<App> apps;
     @Setter
     private List<Gun> guns;
- }
+}

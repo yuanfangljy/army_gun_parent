@@ -37,6 +37,36 @@ public class GunController {
 
     @Autowired
     private GunService gunService;
+
+    /**
+     * @Description:  功能描述（查询没有被预选的枪支）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/9 20:15
+    */
+    @ApiOperation(value = "查询没有被预选的枪支", notes = "获取没有被预选的枪支")
+    @RequestMapping(value = "/readGunsNotPreselected", method = RequestMethod.GET)
+    public BaseModel readGunsNotPreselected(@RequestParam(value="pn",defaultValue="1") Integer pn, @RequestParam(value = "ps",defaultValue="5")Integer ps){
+        BaseModel baseModel=new BaseModel();
+        PageHelper.startPage(pn,ps);
+        log.debug("--------获取没有被预选的枪支列表！");
+        try {
+            List<Gun> guns =this.gunService.findGunsNotPreselected();
+            PageInfo<Gun> page = new PageInfo<Gun>(guns,5);
+            baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
+            baseModel.setErrorMessage("查询成功！");
+            baseModel.add("pageInfo",page);
+        }catch (Exception e){
+            e.printStackTrace();
+            log.error("没有被预选的枪支列表异常！", e);
+            baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
+            baseModel.setErrorMessage("没有被预选的枪支列表异常！");
+        }
+        return baseModel;
+    }
+
+
+
+
     /**
      * @Description: 功能描述（新增枪支）
      * @Author: 刘家义
@@ -47,7 +77,7 @@ public class GunController {
      */
     @ApiOperation(value = "新增枪支", notes = "添加枪支")
     @RequestMapping(value = "/createGun", method = RequestMethod.POST)
-    public BaseModel createGun(Gun gun,@RequestParam("wId")Integer wId,@RequestParam("wName")String wName) throws Exception {
+    public BaseModel createGun(Gun gun) throws Exception {
         log.debug("新增枪支--gun-" + gun.toString());
         BaseModel baseModel = new BaseModel();
         try {
@@ -57,14 +87,14 @@ public class GunController {
                 log.debug("新增枪支--gun-" + baseModel);
                 return baseModel;
             }
-            if(null==wId || null==wName){
+            if(null==gun.getWarehouseId() || null==gun.getWarehouseName()){
                 baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
                 baseModel.setErrorMessage("请选择库室");
                 log.debug("新增枪支--gun-" + baseModel);
                 return baseModel;
             }
-            gun.setWarehouseId(wId);
-            gun.setWarehouseName(wName);
+            gun.setWarehouseId(gun.getWarehouseId());
+            gun.setWarehouseName(gun.getWarehouseName());
             gun.setCreateTime(new Date());
             baseModel = gunService.addGun(gun);
         } catch (Exception e) {
@@ -117,6 +147,7 @@ public class GunController {
     @ApiOperation(value = "修改枪支信息", notes = "修改枪支信息")
     @RequestMapping(value = "updateGun", method = RequestMethod.PUT)
     public BaseModel updateGun(Gun gun) {
+
         log.debug("修改枪支信息--gun--" + gun.toString());
         BaseModel baseModel = new BaseModel();
         baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());

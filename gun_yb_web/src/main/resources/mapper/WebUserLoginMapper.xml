@@ -288,7 +288,6 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-
   <!--=Start selectWebUserLoginByUserName 根据用户名，查询用户登入出日志信息 -->
   <select id="selectWebUserLoginByUserName" resultType="com.ybkj.gun.model.WebUserLogin" parameterType="java.lang.String">
     select

@@ -257,7 +257,6 @@
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
 
-
   <!--=Start selectGunUserByUserId 根据警员Id,查询警员信息 -->
   <select id="selectGunUserByUserId" resultType="com.ybkj.gun.model.GunUser">
     select

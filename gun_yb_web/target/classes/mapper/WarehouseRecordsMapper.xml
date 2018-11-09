@@ -11,6 +11,7 @@
     <result column="gun_id" jdbcType="CHAR" property="gunId" />
     <result column="state" jdbcType="INTEGER" property="state" />
     <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="cancel_time" jdbcType="TIMESTAMP" property="cancelTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,7 +73,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, warehouse_id, warehouse_in_time, warehouse_out_time, web_user_id, app_id, gun_id, 
-    state, version
+    state, version, cancel_time
   </sql>
   <select id="selectByExample" parameterType="com.ybkj.gun.model.WarehouseRecordsExample" resultMap="BaseResultMap">
     select
@@ -107,10 +108,12 @@
   <insert id="insert" parameterType="com.ybkj.gun.model.WarehouseRecords">
     insert into warehouse_records (id, warehouse_id, warehouse_in_time, 
       warehouse_out_time, web_user_id, app_id, 
-      gun_id, state, version)
+      gun_id, state, version, 
+      cancel_time)
     values (#{id,jdbcType=INTEGER}, #{warehouseId,jdbcType=INTEGER}, #{warehouseInTime,jdbcType=TIMESTAMP}, 
       #{warehouseOutTime,jdbcType=TIMESTAMP}, #{webUserId,jdbcType=INTEGER}, #{appId,jdbcType=INTEGER}, 
-      #{gunId,jdbcType=CHAR}, #{state,jdbcType=INTEGER}, #{version,jdbcType=INTEGER})
+      #{gunId,jdbcType=CHAR}, #{state,jdbcType=INTEGER}, #{version,jdbcType=INTEGER}, 
+      #{cancelTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.ybkj.gun.model.WarehouseRecords">
     insert into warehouse_records
@@ -142,6 +145,9 @@
       <if test="version != null">
         version,
       </if>
+      <if test="cancelTime != null">
+        cancel_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -170,6 +176,9 @@
       </if>
       <if test="version != null">
         #{version,jdbcType=INTEGER},
+      </if>
+      <if test="cancelTime != null">
+        #{cancelTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -209,6 +218,9 @@
       <if test="record.version != null">
         version = #{record.version,jdbcType=INTEGER},
       </if>
+      <if test="record.cancelTime != null">
+        cancel_time = #{record.cancelTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -224,7 +236,8 @@
       app_id = #{record.appId,jdbcType=INTEGER},
       gun_id = #{record.gunId,jdbcType=CHAR},
       state = #{record.state,jdbcType=INTEGER},
-      version = #{record.version,jdbcType=INTEGER}
+      version = #{record.version,jdbcType=INTEGER},
+      cancel_time = #{record.cancelTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -256,6 +269,9 @@
       <if test="version != null">
         version = #{version,jdbcType=INTEGER},
       </if>
+      <if test="cancelTime != null">
+        cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -268,7 +284,8 @@
       app_id = #{appId,jdbcType=INTEGER},
       gun_id = #{gunId,jdbcType=CHAR},
       state = #{state,jdbcType=INTEGER},
-      version = #{version,jdbcType=INTEGER}
+      version = #{version,jdbcType=INTEGER},
+      cancel_time = #{cancelTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -256,7 +256,6 @@
     where rid = #{rid,jdbcType=INTEGER}
   </update>
 
-
   <!--=Start selectRoleByUser 根据用户id查询角色数据 -->
   <select id="selectRoleByUser"  resultType="com.ybkj.gun.model.Role">
     select
