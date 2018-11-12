@@ -27,4 +27,11 @@ public interface GunLocationMapper {
     int updateByPrimaryKeySelective(GunLocation record);
 
     int updateByPrimaryKey(GunLocation record);
+
+    /**
+     * @Description:  功能描述（查询枪支实时动态位置信息）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/12 14:23
+    */
+    List<GunLocation> selectGunDynamic(@Param(value = "gunId") String gunId, @Param(value = "appName")String appName);
 }

@@ -1,5 +1,8 @@
 package com.ybkj.gun.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 
 public class WarehouseRecords {
@@ -102,4 +105,11 @@ public class WarehouseRecords {
     public void setCancelTime(Date cancelTime) {
         this.cancelTime = cancelTime;
     }
+
+    @Setter
+    @Getter
+    private App apps;
+    @Setter
+    @Getter
+    private Gun guns;
 }

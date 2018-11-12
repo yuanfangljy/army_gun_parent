@@ -3,7 +3,9 @@ package com.ybkj.common.activceMq;
 import com.alibaba.fastjson.JSONObject;
 import com.ybkj.common.pojo.*;
 import com.ybkj.enums.IStatusMessage;
+import com.ybkj.gun.mapper.AppMapper;
 import com.ybkj.gun.mapper.GunMapper;
+import com.ybkj.gun.model.App;
 import com.ybkj.model.BaseModel;
 import com.ybkj.untils.DateTool;
 import com.ybkj.untils.ProgressiveIncreaseNumber;
@@ -47,6 +49,8 @@ public class Producer {
     HttpServletRequest requests;
     @Autowired
     GunMapper gunMapper;
+    @Autowired
+    AppMapper appMapper;
    /* @Value("${powerAlarmLevel}")
     private String powerAlarmLevel;
     @Value("${transmittingPower}")
@@ -78,7 +82,7 @@ public class Producer {
      * @param bindingReqMessageBody
      * @throws MessageEOFException
      */
-    public BaseModel sendMessageAdvanceTheDelivery(List<BindingReqMessageBody> bindingReqMessageBody) throws ParseException {
+    public BaseModel sendMessageAdvanceTheDelivery(List<BindingReqMessageBody> bindingReqMessageBody,String appId) throws ParseException {
 
         /*for (BindingReqMessageBody info : bindingReqMessageBody) {
             System.out.println("----------------------"+info.toString());
@@ -87,7 +91,7 @@ public class Producer {
         BaseModel baseModel = new BaseModel();
         try {
             BindingResMessage bindingResMessage = new BindingResMessage();
-            bindingResMessage.setUniqueIdentification("208POSITIONSYSTEM");//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
+            bindingResMessage.setUniqueIdentification(appId);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
             bindingResMessage.setFormatVersion("0001");//格式版本
             bindingResMessage.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
             bindingResMessage.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
@@ -118,10 +122,13 @@ public class Producer {
      * @Author: 刘家义
      * @CreateDate: 2018/11/6 15:43
      */
-    public BaseModel sendMessageEndDelivery(Integer userId, String userName, String gun, String mac, String endTime) {
+    public BaseModel sendMessageEndDelivery(Integer userId, String userName, String gun, String mac, String endTime,String appImei) {
         log.debug("================ 开始：《最终出库：警员存在》 报文 07 消息推送 ================");
         BaseModel baseModel = new BaseModel();
         try {
+            //获取IMEI号
+           // App app = appMapper.selectByPrimaryKey(Integer.valueOf(appId));
+
             OutWarehouseReqMessage outWarehouseReqMessage=new OutWarehouseReqMessage();
             OutWarehouseReqMessageBody outWarehouseReqMessageBody=new OutWarehouseReqMessageBody();
 
@@ -134,7 +141,7 @@ public class Producer {
             outWarehouseReqMessageBody.setReserve("");
 
 
-            outWarehouseReqMessage.setUniqueIdentification("208POSITIONSYSTEM");//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
+            outWarehouseReqMessage.setUniqueIdentification(appImei);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
             outWarehouseReqMessage.setFormatVersion("0001");//格式版本
             outWarehouseReqMessage.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
             outWarehouseReqMessage.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
@@ -164,10 +171,13 @@ public class Producer {
      * @Author: 刘家义
      * @CreateDate: 2018/11/6 15:43
      */
-    public BaseModel sendMessageEndDelivery(String gun, String mac, String endTime) {
+    public BaseModel sendMessageEndDelivery(String gun, String mac, String endTime,String appImei) {
         log.debug("================ 开始：《最终出库：警员不存在》 报文 07 消息推送 ================");
         BaseModel baseModel = new BaseModel();
         try {
+            //获取IMEI号
+            //App app = appMapper.selectByPrimaryKey(Integer.valueOf(appId));
+
             OutWarehouseReqMessage outWarehouseReqMessage=new OutWarehouseReqMessage();
             OutWarehouseReqMessageBody outWarehouseReqMessageBody=new OutWarehouseReqMessageBody();
 
@@ -180,7 +190,7 @@ public class Producer {
             outWarehouseReqMessageBody.setReserve("");
 
 
-            outWarehouseReqMessage.setUniqueIdentification("208POSITIONSYSTEM");//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
+            outWarehouseReqMessage.setUniqueIdentification(appImei);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
             outWarehouseReqMessage.setFormatVersion("0001");//格式版本
             outWarehouseReqMessage.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
             outWarehouseReqMessage.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
@@ -205,10 +215,13 @@ public class Producer {
      * @Author:       刘家义
      * @CreateDate:   2018/11/6 16:25
     */
-    public BaseModel sendMessageRevocationDelivery(String gId) {
+    public BaseModel sendMessageRevocationDelivery(String gId,Integer appId) {
         log.debug("================ 开始：《撤销出库》 报文 09 消息推送 ================");
         BaseModel baseModel = new BaseModel();
         try {
+            //获取IMEI号
+            App app = appMapper.selectByPrimaryKey(Integer.valueOf(appId));
+
             CancelRecipientsGunReqMessage cancelRecipientsGunReqMessage=new CancelRecipientsGunReqMessage();
             CancelRecipientsGunReqMessageBody cancelRecipientsGunReqMessageBody=new CancelRecipientsGunReqMessageBody();
 
@@ -216,7 +229,7 @@ public class Producer {
             cancelRecipientsGunReqMessageBody.setCancelTime(dateTool.dateToString());
 
 
-            cancelRecipientsGunReqMessage.setUniqueIdentification("208POSITIONSYSTEM");//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
+            cancelRecipientsGunReqMessage.setUniqueIdentification(app.getAppImei());//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
             cancelRecipientsGunReqMessage.setFormatVersion("0001");//格式版本
             cancelRecipientsGunReqMessage.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
             cancelRecipientsGunReqMessage.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
@@ -241,7 +254,7 @@ public class Producer {
      * @Author:       刘家义
      * @CreateDate:   2018/11/6 19:29
     */
-    public BaseModel sendMessageBeforehandStorage(String gId) {
+    public BaseModel sendMessageBeforehandStorage(String gId  ,String appImei) {
         log.debug("================ 开始：《预入库》 报文 11 消息推送 ================");
         BaseModel baseModel = new BaseModel();
         try {
@@ -252,7 +265,7 @@ public class Producer {
             inWarehouseReqMessageBody.setStage("1");//0:不入库  1：入库
 
 
-            inWarehouseReqMessage.setUniqueIdentification("208POSITIONSYSTEM");//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
+            inWarehouseReqMessage.setUniqueIdentification(appImei);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
             inWarehouseReqMessage.setFormatVersion("0001");//格式版本
             inWarehouseReqMessage.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
             inWarehouseReqMessage.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
@@ -277,8 +290,13 @@ public class Producer {
      * @Author:       刘家义
      * @CreateDate:   2018/11/6 19:47
      */
-    public BaseModel sendMessageRevocationStorage(String gun, String mac) throws Exception{
-        log.debug("================ 开始：《撤销入库》 报文 12 消息推送 ================");
+    public BaseModel sendMessageRevocationStorage(String gun, String mac,String appId,String state) throws Exception{
+        if(state.equals(String.valueOf(1))){
+            log.debug("================ 开始：《入库》 报文 12 消息推送 ================");
+        }else {
+            log.debug("================ 开始：《撤销入库》 报文 12 消息推送 ================");
+        }
+
         BaseModel baseModel = new BaseModel();
         try {
             CancelInWarehouseReqMessage cancelInWarehouseReqMessage=new CancelInWarehouseReqMessage();
@@ -286,10 +304,10 @@ public class Producer {
 
             cancelInWarehouseReqMessageBody.setGunId(gun);
             cancelInWarehouseReqMessageBody.setGunMac(mac);
-            cancelInWarehouseReqMessageBody.setState("0");//不入库
+            cancelInWarehouseReqMessageBody.setState(state);//不入库  0：撤销 1：入库
 
 
-            cancelInWarehouseReqMessage.setUniqueIdentification("208POSITIONSYSTEM");//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
+            cancelInWarehouseReqMessage.setUniqueIdentification(appId);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
             cancelInWarehouseReqMessage.setFormatVersion("0001");//格式版本
             cancelInWarehouseReqMessage.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
             cancelInWarehouseReqMessage.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
@@ -299,11 +317,22 @@ public class Producer {
             cancelInWarehouseReqMessage.setMessageBody(cancelInWarehouseReqMessageBody);
             String jsonString = JSONObject.toJSONString(cancelInWarehouseReqMessage);
             jmsMessagingTemplate.convertAndSend(storageQueue, jsonString);
-            log.debug("************ 结束：《撤销入库》 报文 13 消息推送 -- 成功 **************：" + jsonString);
+            if(state.equals(String.valueOf(1))){
+                log.debug("************ 结束：《入库》 报文 13 消息推送 -- 成功 **************：" + jsonString);
+            }else {
+                log.debug("************ 结束：《撤销入库》 报文 13 消息推送 -- 成功 **************：" + jsonString);
+            }
+
         }catch (Exception e){
             baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
-            baseModel.setErrorMessage("撤销入库：报文 13 发送失败，请稍后再试");
-            log.error("撤销入库：报文 13 发送异常，服务器连接失败" + e);
+            if(state.equals(String.valueOf(1))){
+                baseModel.setErrorMessage("入库：报文 13 发送失败，请稍后再试");
+                log.error("入库：报文 13 发送异常，服务器连接失败" + e);
+            }else {
+                baseModel.setErrorMessage("撤销入库：报文 13 发送失败，请稍后再试");
+                log.error("撤销入库：报文 13 发送异常，服务器连接失败" + e);
+            }
+
             e.printStackTrace();
         }
         return baseModel;

@@ -12,6 +12,34 @@
     <result column="state" jdbcType="INTEGER" property="state" />
     <result column="version" jdbcType="INTEGER" property="version" />
     <result column="cancel_time" jdbcType="TIMESTAMP" property="cancelTime" />
+    <association property="apps" javaType="com.ybkj.gun.model.App">
+      <id column="id" jdbcType="INTEGER" property="id" />
+      <result column="app_system" jdbcType="CHAR" property="appSystem" />
+      <result column="app_system_version" jdbcType="CHAR" property="appSystemVersion" />
+      <result column="app_phone_type_name" jdbcType="CHAR" property="appPhoneTypeName" />
+      <result column="app_name" jdbcType="CHAR" property="appName" />
+      <result column="app_mac" jdbcType="CHAR" property="appMac" />
+      <result column="app_imei" jdbcType="CHAR" property="appImei" />
+      <result column="app_phone" jdbcType="CHAR" property="appPhone" />
+      <result column="app_readable_code" jdbcType="CHAR" property="appReadableCode" />
+      <result column="app_type" jdbcType="INTEGER" property="appType" />
+      <result column="version" jdbcType="INTEGER" property="version" />
+    </association>
+    <association property="guns" javaType="com.ybkj.gun.model.Gun">
+      <result column="uid" jdbcType="INTEGER" property="uid" />
+      <result column="gun_id" jdbcType="CHAR" property="gunId" />
+      <result column="gun_model" jdbcType="CHAR" property="gunModel" />
+      <result column="gun_type" jdbcType="CHAR" property="gunType" />
+      <result column="gun_mac" jdbcType="CHAR" property="gunMac" />
+      <result column="is_del" jdbcType="TINYINT" property="isDel" />
+      <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+      <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+      <result column="warehouse_id" jdbcType="INTEGER" property="warehouseId" />
+      <result column="warehouse_name" jdbcType="CHAR" property="warehouseName" />
+      <result column="version" jdbcType="INTEGER" property="version" />
+      <result column="total_bullet_number" jdbcType="INTEGER" property="totalBulletNumber" />
+      <result column="real_time_state" jdbcType="INTEGER" property="realTimeState" />
+    </association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -288,4 +316,20 @@
       cancel_time = #{cancelTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <sql id="Base_Column_List_WR">
+     wr.warehouse_id, wr.warehouse_in_time, wr.warehouse_out_time, wr.web_user_id,             wr.app_id, wr.gun_id,wr.state, wr.version, wr.cancel_time
+  </sql>
+
+
+  <!--=Start selectWareHouseRecords 查询库存记录表 -->
+  <select id="selectWareHouseRecords" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List_WR"/>,g.gun_id,g.gun_model,g.gun_type,g.gun_mac,a.app_name,a.id,a.app_imei
+    FROM gun AS g
+    INNER JOIN warehouse_records  AS wr ON g.gun_id=wr.gun_id
+    INNER JOIN app AS a ON wr.app_id=a.id
+    WHERE wr.state=#{type,jdbcType=INTEGER}
+  </select>
+  <!--=End selectWareHouseRecords 查询库存记录表 -->
 </mapper>

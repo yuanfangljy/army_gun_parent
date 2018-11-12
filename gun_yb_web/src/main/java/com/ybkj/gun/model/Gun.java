@@ -1,6 +1,10 @@
 package com.ybkj.gun.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
+import java.util.List;
 
 public class Gun {
     private Integer id;
@@ -142,4 +146,31 @@ public class Gun {
     public void setRealTimeState(Integer realTimeState) {
         this.realTimeState = realTimeState;
     }
+
+    @Override
+    public String toString() {
+        return "Gun{" +
+                "id=" + id +
+                ", uid=" + uid +
+                ", gunId='" + gunId + '\'' +
+                ", gunModel='" + gunModel + '\'' +
+                ", gunType='" + gunType + '\'' +
+                ", gunMac='" + gunMac + '\'' +
+                ", isDel=" + isDel +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", warehouseId=" + warehouseId +
+                ", warehouseName='" + warehouseName + '\'' +
+                ", version=" + version +
+                ", totalBulletNumber=" + totalBulletNumber +
+                ", realTimeState=" + realTimeState +
+                ", apps=" + apps +
+                '}';
+    }
+
+    @Setter
+    @Getter
+    private App apps;
+
+
 }

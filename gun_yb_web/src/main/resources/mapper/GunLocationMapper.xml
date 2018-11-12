@@ -350,4 +350,40 @@
       gun_device_state = #{gunDeviceState,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+
+  <resultMap id="BaseResultMapGunLocation" type="com.ybkj.common.entity.GunLocationVO">
+    <result column="gunId" jdbcType="CHAR" property="gunId" />
+    <result column="gunModel" jdbcType="CHAR" property="gunModel" />
+    <result column="gunType" jdbcType="CHAR" property="gunType" />
+    <result column="gunMac" jdbcType="CHAR" property="gunMac" />
+    <result column="latitude" jdbcType="CHAR" property="latitude" />
+    <result column="longitude" jdbcType="CHAR" property="longitude" />
+    <result column="gunDeviceBatteryPower" jdbcType="CHAR" property="gunDeviceBatteryPower" />
+    <result column="gunDeviceState" jdbcType="INTEGER" property="gunDeviceState" />
+    <result column="bulletNumber" jdbcType="INTEGER" property="bulletNumber" />
+    <result column="totalBulletNumber" jdbcType="INTEGER" property="totalBulletNumber" />
+    <result column="warehouseName" jdbcType="CHAR" property="warehouseName" />
+    <result column="appIMEI" jdbcType="CHAR" property="appIMEI" />
+    <result column="appPhone" jdbcType="CHAR" property="appPhone" />
+    <result column="appBatteryPower" jdbcType="CHAR" property="appBatteryPower" />
+  </resultMap>
+
+  <!--=Start selectGunDynamic 查询枪支实时动态位置信息 -->
+  <select id="selectGunDynamic" resultMap="BaseResultMapGunLocation">
+   SELECT gl.gun_id as gunId,g.gun_model as gunModel,g.gun_type as gunType,gl.gun_mac as gunMac,
+          gl.latitude as latitude,gl.longitude as longitude,gl.gun_device_battery_power as gunDeviceBatteryPower,gl.gun_device_state as gunDeviceState,gbc.bullet_number as bulletNumber,
+ g.total_bullet_number as totalBulletNumber,g.warehouse_name as warehouseName,a.app_imei as appIMEI,
+ a.app_phone as appPhone,adda.app_battery_power as appBatteryPower
+FROM (
+      SELECT * FROM gun_location t
+      WHERE (create_time =(SELECT MAX(create_time) FROM gun_location WHERE gun_mac = t.gun_mac) )
+      AND t.gun_device_state=0 GROUP BY  gun_mac
+     ) AS gl
+     LEFT JOIN gun AS g ON gl.gun_mac=g.gun_mac
+     LEFT JOIN gun_bullet_count AS gbc ON g.gun_id=g.gun_id
+     LEFT JOIN app AS a ON gl.app_id=a.id
+     LEFT JOIN app_dynamic_data AS adda ON a.id=adda.app_id
+  </select>
+  <!--=End selectGunDynamic 查询枪支实时动态位置信息 -->
 </mapper>

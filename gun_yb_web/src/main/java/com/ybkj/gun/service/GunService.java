@@ -57,4 +57,11 @@ public interface GunService {
      * @CreateDate:   2018/11/9 20:18
     */
     List<Gun> findGunsNotPreselected() throws Exception;
+
+    /**
+     * @Description:  功能描述（查询被预选的枪支列表）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/10 8:36
+    */
+    List<Gun> findGunsPreselected() throws Exception;
 }

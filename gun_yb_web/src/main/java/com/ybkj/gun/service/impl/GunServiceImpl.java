@@ -51,8 +51,8 @@ public class GunServiceImpl implements GunService{
             return baseModel;
         }
         //2、判断枪支绑定的蓝牙号是否存在
-        Gun existBluetoothMac = gunMapper.selectGunByName(gun.getGunMac());
-        if (null != existBluetoothMac) {
+        Gun existGunMac = gunMapper.selectGunByGunMac(gun.getGunMac());
+        if (null != existGunMac) {
             baseModel.setErrorMessage("蓝牙编号已经存在，请重新填写");
             log.debug("新增枪支，结果=responseResult:" + baseModel);
             return baseModel;
@@ -192,5 +192,15 @@ public class GunServiceImpl implements GunService{
     @Override
     public List<Gun> findGunsNotPreselected() throws Exception {
         return gunMapper.selectGunsNotPreselected();
+    }
+
+    /**
+     * @Description:  功能描述（查询被预选的枪支列表）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/10 8:37
+    */
+    @Override
+    public List<Gun> findGunsPreselected() throws Exception {
+        return gunMapper.selectGunsPreselected();
     }
 }

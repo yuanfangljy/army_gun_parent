@@ -5,7 +5,33 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="app_id" jdbcType="INTEGER" property="appId" />
     <result column="gun_user_id" jdbcType="INTEGER" property="gunUserId" />
+    <result column="binding_state" jdbcType="INTEGER" property="bindingState" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+
+    <association property="apps" javaType="com.ybkj.gun.model.App">
+      <id column="id" jdbcType="INTEGER" property="id" />
+      <result column="app_system" jdbcType="CHAR" property="appSystem" />
+      <result column="app_system_version" jdbcType="CHAR" property="appSystemVersion" />
+      <result column="app_phone_type_name" jdbcType="CHAR" property="appPhoneTypeName" />
+      <result column="app_name" jdbcType="CHAR" property="appName" />
+      <result column="app_mac" jdbcType="CHAR" property="appMac" />
+      <result column="app_imei" jdbcType="CHAR" property="appImei" />
+      <result column="app_phone" jdbcType="CHAR" property="appPhone" />
+      <result column="app_readable_code" jdbcType="CHAR" property="appReadableCode" />
+      <result column="app_type" jdbcType="INTEGER" property="appType" />
+      <result column="version" jdbcType="INTEGER" property="version" />
+    </association>
+    <association property="gunUser" javaType="com.ybkj.gun.model.GunUser">
+      <id column="user_id" jdbcType="INTEGER" property="userId" />
+      <result column="user_name" jdbcType="CHAR" property="userName" />
+      <result column="user_password" jdbcType="CHAR" property="userPassword" />
+      <result column="user_phone" jdbcType="CHAR" property="userPhone" />
+      <result column="user_email" jdbcType="CHAR" property="userEmail" />
+      <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+      <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+      <result column="version" jdbcType="INTEGER" property="version" />
+    </association>
+
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +92,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, app_id, gun_user_id, create_time
+    id, app_id, gun_user_id, binding_state, create_time
   </sql>
   <select id="selectByExample" parameterType="com.ybkj.gun.model.AppGunUserExample" resultMap="BaseResultMap">
     select
@@ -100,9 +126,9 @@
   </delete>
   <insert id="insert" parameterType="com.ybkj.gun.model.AppGunUser">
     insert into app_gun_user (id, app_id, gun_user_id, 
-      create_time)
+      binding_state, create_time)
     values (#{id,jdbcType=INTEGER}, #{appId,jdbcType=INTEGER}, #{gunUserId,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP})
+      #{bindingState,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.ybkj.gun.model.AppGunUser">
     insert into app_gun_user
@@ -115,6 +141,9 @@
       </if>
       <if test="gunUserId != null">
         gun_user_id,
+      </if>
+      <if test="bindingState != null">
+        binding_state,
       </if>
       <if test="createTime != null">
         create_time,
@@ -129,6 +158,9 @@
       </if>
       <if test="gunUserId != null">
         #{gunUserId,jdbcType=INTEGER},
+      </if>
+      <if test="bindingState != null">
+        #{bindingState,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -153,6 +185,9 @@
       <if test="record.gunUserId != null">
         gun_user_id = #{record.gunUserId,jdbcType=INTEGER},
       </if>
+      <if test="record.bindingState != null">
+        binding_state = #{record.bindingState,jdbcType=INTEGER},
+      </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
@@ -166,6 +201,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       app_id = #{record.appId,jdbcType=INTEGER},
       gun_user_id = #{record.gunUserId,jdbcType=INTEGER},
+      binding_state = #{record.bindingState,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -180,6 +216,9 @@
       <if test="gunUserId != null">
         gun_user_id = #{gunUserId,jdbcType=INTEGER},
       </if>
+      <if test="bindingState != null">
+        binding_state = #{bindingState,jdbcType=INTEGER},
+      </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -190,7 +229,37 @@
     update app_gun_user
     set app_id = #{appId,jdbcType=INTEGER},
       gun_user_id = #{gunUserId,jdbcType=INTEGER},
+      binding_state = #{bindingState,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!--=Start selectAppGunUserList 获取设备注册，绑定的用户信息 -->
+  <select id="selectAppGunUserList" resultMap="BaseResultMap">
+    SELECT gu.user_name ,agu.app_id FROM gun_user AS gu
+    INNER JOIN app_gun_user AS agu ON  gu.user_id=agu.gun_user_id
+    INNER JOIN app a ON agu.app_id=a.id
+  </select>
+  <!--=End selectAppGunUserList 获取设备注册，绑定的用户信息 -->
+
+
+
+  <!--=Start selectAppGunUserByAppId 通过 appId 获取 gunUserID-->
+  <select id="selectAppGunUserByAppId" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    FROM app_gun_user where app_id = #{appId,jdbcType=INTEGER}
+                      and binding_state=1
+
+  </select>
+  <!--=End selectAppGunUserByAppId 获取设备注册，绑定的用户信息 -->
+
+  <!--=Start selectAppGunUserByAPPUserState 判断用户和设备是否已经绑定-->
+  <select id="selectAppGunUserByAPPUserState" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    FROM app_gun_user where app_id = #{appId,jdbcType=INTEGER} and gun_user_id = #{gunUserId,jdbcType=INTEGER}
+    and binding_state=#{state,jdbcType=INTEGER}
+  </select>
+  <!--=End selectAppGunUserByAPPUserState 判断用户和设备是否已经绑定 -->
+
+
 </mapper>

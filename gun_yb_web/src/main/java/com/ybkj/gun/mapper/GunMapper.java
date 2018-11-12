@@ -39,7 +39,7 @@ public interface GunMapper {
      * @Author:       刘家义
      * @CreateDate:   2018/11/3 13:58
      */
-    Gun selectGunByName(String bluetoothMac);
+    Gun selectGunByGunMac(String gunMac);
     /**
      * @Description:  功能描述（查询枪支信息列表）
      * @Author:       刘家义
@@ -53,4 +53,11 @@ public interface GunMapper {
      * @CreateDate:   2018/11/9 20:20
     */
     List<Gun> selectGunsNotPreselected();
+
+    /**
+     * @Description:  功能描述（查询被预选的枪支列表）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/10 8:37
+    */
+    List<Gun> selectGunsPreselected();
 }

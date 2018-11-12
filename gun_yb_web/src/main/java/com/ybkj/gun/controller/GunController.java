@@ -57,14 +57,38 @@ public class GunController {
             baseModel.add("pageInfo",page);
         }catch (Exception e){
             e.printStackTrace();
-            log.error("没有被预选的枪支列表异常！", e);
+            log.error("查询没有被预选的枪支列表异常！", e);
             baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
-            baseModel.setErrorMessage("没有被预选的枪支列表异常！");
+            baseModel.setErrorMessage("查询没有被预选的枪支列表异常！");
         }
         return baseModel;
     }
 
-
+    /**
+     * @Description:  功能描述（查询被预选的枪支列表）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/9 20:15
+     */
+    @ApiOperation(value = "查询被预选的枪支列表", notes = "获取被预选的枪支列表")
+    @RequestMapping(value = "/readGunsPreselected", method = RequestMethod.GET)
+    public BaseModel readGunsPreselected(@RequestParam(value="pn",defaultValue="1") Integer pn, @RequestParam(value = "ps",defaultValue="5")Integer ps){
+        BaseModel baseModel=new BaseModel();
+        PageHelper.startPage(pn,ps);
+        log.debug("--------获取被预选的枪支列表！");
+        try {
+            List<Gun> guns =this.gunService.findGunsPreselected();
+            PageInfo<Gun> page = new PageInfo<Gun>(guns,5);
+            baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
+            baseModel.setErrorMessage("查询成功！");
+            baseModel.add("pageInfo",page);
+        }catch (Exception e){
+            e.printStackTrace();
+            log.error("查询被预选的枪支列表异常！", e);
+            baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
+            baseModel.setErrorMessage("查询被预选的枪支列表异常！");
+        }
+        return baseModel;
+    }
 
 
     /**

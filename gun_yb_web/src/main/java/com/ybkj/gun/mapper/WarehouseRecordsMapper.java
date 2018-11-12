@@ -27,4 +27,11 @@ public interface WarehouseRecordsMapper {
     int updateByPrimaryKeySelective(WarehouseRecords record);
 
     int updateByPrimaryKey(WarehouseRecords record);
+
+    /**
+     * @Description:  功能描述（查询库存记录表）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/10 12:17
+    */
+    List<WarehouseRecords> selectWareHouseRecords(Integer type);
 }

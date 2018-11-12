@@ -16,6 +16,16 @@
     <result column="version" jdbcType="INTEGER" property="version" />
     <result column="total_bullet_number" jdbcType="INTEGER" property="totalBulletNumber" />
     <result column="real_time_state" jdbcType="INTEGER" property="realTimeState" />
+    <association property="apps" javaType="com.ybkj.gun.model.App">
+      <id column="id" jdbcType="INTEGER" property="id" />
+      <result column="app_system" jdbcType="CHAR" property="appSystem" />
+      <result column="app_system_version" jdbcType="CHAR" property="appSystemVersion" />
+      <result column="app_phone_type_name" jdbcType="CHAR" property="appPhoneTypeName" />
+      <result column="app_name" jdbcType="CHAR" property="appName" />
+      <result column="app_mac" jdbcType="CHAR" property="appMac" />
+      <result column="app_imei" jdbcType="CHAR" property="appImei" />
+      <result column="app_phone" jdbcType="CHAR" property="appPhone" />
+    </association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -360,13 +370,13 @@
   </select>
   <!--=End selectGunByGunCode 根据枪支编号，查询枪支信息 -->
 
-  <!--=Start selectGunByName 根据枪支蓝牙号，查询枪支信息 -->
-  <select id="selectGunByName" resultType="com.ybkj.gun.model.Gun">
+  <!--=Start selectGunByGunMac 根据枪支蓝牙号，查询枪支信息 -->
+  <select id="selectGunByGunMac" resultType="com.ybkj.gun.model.Gun">
     select
     <include refid="Base_Column_List"/>
-    from gun where bluetooth_mac = #{bluetoothMac,jdbcType=CHAR}
+    from gun where gun_mac = #{gunMac,jdbcType=CHAR}
   </select>
-  <!--=End selectGunByName 根据枪支蓝牙号，查询枪支信息 -->
+  <!--=End selectGunByGunMac 根据枪支蓝牙号，查询枪支信息 -->
 
   <!--=Start selectGuns 查询枪支信息列表 -->
   <select id="selectGuns" resultMap="BaseResultMap">
@@ -377,7 +387,7 @@
   <!--=End selectGuns 查询枪支信息列表 -->
 
     <sql id="Base_Column_List_G">
-        g.id, g.uid, g.gun_id, g.gun_model, g.gun_type, g.gun_mac, g.is_del, g.create_time, g.update_time,
+         g.uid, g.gun_id, g.gun_model, g.gun_type, g.gun_mac, g.is_del, g.create_time, g.update_time,
         g.warehouse_id, g.warehouse_name, g.version, g.total_bullet_number, g.real_time_state
     </sql>
 
@@ -395,4 +405,14 @@
       WHERE ag.allot_state NOT IN (0))
   </select>
   <!--=End selectGunsNotPreselected 查询没有被预选的枪支列表 -->
+
+  <!--=Start selectGunsPreselected 查询被预选的枪支列表 -->
+  <select id="selectGunsPreselected" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List_G"/>,a.app_name,a.id
+    FROM
+    gun AS g INNER JOIN app_gun AS ag ON g.gun_id=ag.gun_id
+             INNER JOIN app AS a ON ag.app_id=a.id
+             WHERE ag.allot_state=2
+  </select>
+  <!--=End selectGunsPreselected 查询被预选的枪支列表 -->
 </mapper>

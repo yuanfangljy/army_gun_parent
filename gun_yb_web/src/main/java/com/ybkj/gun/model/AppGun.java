@@ -1,5 +1,8 @@
 package com.ybkj.gun.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 
 public class AppGun {
@@ -52,4 +55,9 @@ public class AppGun {
     public void setAllotState(Integer allotState) {
         this.allotState = allotState;
     }
+
+
+    @Setter
+    @Getter
+    public String appName;
 }
