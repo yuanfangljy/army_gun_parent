@@ -59,5 +59,8 @@ public class AppGun {
 
     @Setter
     @Getter
-    public String appName;
+    private String appName;
+    @Setter
+    @Getter
+    private Integer counts;
 }

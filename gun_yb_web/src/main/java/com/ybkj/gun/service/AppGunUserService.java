@@ -1,6 +1,7 @@
 package com.ybkj.gun.service;
 
 import com.ybkj.gun.model.AppGunUser;
+import com.ybkj.gun.model.GunUser;
 
 import java.util.List;
 
@@ -28,4 +29,6 @@ public interface AppGunUserService {
      * @CreateDate:   2018/11/11 15:13
     */
     AppGunUser findAppGunUserByAppId(Integer appId) throws Exception;
+
+
 }

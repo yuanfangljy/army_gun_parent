@@ -59,6 +59,15 @@ public interface WareHouseRecordsService {
      */
     BaseModel revocationWareHouseRecordsDelivery(String gunId,Integer appId) throws Exception;
 
+
+    /**
+     * @Description: 功能描述（撤销出库）
+     * @Author: 刘家义
+     * @CreateDate: 2018/11/6 16:19
+     */
+    BaseModel revocationWareHouseRecordsDelivery(Integer appId) throws Exception;
+
+
     /**
      * @Description: 功能描述（枪支预入库）
      * @Author: 刘家义

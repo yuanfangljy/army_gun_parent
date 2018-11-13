@@ -5,6 +5,7 @@ import com.ybkj.gun.model.AppGunUser;
 import com.ybkj.gun.model.AppGunUserExample;
 import java.util.List;
 
+import com.ybkj.gun.model.GunUser;
 import io.swagger.models.auth.In;
 import org.apache.ibatis.annotations.Param;
 
@@ -57,5 +58,7 @@ public interface AppGunUserMapper {
      * @Author:       刘家义
      * @CreateDate:   2018/11/12 20:02
     */
-    AppGunUser selectAppGunUserByGunIdAndState(Integer gunId, Integer state);
+    AppGunUser selectAppGunUserByGunIdAndState(@Param(value = "gunId") Integer gunId, @Param(value = "state")Integer state);
+
+
 }

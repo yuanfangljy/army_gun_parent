@@ -162,4 +162,15 @@ public class GunUserServiceImpl implements GunUserService{
     public List<GunUser> findGunUsers() {
         return gunUserMapper.selectGunUserAll();
     }
+
+    /**
+     * @Description:  功能描述（获取没有和腕表绑定的用户）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/13 9:54
+     */
+    @Override
+    public  List<GunUser>  findGunUserNoBinding() throws Exception {
+        return gunUserMapper.selectGunUserNoBinding();
+    }
+
 }

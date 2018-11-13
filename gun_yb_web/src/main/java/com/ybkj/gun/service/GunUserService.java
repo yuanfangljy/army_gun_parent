@@ -46,4 +46,13 @@ public interface GunUserService {
      * @CreateDate:   2018/11/5 19:33
      */
     List<GunUser> findGunUsers();
+
+    /**
+     * @Description:  功能描述（获取没有和腕表绑定的用户）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/13 9:54
+     */
+    List<GunUser> findGunUserNoBinding() throws Exception;
+
+
 }

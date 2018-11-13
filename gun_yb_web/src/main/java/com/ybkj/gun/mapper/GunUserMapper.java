@@ -47,4 +47,12 @@ public interface GunUserMapper {
      * @CreateDate:   2018/11/5 19:47
      */
     List<GunUser> selectGunUserAll();
+
+
+    /**
+     * @Description:  功能描述（获取没有和腕表绑定的用户）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/13 9:55
+     */
+    List<GunUser> selectGunUserNoBinding();
 }

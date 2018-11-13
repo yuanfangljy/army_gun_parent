@@ -8,6 +8,7 @@
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="allot_state" jdbcType="INTEGER" property="allotState"/>
         <result column="appName" jdbcType="CHAR" property="appName"/>
+        <result column="counts" jdbcType="INTEGER" property="counts"/>
     </resultMap>
     <sql id="Example_Where_Clause">
         <where>
@@ -225,7 +226,7 @@
     <!--=Start selectAppGunBinding 查询所有绑定的枪支的设备-->
     <select id="selectAppGunBinding" resultMap="BaseResultMap">
         SELECT
-        a.app_name as appName,app_id
+        a.app_name as appName,app_id,COUNT(ag.app_id) AS counts
         FROM app_gun AS ag LEFT JOIN app as a on ag.app_id =a.id
         where ag.allot_state=#{state,jdbcType=INTEGER}
         GROUP BY  ag.app_id

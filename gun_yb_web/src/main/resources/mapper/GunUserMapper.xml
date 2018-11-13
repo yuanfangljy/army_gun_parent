@@ -280,4 +280,12 @@
     from gun_user
   </select>
   <!--=End selectGunUserAll 查询警员信息列表 -->
+
+  <!--=Start selectGunUserNoBinding 获取没有和腕表绑定的用户-->
+  <select id="selectGunUserNoBinding" resultMap="BaseResultMap">
+    SELECT  <include refid="Base_Column_List"/> FROM gun_user AS gu WHERE gu.user_id
+    NOT IN
+    (SELECT agu.gun_user_id FROM app_gun_user AS agu WHERE agu.binding_state !=0 )
+  </select>
+  <!--=End selectGunUserNoBinding 获取没有和腕表绑定的用户 -->
 </mapper>

@@ -318,17 +318,17 @@
   </update>
 
   <sql id="Base_Column_List_WR">
-     wr.warehouse_id, wr.warehouse_in_time, wr.warehouse_out_time, wr.web_user_id,             wr.app_id, wr.gun_id,wr.state, wr.version, wr.cancel_time
+     wr.warehouse_id, wr.warehouse_in_time, wr.warehouse_out_time, wr.web_user_id, wr.app_id, wr.gun_id,wr.state, wr.version, wr.cancel_time
   </sql>
 
 
   <!--=Start selectWareHouseRecords 查询库存记录表 -->
   <select id="selectWareHouseRecords" resultMap="BaseResultMap">
     SELECT
-    <include refid="Base_Column_List_WR"/>,g.gun_id,g.gun_model,g.gun_type,g.gun_mac,a.app_name,a.id,a.app_imei
+    g.gun_id,g.gun_model,g.gun_type,g.gun_mac,a.app_name,a.id,a.app_imei
     FROM gun AS g
-    INNER JOIN warehouse_records  AS wr ON g.gun_id=wr.gun_id
-    INNER JOIN app AS a ON wr.app_id=a.id
+    left JOIN warehouse_records  AS wr ON g.gun_id=wr.gun_id
+    left JOIN app AS a ON wr.app_id=a.id
     WHERE wr.state=#{type,jdbcType=INTEGER}
   </select>
   <!--=End selectWareHouseRecords 查询库存记录表 -->

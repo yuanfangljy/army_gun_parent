@@ -1,5 +1,6 @@
 package com.ybkj.gun.controller;
 
+import com.ybkj.common.baiduMap.BaiDuUtil;
 import com.ybkj.enums.IStatusMessage;
 import com.ybkj.gun.model.GunLocation;
 import com.ybkj.gun.service.GunLocationService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -48,9 +50,16 @@ public class GunLocationController {
                                    ,@RequestParam(value = "appName")String appName){
         log.debug("--------获取枪支动态信息！-------gunId-------"+gunId+"-----appName-----"+appName);
         BaseModel baseModel=new BaseModel();
+        List<String> locationList=new ArrayList<>();
         try {
             List<GunLocation> gunLocations = gunLocationService.findGunDynamic(gunId,appName);
+            for (GunLocation gunLocation : gunLocations) {
+                //百度坐标系转换成地理位置信息
+                String location=BaiDuUtil.getAddress(gunLocation.getLongitude(),gunLocation.getLatitude());
+                locationList.add(location);
+            }
             baseModel.add("gunLocations",gunLocations);
+            baseModel.add("locationList",locationList);
             baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
             baseModel.setErrorMessage("查询成功！");
         }catch (Exception e){

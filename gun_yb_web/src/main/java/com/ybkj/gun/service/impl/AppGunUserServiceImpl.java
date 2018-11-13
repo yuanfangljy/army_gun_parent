@@ -2,6 +2,7 @@ package com.ybkj.gun.service.impl;
 
 import com.ybkj.gun.mapper.AppGunUserMapper;
 import com.ybkj.gun.model.AppGunUser;
+import com.ybkj.gun.model.GunUser;
 import com.ybkj.gun.service.AppGunUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,4 +47,6 @@ public class AppGunUserServiceImpl implements AppGunUserService{
     public AppGunUser findAppGunUserByAppId(Integer appId) throws Exception {
         return appGunUserMapper.selectAppGunUserByAppId(appId);
     }
+
+
 }

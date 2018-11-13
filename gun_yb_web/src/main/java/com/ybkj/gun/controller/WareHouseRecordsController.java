@@ -169,9 +169,41 @@ public class WareHouseRecordsController {
         return baseModel;
     }
 
+
     /**
      * @param gunId 枪支编号（多个）
-     * @Description: 功能描述（撤销出库指令：09，设备与枪支进行解绑）
+     * @Description: 功能描述（撤销出库指令：09，设备与枪支进行解绑）  第二版
+     * @Author: 刘家义
+     * @CreateDate: 2018/11/6 16:12
+     */
+    @ApiOperation(value = "09号报文：撤销出库", notes = "07：撤销出库")
+    @RequestMapping(value = "/revocationWareHouseRecordsDelivery_2", method = RequestMethod.DELETE)
+    public BaseModel revocationWareHouseRecordsDelivery_2(@RequestParam(value = "appId",required = false) Integer appId) {
+        log.debug("09号报文：撤销出库----appId----" + appId);
+        BaseModel baseModel = new BaseModel();
+        try {
+            if (null==appId) {
+                baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
+                baseModel.setErrorMessage("枪支撤销失败！");
+                log.debug("枪支撤销失败！--appId为空---" + appId + "----" + baseModel);
+                return baseModel;
+            }
+
+            baseModel = wareHouseRecordsService.revocationWareHouseRecordsDelivery(appId);
+        } catch (Exception e) {
+            baseModel.setStatus(IStatusMessage.SystemStatus.PARAM_ERROR.getCode());
+            baseModel.setErrorMessage("枪支出库撤销！异常");
+            e.printStackTrace();
+            log.error("枪支出库撤销！异常！", e);
+        }
+        return baseModel;
+    }
+
+
+
+    /**
+     * @param gunId 枪支编号（多个）
+     * @Description: 功能描述（撤销出库指令：09，设备与枪支进行解绑）  第一版
      * @Author: 刘家义
      * @CreateDate: 2018/11/6 16:12
      */
@@ -283,12 +315,17 @@ public class WareHouseRecordsController {
      */
     @ApiOperation(value = "查询库存记录表，根据出入库状态", notes = "查询库存记录表")
     @RequestMapping(value = "/readWareHouseRecords", method = RequestMethod.GET)
-    public BaseModel readWareHouseRecords(@RequestParam(value = "pn", defaultValue = "1") Integer pn, @RequestParam(value = "ps", defaultValue = "5") Integer ps, @RequestParam(value = "typeState", defaultValue = "3") Integer type) {
+    public BaseModel readWareHouseRecords(@RequestParam(value = "pn", defaultValue = "1") Integer pn, @RequestParam(value = "ps", defaultValue = "5") Integer ps, @RequestParam(value = "typeState", defaultValue = "3") Integer type) throws Exception {
+
+       /* List<WarehouseRecords> w = this.wareHouseRecordsService.findWareHouseRecords(type);
+        System.out.println(w.size());*/
+
         BaseModel baseModel = new BaseModel();
         PageHelper.startPage(pn, ps);
         log.debug("--------查询  【" + ((type == 1) ? "出库中" : (type == 2) ? "已出库" : (type == 3) ? "入库中" : "已入库") + "】！" + "库存记录");
         try {
             List<WarehouseRecords> warehouseRecords = this.wareHouseRecordsService.findWareHouseRecords(type);
+            System.out.println(warehouseRecords.size());
             PageInfo<WarehouseRecords> page = new PageInfo<WarehouseRecords>(warehouseRecords, 5);
             baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
             baseModel.setErrorMessage("查询成功！");

@@ -33,5 +33,5 @@ public interface WarehouseRecordsMapper {
      * @Author:       刘家义
      * @CreateDate:   2018/11/10 12:17
     */
-    List<WarehouseRecords> selectWareHouseRecords(Integer type);
+    List<WarehouseRecords> selectWareHouseRecords(@Param(value = "type") Integer type);
 }

@@ -49,5 +49,5 @@ public interface AppGunMapper {
      * @Author:       刘家义
      * @CreateDate:   2018/11/12 20:00
     */
-    List<AppGun> selectAppGunByAppIdAndState(String appId, Integer state);
+    List<AppGun> selectAppGunByAppIdAndState(@Param(value = "appId") String appId, @Param(value = "state")Integer state);
 }

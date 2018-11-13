@@ -2,6 +2,7 @@ package com.ybkj.gun.controller;
 
 import com.ybkj.enums.IStatusMessage;
 import com.ybkj.gun.model.AppGunUser;
+import com.ybkj.gun.model.GunUser;
 import com.ybkj.gun.service.AppGunUserService;
 import com.ybkj.gun.service.GunUserService;
 import com.ybkj.model.BaseModel;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * @项目名称：
@@ -54,13 +57,35 @@ public class GunUserController {
                 }
                  log.debug("获取用户的相关信息成功！-appId-" + appId);
             }
-
-
         } catch (Exception e) {
             e.printStackTrace();
             log.error("获取用户的相关信息异常！", e);
             baseModel.setStatus(IStatusMessage.SystemStatus.PARAM_ERROR.getCode());
             baseModel.setErrorMessage("获取用户的相关信息异常！");
+        }
+        return baseModel;
+    }
+
+
+    /**
+     * @Description: 功能描述（查询没有和腕表绑定的用户）
+     * @Author: 刘家义
+     * @CreateDate: 2018/11/1 19:53
+     */
+    @ApiOperation(value = "查询没有和腕表绑定的用户", notes = "获取没有和腕表绑定的用户")
+    @RequestMapping(value = "/readGunUserNoBinding", method = RequestMethod.GET)
+    public BaseModel readGunUserNoBinding() {
+        BaseModel baseModel = new BaseModel();
+        log.debug("---查询没有和腕表绑定的用户---" );
+        try {
+                //通过appId，获取gunUserId
+                List<GunUser> gunUserList=gunUserService.findGunUserNoBinding();
+                baseModel.add("gunUserList",gunUserList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("获取没有和腕表绑定的用户信息异常！", e);
+            baseModel.setStatus(IStatusMessage.SystemStatus.PARAM_ERROR.getCode());
+            baseModel.setErrorMessage("获取没有和腕表绑定的用户信息异常！");
         }
         return baseModel;
     }

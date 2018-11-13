@@ -59,9 +59,10 @@ public class AppGunServiceImpl implements AppGunService {
         AppGunUser appGunUser = new AppGunUser();
         AppGun appGun = new AppGun();
         appGun.setAppId(Integer.valueOf(appId));
-        appGunUser.setAppId(Integer.valueOf(gunUserId));
-        appGunUser.setGunUserId(Integer.valueOf(gunUserId));
+
+
         String[] gunId = StringUtilUD.slicerComma(gunIds);
+        System.out.println("---------"+gunIds);
         for (String gId : gunId) {
             appGun.setGunId(Integer.valueOf(gId));
             //一、在app_gun表中，插入相关信息；给设备分配枪支
@@ -88,17 +89,31 @@ public class AppGunServiceImpl implements AppGunService {
                     baseModel.setErrorMessage("您选择设备【" + app.getAppName() + "】，已经被分配，请刷新列表");
                     log.debug("枪支分配--appGun-" + baseModel);
                 }
-                int agu = appGunUserMapper.insertSelective(appGunUser);
+                //判断该用户和设备绑定是否存在，且状态是 1；不存在就插入，反之
                 int ag = appGunMapper.insertSelective(appGun);
-                if (agu < 1 || ag<1) {
+                if ( ag<1) {
                     baseModel.setErrorMessage("分配失败");
-                    log.debug("枪支分配--appGun-" + baseModel);
-                }else{
-                    baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
-                    baseModel.setErrorMessage("分配成功");
                     log.debug("枪支分配--appGun-" + baseModel);
                 }
             }
+        }
+        //判断是否匹配了用户
+        if(null!=gunUserId){
+            appGunUser.setGunUserId(Integer.valueOf(gunUserId));
+            appGunUser.setAppId(Integer.valueOf(appId));
+            int agu = appGunUserMapper.insertSelective(appGunUser);
+            if(agu<1){
+                baseModel.setErrorMessage("分配失败");
+                log.debug("枪支分配--appGun-" + baseModel);
+            }else{
+                baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
+                baseModel.setErrorMessage("分配成功");
+                log.debug("枪支分配--appGun-" + baseModel);
+            }
+        }else{
+            baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
+            baseModel.setErrorMessage("分配成功");
+            log.debug("枪支分配--appGun-" + baseModel);
         }
         return baseModel;
     }

@@ -152,7 +152,8 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
         List<Gun> guns=new ArrayList<>();
         String appIMEI="";
         //1、根据app_id,查询app_gun所有状态为 1 的相关信息
-        List<AppGun> appGuns=appGunMapper.selectAppGunByAppIdAndState(appId,1);
+        List<AppGun> appGuns=appGunMapper.selectAppGunByAppIdAndState(appId,2);
+        System.out.println("-----------"+appGuns.size());
         for (AppGun appGun : appGuns) {
             //2、通过app_id，在app中获取到app的IMEI
             App app = appMapper.selectByPrimaryKey(appGun.getAppId());
@@ -165,7 +166,7 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
             //获取app的IMEI
             appIMEI=app.getAppImei();
             //3、通过gun_id,在gun中查询枪支相关信息
-            Gun gun = gunMapper.selectByPrimaryKey(appGun.getGunId());
+            Gun gun = gunMapper.selectGunByGunCode(String.valueOf(appGun.getGunId()));
             if(gun==null){
                 baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
                 baseModel.setErrorMessage("查询出错！");
@@ -179,10 +180,11 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
             if(appGunUser!=null){
                 //5、再通过gun_user_id,在gun_user中查询相关用户信息
                 GunUser gunUser = gunUserMapper.selectByPrimaryKey(appGunUser.getGunUserId());
+                bindingReqMessageBody.setUserId(String.valueOf(gunUser.getUserName()));
+            }else{
+                bindingReqMessageBody.setUserId("");
             }
-
             //6、临时保存将要预出库发送给服务器的临时消息
-            bindingReqMessageBody.setUserId(String.valueOf(appGunUser.getId()));
             gunInfo.setGunId(gun.getGunId());
             gunInfo.setGunMac(gun.getGunMac());
             gunInfo.setGunModel(gun.getGunModel());
@@ -190,6 +192,8 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
             bindingReqMessageBodiesGunInfo.add(gunInfo);
 
         }
+        bindingReqMessageBody.setGunList(bindingReqMessageBodiesGunInfo);
+        bindingReqMessageBodies.add(bindingReqMessageBody);
         //7、发送05报文
         baseModel = producer.sendMessageAdvanceTheDelivery(bindingReqMessageBodies, appIMEI);
         baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
@@ -210,7 +214,7 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
         List<Gun> guns=new ArrayList<>();
         String appIMEI="";
         //1、根据app_id,查询app_gun所有状态为 1 的相关信息
-        List<AppGun> appGuns=appGunMapper.selectAppGunByAppIdAndState(appId,1);
+        List<AppGun> appGuns=appGunMapper.selectAppGunByAppIdAndState(appId,2);
         for (AppGun appGun : appGuns) {
             //2、通过app_id，在app中获取到app的IMEI
             App app = appMapper.selectByPrimaryKey(appGun.getAppId());
@@ -223,7 +227,7 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
             //获取app的IMEI
             appIMEI=app.getAppImei();
             //3、通过gun_id,在gun中查询枪支相关信息
-            Gun gun = gunMapper.selectByPrimaryKey(appGun.getGunId());
+            Gun gun = gunMapper.selectGunByGunCode(String.valueOf(appGun.getGunId()));
             if(gun==null){
                 baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
                 baseModel.setErrorMessage("查询出错！");
@@ -303,18 +307,49 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
     }
 
     /**
-     * @Description: 功能描述（撤销出库：09）
+     * @Description: 功能描述（撤销出库：09）第一版
      * @Author: 刘家义
      * @CreateDate: 2018/11/6 16:19
      */
     @Override
     public BaseModel revocationWareHouseRecordsDelivery(String gunId, Integer appId) throws Exception {
         BaseModel baseModel = new BaseModel();
+        App app = appMapper.selectByPrimaryKey(Integer.valueOf(appId));
         //1、对gunId“，”分割进行解析
         String[] gunIds = StringUtilUD.slicerComma(gunId);
         for (String gId : gunIds) {
             //2、下发09报文给服务器，进行出库撤销操作
-            baseModel = producer.sendMessageRevocationDelivery(gId, appId);
+            baseModel = producer.sendMessageRevocationDelivery(gId, app.getAppImei());
+        }
+        baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
+        baseModel.setErrorMessage("撤销出库成功！");
+        return baseModel;
+    }
+
+    /**
+     * @Description:  功能描述（撤销出库：09）第二版
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/13 14:47
+    */
+    @Override
+    public BaseModel revocationWareHouseRecordsDelivery(Integer appId) throws Exception {
+        BaseModel baseModel=new BaseModel();
+        //1、通过appId，查询对应的appIMEI
+        App app = appMapper.selectByPrimaryKey(appId);
+        if(null==app){
+            baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
+            baseModel.setErrorMessage("撤销失败！");
+            log.debug("----App ID ----为"+appId+"不存在");
+            return baseModel;
+        }
+        String IMEI=app.getAppImei();
+        //2、根据app_id,查询app_gun所有状态为 1 的相关信息
+        List<AppGun> appGuns=appGunMapper.selectAppGunByAppIdAndState(String.valueOf(appId),1);
+        for (AppGun appGun : appGuns) {
+            //3、获取到相关枪支Id,通过枪支Id，查询枪支编号
+            Gun gun = gunMapper.selectGunByGunCode(String.valueOf(appGun.getGunId()));
+            //4、下发09报文给服务器，进行出库撤销操作
+            baseModel = producer.sendMessageRevocationDelivery(gun.getGunId(), IMEI);
         }
         baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
         baseModel.setErrorMessage("撤销出库成功！");

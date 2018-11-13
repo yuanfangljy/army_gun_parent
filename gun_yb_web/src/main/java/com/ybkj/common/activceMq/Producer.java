@@ -215,12 +215,12 @@ public class Producer {
      * @Author:       刘家义
      * @CreateDate:   2018/11/6 16:25
     */
-    public BaseModel sendMessageRevocationDelivery(String gId,Integer appId) {
+    public BaseModel sendMessageRevocationDelivery(String gId,String  IMEI) {
         log.debug("================ 开始：《撤销出库》 报文 09 消息推送 ================");
         BaseModel baseModel = new BaseModel();
         try {
             //获取IMEI号
-            App app = appMapper.selectByPrimaryKey(Integer.valueOf(appId));
+            //App app = appMapper.selectByPrimaryKey(Integer.valueOf(appId));
 
             CancelRecipientsGunReqMessage cancelRecipientsGunReqMessage=new CancelRecipientsGunReqMessage();
             CancelRecipientsGunReqMessageBody cancelRecipientsGunReqMessageBody=new CancelRecipientsGunReqMessageBody();
@@ -229,7 +229,7 @@ public class Producer {
             cancelRecipientsGunReqMessageBody.setCancelTime(dateTool.dateToString());
 
 
-            cancelRecipientsGunReqMessage.setUniqueIdentification(app.getAppImei());//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
+            cancelRecipientsGunReqMessage.setUniqueIdentification(IMEI);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
             cancelRecipientsGunReqMessage.setFormatVersion("0001");//格式版本
             cancelRecipientsGunReqMessage.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
             cancelRecipientsGunReqMessage.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
