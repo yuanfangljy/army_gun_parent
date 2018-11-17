@@ -1,5 +1,6 @@
 package com.ybkj.gun.service.impl;
 
+import com.ybkj.common.entity.GunLocationVO;
 import com.ybkj.gun.mapper.AppMapper;
 import com.ybkj.gun.mapper.GunLocationMapper;
 import com.ybkj.gun.model.GunLocation;
@@ -42,7 +43,7 @@ public class GunLocationServiceImpl implements GunLocationService{
      * @throws Exception
     */
     @Override
-    public List<GunLocation> findGunDynamic(String gunId, String appName) throws Exception {
+    public List<GunLocationVO> findGunDynamic(String gunId, String appName) throws Exception {
         return gunLocationMapper.selectGunDynamic(gunId,appName);
     }
 }

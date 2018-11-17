@@ -13,12 +13,14 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Date;
@@ -47,19 +49,27 @@ public class WebUserController {
     @ApiOperation(value = "用户登录", notes = "用户名和密码")
     @RequestMapping(value = "/loginWeb", method = RequestMethod.POST)
     public BaseModel loginWeb(WebUserDTO webUserDTO,
-                              @RequestParam(value = "rememberMe", required = false) boolean rememberMe, HttpServletRequest request) throws Exception {
+                              @RequestParam(value = "rememberMe", required = false) boolean rememberMe, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         BaseModel baseModel = webUserService.shiroLogin(webUserDTO, rememberMe);
-        //记录日志
-        LoginLogOutLogPojo loginLog = IpUtil.createLoginLog(request);
-        WebUserLogin webUserLogin=new WebUserLogin();
-        webUserLogin.setWebIp(loginLog.getIp());
-        webUserLogin.setBrowser(loginLog.getBrowser());
-        webUserLogin.setSystemName(loginLog.getSystemName());
-        webUserLogin.setState(0);
-        webUserLogin.setLogintime(new Date());
-        webUserLogin.setUid(ActiveUser.getActiveUser().getId());
-        webUserLogin.setUserName(ActiveUser.getActiveUser().getName());
-        logService.addLogLoginLogOut(webUserLogin);
+        if(baseModel.getStatus()=="1000"){
+            //记录日志
+            LoginLogOutLogPojo loginLog = IpUtil.createLoginLog(request);
+            WebUserLogin webUserLogin=new WebUserLogin();
+            webUserLogin.setWebIp(loginLog.getIp());
+            webUserLogin.setBrowser(loginLog.getBrowser());
+            webUserLogin.setSystemName(loginLog.getSystemName());
+            webUserLogin.setState(0);
+            webUserLogin.setLogintime(new Date());
+            webUserLogin.setUid(ActiveUser.getActiveUser().getId());
+            webUserLogin.setUserName(ActiveUser.getActiveUser().getName());
+            logService.addLogLoginLogOut(webUserLogin);
+        }
         return baseModel;
+    }
+
+    public static void main(String[] args) {
+        String s = DigestUtils.md5Hex("123456");
+        System.out.println(s);
     }
 }

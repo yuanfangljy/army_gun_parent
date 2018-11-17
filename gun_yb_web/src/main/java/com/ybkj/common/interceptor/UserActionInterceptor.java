@@ -50,7 +50,7 @@ public class UserActionInterceptor extends HandlerInterceptorAdapter {
             response.setStatus(200);
             return false;
         }*/
-        System.out.println(method);
+        //System.out.println(method);
 
 
         // TODO Auto-generated method stub

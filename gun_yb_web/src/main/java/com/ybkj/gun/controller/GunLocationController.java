@@ -1,6 +1,7 @@
 package com.ybkj.gun.controller;
 
 import com.ybkj.common.baiduMap.BaiDuUtil;
+import com.ybkj.common.entity.GunLocationVO;
 import com.ybkj.enums.IStatusMessage;
 import com.ybkj.gun.model.GunLocation;
 import com.ybkj.gun.service.GunLocationService;
@@ -46,18 +47,18 @@ public class GunLocationController {
     */
     @ApiOperation(value = "查询枪支动态信息", notes = "获取枪支动态信息")
     @RequestMapping(value = "/readGunDynamic", method = RequestMethod.GET)
-    public BaseModel readGunDynamic(@RequestParam(value = "gunId")String gunId
-                                   ,@RequestParam(value = "appName")String appName){
+    public BaseModel readGunDynamic(@RequestParam(value = "gunId",defaultValue = "")String gunId
+                                   ,@RequestParam(value = "appName",defaultValue = "")String appName){
         log.debug("--------获取枪支动态信息！-------gunId-------"+gunId+"-----appName-----"+appName);
         BaseModel baseModel=new BaseModel();
         List<String> locationList=new ArrayList<>();
         try {
-            List<GunLocation> gunLocations = gunLocationService.findGunDynamic(gunId,appName);
-            for (GunLocation gunLocation : gunLocations) {
+            List<GunLocationVO> gunLocations = gunLocationService.findGunDynamic(gunId,appName);
+          /*  for (GunLocationVO gunLocation : gunLocations) {
                 //百度坐标系转换成地理位置信息
                 String location=BaiDuUtil.getAddress(gunLocation.getLongitude(),gunLocation.getLatitude());
                 locationList.add(location);
-            }
+            }*/
             baseModel.add("gunLocations",gunLocations);
             baseModel.add("locationList",locationList);
             baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());

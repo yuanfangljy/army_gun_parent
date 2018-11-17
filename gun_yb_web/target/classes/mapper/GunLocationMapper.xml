@@ -384,6 +384,11 @@ FROM (
      LEFT JOIN gun_bullet_count AS gbc ON g.gun_id=g.gun_id
      LEFT JOIN app AS a ON gl.app_id=a.id
      LEFT JOIN app_dynamic_data AS adda ON a.id=adda.app_id
+    <where>
+      <if test="gunId != null and gunId !=''">
+        gl.gun_id = #{gunId}
+      </if>
+    </where>
   </select>
   <!--=End selectGunDynamic 查询枪支实时动态位置信息 -->
 </mapper>

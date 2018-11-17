@@ -1,5 +1,6 @@
 package com.ybkj.gun.mapper;
 
+import com.ybkj.common.entity.GunLocationVO;
 import com.ybkj.gun.model.GunLocation;
 import com.ybkj.gun.model.GunLocationExample;
 import java.util.List;
@@ -33,5 +34,5 @@ public interface GunLocationMapper {
      * @Author:       刘家义
      * @CreateDate:   2018/11/12 14:23
     */
-    List<GunLocation> selectGunDynamic(@Param(value = "gunId") String gunId, @Param(value = "appName")String appName);
+    List<GunLocationVO> selectGunDynamic(@Param(value = "gunId") String gunId, @Param(value = "appName")String appName);
 }

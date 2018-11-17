@@ -1,5 +1,6 @@
 package com.ybkj.gun.service;
 
+import com.ybkj.common.entity.GunLocationVO;
 import com.ybkj.gun.model.GunLocation;
 
 import java.util.List;
@@ -19,5 +20,5 @@ public interface GunLocationService {
      * @Author:       刘家义
      * @CreateDate:   2018/11/12 14:19
     */
-    List<GunLocation> findGunDynamic(String gunId, String appName) throws Exception;
+    List<GunLocationVO> findGunDynamic(String gunId, String appName) throws Exception;
 }

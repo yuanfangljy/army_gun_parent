@@ -392,7 +392,7 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
         for (int i = 0; i < gunMacs.length; i++) {
             //2、下发07报文给服务器，进行最终出库操作
             String mac = gunMacs[i];
-            String gun = gunMacs[i];
+            String gun = gunIds[i];
             baseModel = producer.sendMessageRevocationStorage(gun, mac, appId, state);
         }
         baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());

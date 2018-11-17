@@ -325,9 +325,10 @@
   <!--=Start selectWareHouseRecords 查询库存记录表 -->
   <select id="selectWareHouseRecords" resultMap="BaseResultMap">
     SELECT
-    g.gun_id,g.gun_model,g.gun_type,g.gun_mac,a.app_name,a.id,a.app_imei
-    FROM gun AS g
-    left JOIN warehouse_records  AS wr ON g.gun_id=wr.gun_id
+    <include refid="Base_Column_List_WR"/>,
+    g.gun_id,g.gun_model,g.gun_type,g.gun_mac,a.app_name,a.app_imei
+    FROM warehouse_records  AS wr
+    left JOIN gun AS g ON g.gun_id=wr.gun_id
     left JOIN app AS a ON wr.app_id=a.id
     WHERE wr.state=#{type,jdbcType=INTEGER}
   </select>
