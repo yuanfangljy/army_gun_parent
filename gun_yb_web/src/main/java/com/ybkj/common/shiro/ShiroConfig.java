@@ -18,6 +18,7 @@ import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.servlet.Filter;
 import java.io.IOException;
@@ -51,15 +52,30 @@ public class ShiroConfig {
         hashMap.put("kickout", kickoutSessionFilter());
         shiroFilterFactoryBean.setFilters(hashMap);
 
-        // 指定要求登录时的链接
+/*        // 指定要求登录时的链接
         shiroFilterFactoryBean.setLoginUrl("/toLogin");
         // 登录成功后要跳转的链接
         shiroFilterFactoryBean.setSuccessUrl("/home");
         // 未授权时跳转的界面;
-        shiroFilterFactoryBean.setUnauthorizedUrl("/error");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/error");*/
 
         // filterChainDefinitions拦截器=map必须用：LinkedHashMap，因为它必须保证有序
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
+        // 配置退出过滤器,具体的退出代码Shiro已经实现
+       // filterChainDefinitionMap.put("/webUser/loginOut", "logout");
+        //配置记住我或认证通过可以访问的地址
+
+        // 配置不会被拦截的链接 从上向下顺序判断
+
+        filterChainDefinitionMap.put("/webUser/loginWeb", "anon");
+        //filterChainDefinitionMap.put("/swagger-ui.html","anon");
+        //filterChainDefinitionMap.put("/META-INF/*","anon");
+        //filterChainDefinitionMap.put("/", "anon");
+        // <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问【放行】-->
+          filterChainDefinitionMap.put("/**", "kickout,authc");
+//        filterChainDefinitionMap.put("/*/*", "authc");
+//        filterChainDefinitionMap.put("/*/*/*", "authc");
+//        filterChainDefinitionMap.put("/*/*/*/**", "authc");
         // 配置访问权限
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         log.debug("-----------------Shiro拦截器工厂类注入成功-------------------");
@@ -68,11 +84,11 @@ public class ShiroConfig {
 
     /**
      * shiro安全管理器设置realm认证和ehcache缓存管理
-     *
+     *org.apache.shiro.mgt.SecurityManager
      * @return
      */
     @Bean
-    public org.apache.shiro.mgt.SecurityManager securityManager() {
+    public DefaultWebSecurityManager  securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         // 设置realm.
         securityManager.setRealm(shiroRealm());
@@ -157,7 +173,7 @@ public class ShiroConfig {
     public EnterpriseCacheSessionDAO enterCacheSessionDAO() {
         EnterpriseCacheSessionDAO enterCacheSessionDAO = new EnterpriseCacheSessionDAO();
         //添加缓存管理器
-        //enterCacheSessionDAO.setCacheManager(ehCacheManager());
+        enterCacheSessionDAO.setCacheManager(ehCacheManager());
         //添加ehcache活跃缓存名称（必须和ehcache缓存名称一致）
         enterCacheSessionDAO.setActiveSessionsCacheName("shiro-activeSessionCache");
         return enterCacheSessionDAO;
@@ -174,7 +190,7 @@ public class ShiroConfig {
     @Bean
     public DefaultWebSessionManager sessionManager() {
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
-        //sessionManager.setCacheManager(ehCacheManager());
+        sessionManager.setCacheManager(ehCacheManager());
         sessionManager.setSessionDAO(enterCacheSessionDAO());
         sessionManager.setSessionIdCookie(sessionIdCookie());
         return sessionManager;
@@ -193,7 +209,7 @@ public class ShiroConfig {
         //sessionManager.setCacheManager(ehCacheManager());
         //如果在Cookie中设置了"HttpOnly"属性，那么通过程序(JS脚本、Applet等)将无法读取到Cookie信息，这样能有效的防止XSS攻击。
         simpleCookie.setHttpOnly(true);
-        simpleCookie.setName("SHRIOSESSIONIDwerq");
+        simpleCookie.setName("SHRIOSESSIONID");
         //单位秒
         simpleCookie.setMaxAge(86400);
         return simpleCookie;
@@ -219,7 +235,7 @@ public class ShiroConfig {
         //同一个用户最大的会话数，默认1；比如2的意思是同一个用户允许最多同时两个人登录；
         kickoutSessionFilter.setMaxSession(1);
         //被踢出后重定向到的地址；
-        kickoutSessionFilter.setKickoutUrl("/toLogin?kickout=1");
+        //kickoutSessionFilter.setKickoutUrl("/login");
         return kickoutSessionFilter;
     }
 

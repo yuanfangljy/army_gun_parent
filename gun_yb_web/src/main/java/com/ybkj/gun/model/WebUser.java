@@ -122,4 +122,22 @@ public class WebUser {
     public void setVersion(Integer version) {
         this.version = version;
     }
+
+    @Override
+    public String toString() {
+        return "WebUser{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", webUserName='" + webUserName + '\'' +
+                ", webUserPassword='" + webUserPassword + '\'' +
+                ", webUserPhone='" + webUserPhone + '\'' +
+                ", departmentId=" + departmentId +
+                ", isDel=" + isDel +
+                ", isJob=" + isJob +
+                ", uid=" + uid +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", version=" + version +
+                '}';
+    }
 }

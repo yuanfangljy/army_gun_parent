@@ -19,6 +19,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ import java.util.List;
  * @修改时间：2018/10/31 15:44
  * @version：1.0
  */
-@Component
+@Service
 @Slf4j
 public class ShiroRealm extends AuthorizingRealm {
 

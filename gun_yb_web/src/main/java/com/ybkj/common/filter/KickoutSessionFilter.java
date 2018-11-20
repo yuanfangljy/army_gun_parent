@@ -7,17 +7,17 @@ import com.ybkj.gun.model.WebUser;
 import com.ybkj.model.BaseModel;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.DefaultSessionKey;
 import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.subject.Subject;
-import org.apache.shiro.web.filter.AccessControlFilter;
+import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.apache.shiro.web.util.WebUtils;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Serializable;
@@ -36,10 +36,12 @@ import java.util.Deque;
  * 2、获取到每一个用户的subject中的信息，session
  * 3、登录了，就用userName做成key，保存到缓存中
  * 4、判断用户sessionId是否存在，如果存在就将用户踢出，默认是踢出前者
+ *
+ * AccessControlFilter
  */
 @SuppressWarnings("all")
 @Slf4j
-public class KickoutSessionFilter extends AccessControlFilter {
+public class KickoutSessionFilter extends FormAuthenticationFilter {
 
     //将对象转换成json数据
     private final static ObjectMapper objectMapper = new ObjectMapper();
@@ -74,6 +76,7 @@ public class KickoutSessionFilter extends AccessControlFilter {
     }
 
 
+
     /**
      * 表示是否允许访问
      *
@@ -84,8 +87,19 @@ public class KickoutSessionFilter extends AccessControlFilter {
      * @throws Exception
      */
     @Override
-    protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object o) throws Exception {
-        return false;
+    protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
+
+        boolean allowed=super.isAccessAllowed(request,response,mappedValue);
+        if (!allowed) {
+           //判断请求上是否是options请求
+            String method=WebUtils.toHttp(request).getMethod();
+            if("OPTIONS".equalsIgnoreCase(method.trim())){
+                return true;
+            }
+        }
+
+       // return this.isAccessAllowed(request, response, mappedValue);
+        return allowed;
     }
 
     /**
@@ -98,13 +112,17 @@ public class KickoutSessionFilter extends AccessControlFilter {
      */
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
+
+        Subject subjects = SecurityUtils.getSubject();
+        System.out.println("--------------------"+subjects.isAuthenticated());
         Subject subject = getSubject(request, response);
         // 没有登录授权
+        System.out.println("--------------------"+subject.isAuthenticated());
         if (!subject.isAuthenticated()) {
             // 如果没有登录，直接进行之后的流程
             BaseModel baseModel = new BaseModel();
             //判断是不是Ajax请求，异步请求，直接响应返回未登录
-            if (ShiroFilterUtils.isAjax(request)) {
+            if (ShiroFilterUtils.isAjax(request) ) {
                 log.debug(getClass().getName() + "当前用户已经在其他地方登录，并且是Ajax请求！");
                 baseModel.setStatus(IStatusMessage.SystemStatus.MANY_LOGINS.getCode());
                 baseModel.setErrorMessage("您已在别处登录，请您修改密码或重新登录");
@@ -189,6 +207,8 @@ public class KickoutSessionFilter extends AccessControlFilter {
             return isAjaxResponse(request, response);
         }
     }
+
+
 
 
     /**

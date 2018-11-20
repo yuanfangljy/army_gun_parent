@@ -3,6 +3,9 @@ package com.ybkj.gun.service;
 import com.ybkj.common.entity.WebUserDTO;
 import com.ybkj.gun.model.WebUser;
 import com.ybkj.model.BaseModel;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @项目名称：
@@ -20,12 +23,12 @@ public interface WebUserService {
      * @Author:       刘家义
      * @CreateDate:   2018/10/31 19:27
     */
-    BaseModel shiroLogin(WebUserDTO webUserDTO,boolean rememberMe) throws Exception;
+    BaseModel shiroLogin(WebUserDTO webUserDTO, boolean rememberMe, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
     /**
      * @Description:  功能描述（根据用户名查询用户信息）
      * @Author:       刘家义
      * @CreateDate:   2018/11/1 15:02
     */
-    WebUser findWebUserByUserName(String webUserName);
+    WebUser findWebUserByUserName(String webUserName) throws Exception;
 }

@@ -386,7 +386,7 @@ FROM (
      LEFT JOIN app_dynamic_data AS adda ON a.id=adda.app_id
     <where>
       <if test="gunId != null and gunId !=''">
-        gl.gun_id = #{gunId}
+        gl.gun_mac = #{gunId}
       </if>
     </where>
   </select>

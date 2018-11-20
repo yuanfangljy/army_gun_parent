@@ -8,6 +8,7 @@ import com.ybkj.gun.service.WebUserService;
 import com.ybkj.model.BaseModel;
 import com.ybkj.untils.ValidatorRequestParam;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.management.BadBinaryOpValueExpException;
+import javax.servlet.http.HttpServletResponse;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -50,7 +52,7 @@ public class WebUserServiceImpl implements WebUserService{
      */
 
     @Override
-    public BaseModel shiroLogin(WebUserDTO user,boolean rememberMe) throws Exception {
+    public BaseModel shiroLogin(WebUserDTO user, boolean rememberMe, HttpServletRequest request, HttpServletResponse response) throws Exception {
         log.debug("用户登录，请求参数=user:" + user);
         BaseModel baseModel = new BaseModel();
         baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
@@ -93,9 +95,12 @@ public class WebUserServiceImpl implements WebUserService{
             // 所以这一步在调用login(token)方法时,它会走到MyRealm.doGetAuthenticationInfo()方法中,具体验证方式详见此方法
             log.debug("用户登录，用户验证开始！user=" + user.getWebUserName());
             subject.login(token);
+
+            baseModel.setToken((String) subject.getSession().getId());
             baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
             baseModel.setErrorMessage("用户登录成功");
             log.info("用户登录，用户验证通过！user=" + user.getWebUserName());
+            System.out.println("000000000000000000--------------"+subject.isAuthenticated());
         } catch (UnknownAccountException uae) {
             log.error("用户登录，用户验证未通过：未知用户！user=" + user.getWebUserName(), uae);
             baseModel.setErrorMessage("该用户不存在，请您联系管理员");
@@ -138,6 +143,7 @@ public class WebUserServiceImpl implements WebUserService{
         }
         log.debug("用户登录，user=" + user.getWebUserName() + ",登录结果=responseResult:"
                 + baseModel);
+
         return baseModel;
     }
 

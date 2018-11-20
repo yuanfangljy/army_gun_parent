@@ -33,5 +33,5 @@ public interface WebUserMapper {
      * @Author:       刘家义
      * @CreateDate:   2018/10/31 16:03
      */
-    WebUser selectWebUserByUserName(String userName);
+    WebUser selectWebUserByUserName(@Param("userName") String userName);
 }
