@@ -113,11 +113,10 @@ public class KickoutSessionFilter extends FormAuthenticationFilter {
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
 
-        Subject subjects = SecurityUtils.getSubject();
-        System.out.println("--------------------"+subjects.isAuthenticated());
-        Subject subject = getSubject(request, response);
+        Subject subject = SecurityUtils.getSubject();
+        log.debug("过滤器》》》》用户访问是否存在------"+subject.isAuthenticated());
+        //Subject subject = getSubject(request, response);
         // 没有登录授权
-        System.out.println("--------------------"+subject.isAuthenticated());
         if (!subject.isAuthenticated()) {
             // 如果没有登录，直接进行之后的流程
             BaseModel baseModel = new BaseModel();

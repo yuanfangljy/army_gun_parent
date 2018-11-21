@@ -72,10 +72,10 @@ public class ShiroConfig {
         //filterChainDefinitionMap.put("/META-INF/*","anon");
         //filterChainDefinitionMap.put("/", "anon");
         // <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问【放行】-->
-          filterChainDefinitionMap.put("/**", "kickout,authc");
-//        filterChainDefinitionMap.put("/*/*", "authc");
-//        filterChainDefinitionMap.put("/*/*/*", "authc");
-//        filterChainDefinitionMap.put("/*/*/*/**", "authc");
+        filterChainDefinitionMap.put("/**", "kickout,authc");
+        filterChainDefinitionMap.put("/*/*", "authc");
+        filterChainDefinitionMap.put("/*/*/*", "authc");
+        filterChainDefinitionMap.put("/*/*/*/**", "authc");
         // 配置访问权限
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         log.debug("-----------------Shiro拦截器工厂类注入成功-------------------");
@@ -173,7 +173,7 @@ public class ShiroConfig {
     public EnterpriseCacheSessionDAO enterCacheSessionDAO() {
         EnterpriseCacheSessionDAO enterCacheSessionDAO = new EnterpriseCacheSessionDAO();
         //添加缓存管理器
-        enterCacheSessionDAO.setCacheManager(ehCacheManager());
+        //enterCacheSessionDAO.setCacheManager(ehCacheManager());
         //添加ehcache活跃缓存名称（必须和ehcache缓存名称一致）
         enterCacheSessionDAO.setActiveSessionsCacheName("shiro-activeSessionCache");
         return enterCacheSessionDAO;
@@ -190,7 +190,7 @@ public class ShiroConfig {
     @Bean
     public DefaultWebSessionManager sessionManager() {
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
-        sessionManager.setCacheManager(ehCacheManager());
+        //sessionManager.setCacheManager(ehCacheManager());
         sessionManager.setSessionDAO(enterCacheSessionDAO());
         sessionManager.setSessionIdCookie(sessionIdCookie());
         return sessionManager;

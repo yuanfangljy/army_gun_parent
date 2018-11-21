@@ -52,10 +52,9 @@ public class WebUserController {
         if(origin == null) {
             origin = request.getHeader("Referer");
         }
-
         response.setHeader("Access-Control-Allow-Origin", origin);
         response.setHeader("Access-Control-Allow-Credentials", "true");
-        //response.setHeader("Access-Control-Allow-Origin", "*");
+
         BaseModel baseModel = webUserService.shiroLogin(webUserDTO, rememberMe,request,response);
         if(baseModel.getStatus()=="1000"){
             //记录日志

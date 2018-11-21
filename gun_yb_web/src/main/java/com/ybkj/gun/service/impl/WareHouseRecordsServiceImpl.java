@@ -176,7 +176,7 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
             //保存相关枪支信息
             guns.add(gun);
             //4、通过gun_id，在app_gun_user状态为 1 的用户id，（可能会没有用户信息）
-            AppGunUser appGunUser=appGunUserMapper.selectAppGunUserByGunIdAndState(appGun.getGunId(),1);
+            AppGunUser appGunUser=appGunUserMapper.selectAppGunUserByGunIdAndState(Integer.valueOf(appGun.getGunId()),1);
             if(appGunUser!=null){
                 //5、再通过gun_user_id,在gun_user中查询相关用户信息
                 GunUser gunUser = gunUserMapper.selectByPrimaryKey(appGunUser.getGunUserId());
@@ -237,7 +237,7 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
             //保存相关枪支信息
             guns.add(gun);
             //4、通过gun_id，在app_gun_user状态为 1 的用户id，（可能会没有用户信息）
-            AppGunUser appGunUser=appGunUserMapper.selectAppGunUserByGunIdAndState(appGun.getGunId(),1);
+            AppGunUser appGunUser=appGunUserMapper.selectAppGunUserByGunIdAndState(Integer.valueOf(appGun.getGunId()),1);
             if(appGunUser!=null){
                 //5、再通过gun_user_id,在gun_user中查询相关用户信息
                 GunUser gunUser = gunUserMapper.selectByPrimaryKey(appGunUser.getGunUserId());

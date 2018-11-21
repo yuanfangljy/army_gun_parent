@@ -12,6 +12,8 @@ import com.ybkj.gun.model.AppGunUser;
 import com.ybkj.gun.model.Gun;
 import com.ybkj.gun.service.AppGunService;
 import com.ybkj.model.BaseModel;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,13 +63,15 @@ public class AppGunServiceImpl implements AppGunService {
         appGun.setAppId(Integer.valueOf(appId));
 
 
+
         String[] gunId = StringUtilUD.slicerComma(gunIds);
         System.out.println("---------"+gunIds);
         for (String gId : gunId) {
-            appGun.setGunId(Integer.valueOf(gId));
+
+            appGun.setGunId(gId);
             //一、在app_gun表中，插入相关信息；给设备分配枪支
             //1、再插入的时候，绑定这条记录，状态是否不等于0的记录存在；如果有就代表这条记录以及存在，在预出库中
-            AppGun appGun1 = appGunMapper.selectAppGunByAppGunState(Integer.valueOf(gId), Integer.valueOf(appId), 0);
+            AppGun appGun1 = appGunMapper.selectAppGunByAppGunState(gId, Integer.valueOf(appId), 0);
             if (null != appGun1) {
                 Gun gun = gunMapper.selectByPrimaryKey(Integer.valueOf(gId));
                 if (null == gun) {

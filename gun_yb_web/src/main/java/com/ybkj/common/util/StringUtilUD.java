@@ -22,7 +22,7 @@ public class StringUtilUD {
     */
     public static String[] slicerComma(String s){
         String[] result=s.split(",");
-        log.debug("分割 “,” =result="+result.toString());
+        log.debug("分割 “,” =result="+result);
         return result;
     }
 }

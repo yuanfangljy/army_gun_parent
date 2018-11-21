@@ -71,4 +71,5 @@ public class GunLocationController {
         }
         return baseModel;
     }
+
 }

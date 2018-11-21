@@ -20,5 +20,5 @@ public interface GunLocationService {
      * @Author:       刘家义
      * @CreateDate:   2018/11/12 14:19
     */
-    List<GunLocationVO> findGunDynamic(String gunId, String appName) throws Exception;
+    List<GunLocationVO>  findGunDynamic(String gunId, String appName) throws Exception;
 }
