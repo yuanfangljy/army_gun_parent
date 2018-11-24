@@ -1,6 +1,7 @@
 package com.ybkj.gun.service;
 
 import com.ybkj.gun.model.SosMessage;
+import com.ybkj.model.BaseModel;
 
 import java.util.List;
 
@@ -20,4 +21,11 @@ public interface SosMessageService {
      * @CreateDate:   2018/11/3 16:46
     */
     List<SosMessage> findSosMessages(String gunCode,String appCode) throws Exception;
+
+    /**
+     * @Description:  功能描述（推送消息给指定的设备）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/24 16:22
+    */
+    BaseModel createForHelpGun(String appImei, Integer sosId,Integer type)  throws Exception;
 }

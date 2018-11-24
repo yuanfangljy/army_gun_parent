@@ -1,6 +1,5 @@
 package com.ybkj.gun.controller;
 
-import com.ybkj.common.baiduMap.BaiDuUtil;
 import com.ybkj.common.entity.GunLocationVO;
 import com.ybkj.enums.IStatusMessage;
 import com.ybkj.gun.model.GunLocation;
@@ -50,15 +49,11 @@ public class GunLocationController {
     public BaseModel readGunDynamic(@RequestParam(value = "gunId",defaultValue = "")String gunId
                                    ,@RequestParam(value = "appName",defaultValue = "")String appName){
         log.debug("--------获取枪支动态信息！-------gunId-------"+gunId+"-----appName-----"+appName);
+
         BaseModel baseModel=new BaseModel();
         List<String> locationList=new ArrayList<>();
         try {
             List<GunLocationVO> gunLocations = gunLocationService.findGunDynamic(gunId,appName);
-          /*  for (GunLocationVO gunLocation : gunLocations) {
-                //百度坐标系转换成地理位置信息
-                String location=BaiDuUtil.getAddress(gunLocation.getLongitude(),gunLocation.getLatitude());
-                locationList.add(location);
-            }*/
             baseModel.add("gunLocations",gunLocations);
             baseModel.add("locationList",locationList);
             baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
@@ -68,6 +63,25 @@ public class GunLocationController {
             log.error("获取枪支动态信息异常！", e);
             baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
             baseModel.setErrorMessage("获取枪支动态信息异常！");
+        }
+        return baseModel;
+    }
+
+    @ApiOperation(value = "查找周围在线的设备", notes = "获取周围在线的设备")
+    @RequestMapping(value = "/readRoundDevice", method = RequestMethod.GET)
+    public BaseModel readRoundDevice(@RequestParam(value = "lng",defaultValue = "")String lng,@RequestParam(value = "lat",defaultValue = "")String lat){
+        log.debug("--------查找周围在线的设备！-------lng-------"+lng+"-----lat-----"+lat);
+        BaseModel baseModel=new BaseModel();
+        try{
+            List<GunLocation> gunRoundDevice = gunLocationService.findRoundDevice(lng,lat);
+            baseModel.add("gunRoundDevices",gunRoundDevice);
+            baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
+            baseModel.setErrorMessage("查询成功！");
+        }catch (Exception e){
+            e.printStackTrace();
+            log.error("获取周围在线的设备异常！", e);
+            baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
+            baseModel.setErrorMessage("获取周围在线的设备异常！");
         }
         return baseModel;
     }

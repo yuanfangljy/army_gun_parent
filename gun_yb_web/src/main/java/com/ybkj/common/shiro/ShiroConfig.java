@@ -51,26 +51,21 @@ public class ShiroConfig {
         HashMap<String, Filter> hashMap = new HashMap<String, Filter>();
         hashMap.put("kickout", kickoutSessionFilter());
         shiroFilterFactoryBean.setFilters(hashMap);
-
 /*        // 指定要求登录时的链接
         shiroFilterFactoryBean.setLoginUrl("/toLogin");
         // 登录成功后要跳转的链接
         shiroFilterFactoryBean.setSuccessUrl("/home");
         // 未授权时跳转的界面;
         shiroFilterFactoryBean.setUnauthorizedUrl("/error");*/
-
         // filterChainDefinitions拦截器=map必须用：LinkedHashMap，因为它必须保证有序
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         // 配置退出过滤器,具体的退出代码Shiro已经实现
        // filterChainDefinitionMap.put("/webUser/loginOut", "logout");
         //配置记住我或认证通过可以访问的地址
-
         // 配置不会被拦截的链接 从上向下顺序判断
 
+        filterChainDefinitionMap.put("/META-INF/*", "anon");
         filterChainDefinitionMap.put("/webUser/loginWeb", "anon");
-        //filterChainDefinitionMap.put("/swagger-ui.html","anon");
-        //filterChainDefinitionMap.put("/META-INF/*","anon");
-        //filterChainDefinitionMap.put("/", "anon");
         // <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问【放行】-->
         filterChainDefinitionMap.put("/**", "kickout,authc");
         filterChainDefinitionMap.put("/*/*", "authc");
@@ -81,7 +76,6 @@ public class ShiroConfig {
         log.debug("-----------------Shiro拦截器工厂类注入成功-------------------");
         return shiroFilterFactoryBean;
     }
-
     /**
      * shiro安全管理器设置realm认证和ehcache缓存管理
      *org.apache.shiro.mgt.SecurityManager

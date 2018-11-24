@@ -12,6 +12,7 @@
 package com.ybkj.common.pojo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import lombok.Data;
 
@@ -30,10 +31,11 @@ public class SearchGunReqMessageBody {
 	private String reserve;//预留字
 	private String lo;//经度
 	private String la;//纬度
-	private ArrayList<GunInfo> lostGunList;//枪支列表信息
+	private List<GunInfo> lostGunList;//枪支列表信息
 	private String authCode;//授权码
-	
-	class GunInfo{
+
+	@Data
+	public static class GunInfo{
 		private String gunMac;//枪支MAC号
 		private String gunId;//枪支ID
 		private String lostTime;//丢失时间

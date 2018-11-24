@@ -83,6 +83,8 @@ public class WareHouseRecordsController {
         return baseModel;
     }
 
+
+
     /**
      * @Description:  功能描述（05 -- 07 :预出库--出库）
      * @Author:       刘家义

@@ -27,4 +27,19 @@ public interface MissionMapper {
     int updateByPrimaryKeySelective(Mission record);
 
     int updateByPrimaryKey(Mission record);
+
+
+    /**
+     * @Description:  功能描述（查询协助查找信息）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/23 9:37
+     */
+    List<Mission> selectMissions(@Param(value = "gunMac") String gunMac);
+
+    /**
+     * @Description:  功能描述（通过appImei,在mission中查询状态不为0的信息）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/23 10:18
+     */
+    List<Mission> selectMissionsByAppImei(@Param(value = "appImei") String appImei);
 }

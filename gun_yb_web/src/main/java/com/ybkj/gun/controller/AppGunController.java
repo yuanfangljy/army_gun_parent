@@ -83,15 +83,16 @@ public class AppGunController {
      * @Description:  功能描述（查询所有绑定的枪支的设备）
      * @Author:       刘家义
      * @CreateDate:   2018/11/12 19:06
+     * @param type    0:预出库   1：军械员操作出库
     */
     @ApiOperation(value = "查询所有绑定的枪支的设备", notes = "枪支绑定设备")
     @RequestMapping(value = "/readAppGunBinding", method = RequestMethod.GET)
-    public BaseModel readAppGunBinding(@RequestParam(value="pn",defaultValue="1") Integer pn,@RequestParam(value = "ps",defaultValue="5")Integer ps){
+    public BaseModel readAppGunBinding(@RequestParam(value="pn",defaultValue="1") Integer pn,@RequestParam(value = "ps",defaultValue="5")Integer ps,@RequestParam(value = "type",defaultValue="",required = false)String type){
         log.debug("----------------新查询所有绑定的枪支的设备---------------");
         BaseModel baseModel=new BaseModel();
         PageHelper.startPage(pn,ps);
         try {
-            List<AppGun> appGuns= appGunService.findAppGunBinding();
+            List<AppGun> appGuns= appGunService.findAppGunBinding(type);
             PageInfo<AppGun> page = new PageInfo<AppGun>(appGuns,5);
             baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
             baseModel.setErrorMessage("查询成功！");

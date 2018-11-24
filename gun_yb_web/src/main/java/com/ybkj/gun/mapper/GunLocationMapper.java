@@ -35,4 +35,11 @@ public interface GunLocationMapper {
      * @CreateDate:   2018/11/12 14:23
     */
     List<GunLocationVO> selectGunDynamic(@Param(value = "gunId") String gunId, @Param(value = "appName")String appName);
+
+    /**
+     * @Description:  功能描述（查询周围的在线设备）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/22 19:51
+     */
+    List<GunLocation> findRoundDevice(@Param(value = "lng")String lng, @Param(value = "lat")String lat);
 }

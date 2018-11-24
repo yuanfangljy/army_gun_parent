@@ -58,7 +58,7 @@ public interface AppGunUserMapper {
      * @Author:       刘家义
      * @CreateDate:   2018/11/12 20:02
     */
-    AppGunUser selectAppGunUserByGunIdAndState(@Param(value = "gunId") Integer gunId, @Param(value = "state")Integer state);
+    AppGunUser selectAppGunUserByGunIdAndState(@Param(value = "appId") Integer appId, @Param(value = "state")Integer state);
 
 
 }

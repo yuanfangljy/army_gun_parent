@@ -267,7 +267,7 @@
     <select id="selectAppGunUserByGunIdAndState" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM app_gun_user where gun_user_id = #{gunId,jdbcType=INTEGER}
+        FROM app_gun_user where app_id = #{appId,jdbcType=INTEGER}
         and binding_state= #{state,jdbcType=INTEGER}
     </select>
     <!--=End selectAppGunUserByGunIdAndState 通过gun_id，在app_gun_user状态为 1 的用户id -->

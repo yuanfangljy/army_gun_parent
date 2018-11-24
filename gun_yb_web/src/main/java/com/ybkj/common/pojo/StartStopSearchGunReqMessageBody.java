@@ -12,6 +12,7 @@
 package com.ybkj.common.pojo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import lombok.Data;
 
@@ -28,11 +29,11 @@ import lombok.Data;
 @Data
 public class StartStopSearchGunReqMessageBody {
 	private String command;//1 停止 0重启
-	private ArrayList<GunInfo> gunList;//枪支mac列表
+	private List<GunInfo> gunList;//枪支mac列表
 	private String authCode;//授权码
 	
 	@Data
-	class GunInfo{
+	public static class GunInfo{
 		private String gunMac;//枪支MAC
 	}
 }

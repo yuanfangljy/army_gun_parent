@@ -1,5 +1,7 @@
 package com.ybkj.gun.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.ybkj.common.activceMq.Producer;
 import com.ybkj.common.pojo.BindingReqMessageBody;
 import com.ybkj.common.util.ActiveUser;
@@ -117,11 +119,11 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
 
         }
         bindingReqMessageBody.setGunList(bindingReqMessageBodiesGunInfo);
-        bindingReqMessageBodies.add(bindingReqMessageBody);
+        //bindingReqMessageBodies.add(bindingReqMessageBody);
 
         //appDynamicData.setState(1);//设置腕表已出库中
         //6、推送消息给服务器
-        baseModel = producer.sendMessageAdvanceTheDelivery(bindingReqMessageBodies, appIMEI);
+        baseModel = producer.sendMessageAdvanceTheDelivery(bindingReqMessageBody, appIMEI);
         baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
         baseModel.setErrorMessage("枪支预出库成功！");
         return baseModel;
@@ -147,7 +149,6 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
         List<BindingReqMessageBody> bindingReqMessageBodies = new ArrayList<>();
         List<BindingReqMessageBody.GunInfo> bindingReqMessageBodiesGunInfo = new ArrayList<>();
         BindingReqMessageBody bindingReqMessageBody = new BindingReqMessageBody();
-        BindingReqMessageBody.GunInfo gunInfo = new BindingReqMessageBody.GunInfo();
 
         List<Gun> guns=new ArrayList<>();
         String appIMEI="";
@@ -155,6 +156,8 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
         List<AppGun> appGuns=appGunMapper.selectAppGunByAppIdAndState(appId,2);
         System.out.println("-----------"+appGuns.size());
         for (AppGun appGun : appGuns) {
+            //防止往ArrayList添加值的时候进行覆盖，让每次都是一次新的new
+            BindingReqMessageBody.GunInfo gunInfo = new BindingReqMessageBody.GunInfo();
             //2、通过app_id，在app中获取到app的IMEI
             App app = appMapper.selectByPrimaryKey(appGun.getAppId());
             if(app==null){
@@ -175,8 +178,8 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
             }
             //保存相关枪支信息
             guns.add(gun);
-            //4、通过gun_id，在app_gun_user状态为 1 的用户id，（可能会没有用户信息）
-            AppGunUser appGunUser=appGunUserMapper.selectAppGunUserByGunIdAndState(Integer.valueOf(appGun.getGunId()),1);
+            //4、通过app_id，在app_gun_user状态为 1 的用户id，（可能会没有用户信息）
+            AppGunUser appGunUser=appGunUserMapper.selectAppGunUserByGunIdAndState(appGun.getAppId(),1);
             if(appGunUser!=null){
                 //5、再通过gun_user_id,在gun_user中查询相关用户信息
                 GunUser gunUser = gunUserMapper.selectByPrimaryKey(appGunUser.getGunUserId());
@@ -185,6 +188,7 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
                 bindingReqMessageBody.setUserId("");
             }
             //6、临时保存将要预出库发送给服务器的临时消息
+
             gunInfo.setGunId(gun.getGunId());
             gunInfo.setGunMac(gun.getGunMac());
             gunInfo.setGunModel(gun.getGunModel());
@@ -192,10 +196,14 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
             bindingReqMessageBodiesGunInfo.add(gunInfo);
 
         }
+        //bindingReqMessageBody.setUserId();
         bindingReqMessageBody.setGunList(bindingReqMessageBodiesGunInfo);
-        bindingReqMessageBodies.add(bindingReqMessageBody);
+       // bindingReqMessageBodies.add(bindingReqMessageBody);
+
+        String jsonString = JSONObject.toJSONString(bindingReqMessageBody, SerializerFeature.DisableCircularReferenceDetect);
+        System.out.println("----------------"+jsonString);
         //7、发送05报文
-        baseModel = producer.sendMessageAdvanceTheDelivery(bindingReqMessageBodies, appIMEI);
+        baseModel = producer.sendMessageAdvanceTheDelivery(bindingReqMessageBody, appIMEI);
         baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
         baseModel.setErrorMessage("枪支预出库成功！");
         return baseModel;
@@ -214,8 +222,15 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
         List<Gun> guns=new ArrayList<>();
         String appIMEI="";
         //1、根据app_id,查询app_gun所有状态为 1 的相关信息
-        List<AppGun> appGuns=appGunMapper.selectAppGunByAppIdAndState(appId,2);
+        List<AppGun> appGuns=appGunMapper.selectAppGunByAppIdAndState(appId,1);
+        if(appGuns.size()<1){
+            baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
+            baseModel.setErrorMessage("出库失败！");
+            log.debug("查询记录不存在");
+            return baseModel;
+        }
         for (AppGun appGun : appGuns) {
+            //System.out.println("-------------------------------"+appGun.getGunId());
             //2、通过app_id，在app中获取到app的IMEI
             App app = appMapper.selectByPrimaryKey(appGun.getAppId());
             if(app==null){
@@ -237,15 +252,20 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
             //保存相关枪支信息
             guns.add(gun);
             //4、通过gun_id，在app_gun_user状态为 1 的用户id，（可能会没有用户信息）
-            AppGunUser appGunUser=appGunUserMapper.selectAppGunUserByGunIdAndState(Integer.valueOf(appGun.getGunId()),1);
+            AppGunUser appGunUser=appGunUserMapper.selectAppGunUserByGunIdAndState(appGun.getAppId(),1);
             if(appGunUser!=null){
                 //5、再通过gun_user_id,在gun_user中查询相关用户信息
                 GunUser gunUser = gunUserMapper.selectByPrimaryKey(appGunUser.getGunUserId());
                 //6.1、用户存在的时候 发送 07号报文
                 baseModel = producer.sendMessageEndDelivery(gunUser.getUserId(), gunUser.getUserName(), gun.getGunId(), gun.getGunMac(), endTime, appIMEI);
+                baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
+                baseModel.setErrorMessage("枪支出库成功！【警员存在】");
+            }else{
+                //6.2 用户不存在的时候 发送 07号报文
+                baseModel = producer.sendMessageEndDelivery(gun.getGunId(), gun.getGunMac(), endTime, appIMEI);
+                baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
+                baseModel.setErrorMessage("枪支出库成功！【警员不存在】");
             }
-           //6.2 用户不存在的时候 发送 07号报文
-            baseModel = producer.sendMessageEndDelivery(gun.getGunId(), gun.getGunMac(), endTime, appIMEI);
         }
         return baseModel;
     }

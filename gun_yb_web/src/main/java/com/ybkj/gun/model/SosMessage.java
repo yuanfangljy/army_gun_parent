@@ -1,10 +1,13 @@
 package com.ybkj.gun.model;
 
+import lombok.Data;
+import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
 
+@Data
 public class SosMessage {
     private Integer id;
 
@@ -120,7 +123,9 @@ public class SosMessage {
 
     //一对多
     @Setter
-    private List<App> apps;
+    @Getter
+    private App apps;
     @Setter
-    private List<Gun> guns;
+    @Getter
+    private Gun guns;
 }

@@ -21,4 +21,11 @@ public interface GunLocationService {
      * @CreateDate:   2018/11/12 14:19
     */
     List<GunLocationVO>  findGunDynamic(String gunId, String appName) throws Exception;
+
+    /**
+     * @Description:  功能描述（查询周围的在线设备）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/22 19:50
+    */
+    List<GunLocation> findRoundDevice(String lng, String lat) throws Exception;
 }

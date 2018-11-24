@@ -391,4 +391,18 @@ FROM (
     </where>
   </select>
   <!--=End selectGunDynamic 查询枪支实时动态位置信息 -->
+
+
+  <!--=Start findRoundDevice 查询周围的在线设备 -->
+  <select id="findRoundDevice" resultMap="BaseResultMap">
+       SELECT gl.*,
+       ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{lat}*PI()/180-gl.latitude *PI()/180)/2),2)+COS(#{lat}*PI()/180)
+       *COS(gl.latitude *PI()/180)*POW(SIN((#{lng}*PI()/180-gl.longitude *PI()/180)/2),2)))*1000)AS juli FROM
+       gun_location AS gl WHERE gl.gun_device_state=0
+       GROUP BY gl.app_id
+      HAVING juli > 100
+      ORDER BY juli DESC
+      LIMIT 5
+  </select>
+  <!--=End findRoundDevice 查询周围的在线设备 -->
 </mapper>

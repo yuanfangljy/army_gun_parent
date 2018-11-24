@@ -32,5 +32,5 @@ public class BindingResMessage extends TemplateMessage {/**
 	 */ 
 	private static final long serialVersionUID = 7051467335093224599L;
 
-	private List<BindingReqMessageBody> messageBody;
+	private BindingReqMessageBody messageBody;
 }

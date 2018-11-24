@@ -27,5 +27,5 @@ public interface AppGunService {
      * @Author:       刘家义
      * @CreateDate:   2018/11/12 19:09
     */
-    List<AppGun> findAppGunBinding()  throws Exception;
+    List<AppGun> findAppGunBinding(String type)  throws Exception;
 }

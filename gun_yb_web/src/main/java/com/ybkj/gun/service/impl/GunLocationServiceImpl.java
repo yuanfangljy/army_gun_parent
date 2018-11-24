@@ -46,4 +46,15 @@ public class GunLocationServiceImpl implements GunLocationService{
     public List<GunLocationVO> findGunDynamic(String gunId, String appName) throws Exception {
         return gunLocationMapper.selectGunDynamic(gunId,appName);
     }
+
+
+    /**
+     * @Description:  功能描述（查询周围的在线设备）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/22 19:51
+    */
+    @Override
+    public List<GunLocation> findRoundDevice(String lng, String lat) throws Exception {
+        return gunLocationMapper.findRoundDevice(lng,lat);
+    }
 }

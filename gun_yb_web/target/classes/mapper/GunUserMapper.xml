@@ -285,7 +285,7 @@
   <select id="selectGunUserNoBinding" resultMap="BaseResultMap">
     SELECT  <include refid="Base_Column_List"/> FROM gun_user AS gu WHERE gu.user_id
     NOT IN
-    (SELECT agu.gun_user_id FROM app_gun_user AS agu WHERE agu.binding_state !=0 )
+    (SELECT agu.gun_user_id FROM app_gun_user AS agu WHERE agu.binding_state =1 )
   </select>
   <!--=End selectGunUserNoBinding 获取没有和腕表绑定的用户 -->
 </mapper>

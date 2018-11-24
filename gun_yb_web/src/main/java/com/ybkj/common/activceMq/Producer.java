@@ -1,6 +1,7 @@
 package com.ybkj.common.activceMq;
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.ybkj.common.pojo.*;
 import com.ybkj.enums.IStatusMessage;
 import com.ybkj.gun.mapper.AppMapper;
@@ -82,9 +83,9 @@ public class Producer {
      * @param bindingReqMessageBody
      * @throws MessageEOFException
      */
-    public BaseModel sendMessageAdvanceTheDelivery(List<BindingReqMessageBody> bindingReqMessageBody,String appId) throws ParseException {
+    public BaseModel sendMessageAdvanceTheDelivery(BindingReqMessageBody bindingReqMessageBody,String appId) throws ParseException {
 
-        /*for (BindingReqMessageBody info : bindingReqMessageBody) {
+       /* for (BindingReqMessageBody info : bindingReqMessageBody) {
             System.out.println("----------------------"+info.toString());
         }*/
         log.debug("================ 开始：《预出库》 报文 05 消息推送 ================");
@@ -99,7 +100,7 @@ public class Producer {
             bindingResMessage.setSendTime(dateTool.dateToString());//发报时间
             bindingResMessage.setSessionToken(TokenUtils.channelSessionDigest());//标识本次会话唯一标志
             bindingResMessage.setMessageBody(bindingReqMessageBody);//报文体
-            String jsonString = JSONObject.toJSONString(bindingResMessage);
+            String jsonString = JSONObject.toJSONString(bindingResMessage, SerializerFeature.DisableCircularReferenceDetect);
             jmsMessagingTemplate.convertAndSend(storageQueue, jsonString);
             log.debug("************ 结束：《预出库》 报文 05 消息推送 -- 成功 **************：" + jsonString);
         } catch (Exception e) {
@@ -129,27 +130,27 @@ public class Producer {
             //获取IMEI号
            // App app = appMapper.selectByPrimaryKey(Integer.valueOf(appId));
 
-            OutWarehouseReqMessage outWarehouseReqMessage=new OutWarehouseReqMessage();
-            OutWarehouseReqMessageBody outWarehouseReqMessageBody=new OutWarehouseReqMessageBody();
+            OutWarehouseReqMessage message=new OutWarehouseReqMessage();
+            OutWarehouseReqMessageBody messageBody=new OutWarehouseReqMessageBody();
 
-            outWarehouseReqMessageBody.setGunId(String.valueOf(userId));//人员编号
-            outWarehouseReqMessageBody.setUsername(userName);//人员姓名
-            outWarehouseReqMessageBody.setGunId(gun);//枪号
-            outWarehouseReqMessageBody.setGunMac(mac);//枪支设备蓝牙号
-            outWarehouseReqMessageBody.setBegintime(dateTool.dateToString());//领用开始时间
-            outWarehouseReqMessageBody.setReturnTime(endTime);//归还截止时间
-            outWarehouseReqMessageBody.setReserve("");
+            messageBody.setGunId(String.valueOf(userId));//人员编号
+            messageBody.setUsername(userName);//人员姓名
+            messageBody.setGunId(gun);//枪号
+            messageBody.setGunMac(mac);//枪支设备蓝牙号
+            messageBody.setBegintime(dateTool.dateToString());//领用开始时间
+            messageBody.setReturnTime(endTime);//归还截止时间
+            messageBody.setReserve("");
 
 
-            outWarehouseReqMessage.setUniqueIdentification(appImei);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
-            outWarehouseReqMessage.setFormatVersion("0001");//格式版本
-            outWarehouseReqMessage.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
-            outWarehouseReqMessage.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
-            outWarehouseReqMessage.setMessageType("07");//报文类型
-            outWarehouseReqMessage.setSendTime(dateTool.dateToString());//发报时间
-            outWarehouseReqMessage.setSessionToken(TokenUtils.channelSessionDigest());//标识本次会话唯一标志
-            outWarehouseReqMessage.setMessageBody(outWarehouseReqMessageBody);
-            String jsonString = JSONObject.toJSONString(outWarehouseReqMessage);
+            message.setUniqueIdentification(appImei);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
+            message.setFormatVersion("0001");//格式版本
+            message.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
+            message.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
+            message.setMessageType("07");//报文类型
+            message.setSendTime(dateTool.dateToString());//发报时间
+            message.setSessionToken(TokenUtils.channelSessionDigest());//标识本次会话唯一标志
+            message.setMessageBody(messageBody);
+            String jsonString = JSONObject.toJSONString(message, SerializerFeature.DisableCircularReferenceDetect);
             jmsMessagingTemplate.convertAndSend(storageQueue, jsonString);
             log.debug("************ 结束：《最终出库：警员存在》 报文 07 消息推送 -- 成功 **************：" + jsonString);
         }catch (Exception e){
@@ -178,27 +179,27 @@ public class Producer {
             //获取IMEI号
             //App app = appMapper.selectByPrimaryKey(Integer.valueOf(appId));
 
-            OutWarehouseReqMessage outWarehouseReqMessage=new OutWarehouseReqMessage();
-            OutWarehouseReqMessageBody outWarehouseReqMessageBody=new OutWarehouseReqMessageBody();
+            OutWarehouseReqMessage message=new OutWarehouseReqMessage();
+            OutWarehouseReqMessageBody messageBody=new OutWarehouseReqMessageBody();
 
-            outWarehouseReqMessageBody.setGunId("");//人员编号
-            outWarehouseReqMessageBody.setUsername("");//人员姓名
-            outWarehouseReqMessageBody.setGunId(gun);//枪号
-            outWarehouseReqMessageBody.setGunMac(mac);//枪支设备蓝牙号
-            outWarehouseReqMessageBody.setBegintime(dateTool.dateToString());//领用开始时间
-            outWarehouseReqMessageBody.setReturnTime(endTime);//归还截止时间
-            outWarehouseReqMessageBody.setReserve("");
+            messageBody.setGunId("");//人员编号
+            messageBody.setUsername("");//人员姓名
+            messageBody.setGunId(gun);//枪号
+            messageBody.setGunMac(mac);//枪支设备蓝牙号
+            messageBody.setBegintime(dateTool.dateToString());//领用开始时间
+            messageBody.setReturnTime(endTime);//归还截止时间
+            messageBody.setReserve("");
 
 
-            outWarehouseReqMessage.setUniqueIdentification(appImei);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
-            outWarehouseReqMessage.setFormatVersion("0001");//格式版本
-            outWarehouseReqMessage.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
-            outWarehouseReqMessage.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
-            outWarehouseReqMessage.setMessageType("07");//报文类型
-            outWarehouseReqMessage.setSendTime(dateTool.dateToString());//发报时间
-            outWarehouseReqMessage.setSessionToken(TokenUtils.channelSessionDigest());//标识本次会话唯一标志
-            outWarehouseReqMessage.setMessageBody(outWarehouseReqMessageBody);
-            String jsonString = JSONObject.toJSONString(outWarehouseReqMessage);
+            message.setUniqueIdentification(appImei);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
+            message.setFormatVersion("0001");//格式版本
+            message.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
+            message.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
+            message.setMessageType("07");//报文类型
+            message.setSendTime(dateTool.dateToString());//发报时间
+            message.setSessionToken(TokenUtils.channelSessionDigest());//标识本次会话唯一标志
+            message.setMessageBody(messageBody);
+            String jsonString = JSONObject.toJSONString(message, SerializerFeature.DisableCircularReferenceDetect);
             jmsMessagingTemplate.convertAndSend(storageQueue, jsonString);
             log.debug("************ 结束：《最终出库：警员不存在》 报文 07 消息推送 -- 成功 **************：" + jsonString);
         }catch (Exception e){
@@ -222,22 +223,22 @@ public class Producer {
             //获取IMEI号
             //App app = appMapper.selectByPrimaryKey(Integer.valueOf(appId));
 
-            CancelRecipientsGunReqMessage cancelRecipientsGunReqMessage=new CancelRecipientsGunReqMessage();
-            CancelRecipientsGunReqMessageBody cancelRecipientsGunReqMessageBody=new CancelRecipientsGunReqMessageBody();
+            CancelRecipientsGunReqMessage message=new CancelRecipientsGunReqMessage();
+            CancelRecipientsGunReqMessageBody messageBody=new CancelRecipientsGunReqMessageBody();
 
-            cancelRecipientsGunReqMessageBody.setGunId(gId);
-            cancelRecipientsGunReqMessageBody.setCancelTime(dateTool.dateToString());
+            messageBody.setGunId(gId);
+            messageBody.setCancelTime(dateTool.dateToString());
 
 
-            cancelRecipientsGunReqMessage.setUniqueIdentification(IMEI);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
-            cancelRecipientsGunReqMessage.setFormatVersion("0001");//格式版本
-            cancelRecipientsGunReqMessage.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
-            cancelRecipientsGunReqMessage.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
-            cancelRecipientsGunReqMessage.setMessageType("09");//报文类型
-            cancelRecipientsGunReqMessage.setSendTime(dateTool.dateToString());//发报时间
-            cancelRecipientsGunReqMessage.setSessionToken(TokenUtils.channelSessionDigest());//标识本次会话唯一标志
-            cancelRecipientsGunReqMessage.setMessageBody(cancelRecipientsGunReqMessageBody);
-            String jsonString = JSONObject.toJSONString(cancelRecipientsGunReqMessage);
+            message.setUniqueIdentification(IMEI);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
+            message.setFormatVersion("0001");//格式版本
+            message.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
+            message.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
+            message.setMessageType("09");//报文类型
+            message.setSendTime(dateTool.dateToString());//发报时间
+            message.setSessionToken(TokenUtils.channelSessionDigest());//标识本次会话唯一标志
+            message.setMessageBody(messageBody);
+            String jsonString = JSONObject.toJSONString(message, SerializerFeature.DisableCircularReferenceDetect);
             jmsMessagingTemplate.convertAndSend(storageQueue, jsonString);
             log.debug("************ 结束：《撤销出库》 报文 09 消息推送 -- 成功 **************：" + jsonString);
         }catch (Exception e){
@@ -258,22 +259,22 @@ public class Producer {
         log.debug("================ 开始：《预入库》 报文 11 消息推送 ================");
         BaseModel baseModel = new BaseModel();
         try {
-            InWarehouseReqMessage inWarehouseReqMessage=new InWarehouseReqMessage();
-            InWarehouseReqMessageBody inWarehouseReqMessageBody=new InWarehouseReqMessageBody();
+            InWarehouseReqMessage message=new InWarehouseReqMessage();
+            InWarehouseReqMessageBody messageBody=new InWarehouseReqMessageBody();
 
-            inWarehouseReqMessageBody.setGunId(gId);
-            inWarehouseReqMessageBody.setStage("1");//0:不入库  1：入库
+            messageBody.setGunId(gId);
+            messageBody.setStage("1");//0:不入库  1：入库
 
 
-            inWarehouseReqMessage.setUniqueIdentification(appImei);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
-            inWarehouseReqMessage.setFormatVersion("0001");//格式版本
-            inWarehouseReqMessage.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
-            inWarehouseReqMessage.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
-            inWarehouseReqMessage.setMessageType("11");//报文类型
-            inWarehouseReqMessage.setSendTime(dateTool.dateToString());//发报时间
-            inWarehouseReqMessage.setSessionToken(TokenUtils.channelSessionDigest());//标识本次会话唯一标志
-            inWarehouseReqMessage.setMessageBody(inWarehouseReqMessageBody);
-            String jsonString = JSONObject.toJSONString(inWarehouseReqMessage);
+            message.setUniqueIdentification(appImei);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
+            message.setFormatVersion("0001");//格式版本
+            message.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
+            message.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
+            message.setMessageType("11");//报文类型
+            message.setSendTime(dateTool.dateToString());//发报时间
+            message.setSessionToken(TokenUtils.channelSessionDigest());//标识本次会话唯一标志
+            message.setMessageBody(messageBody);
+            String jsonString = JSONObject.toJSONString(message, SerializerFeature.DisableCircularReferenceDetect);
             jmsMessagingTemplate.convertAndSend(storageQueue, jsonString);
             log.debug("************ 结束：《预入库》 报文 11 消息推送 -- 成功 **************：" + jsonString);
         }catch (Exception e){
@@ -299,23 +300,23 @@ public class Producer {
 
         BaseModel baseModel = new BaseModel();
         try {
-            CancelInWarehouseReqMessage cancelInWarehouseReqMessage=new CancelInWarehouseReqMessage();
-            CancelInWarehouseReqMessageBody cancelInWarehouseReqMessageBody=new CancelInWarehouseReqMessageBody();
+            CancelInWarehouseReqMessage message=new CancelInWarehouseReqMessage();
+            CancelInWarehouseReqMessageBody messageBody=new CancelInWarehouseReqMessageBody();
 
-            cancelInWarehouseReqMessageBody.setGunId(gun);
-            cancelInWarehouseReqMessageBody.setGunMac(mac);
-            cancelInWarehouseReqMessageBody.setState(state);//不入库  0：撤销 1：入库
+            messageBody.setGunId(gun);
+            messageBody.setGunMac(mac);
+            messageBody.setState(state);//不入库  0：撤销 1：入库
 
 
-            cancelInWarehouseReqMessage.setUniqueIdentification(appId);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
-            cancelInWarehouseReqMessage.setFormatVersion("0001");//格式版本
-            cancelInWarehouseReqMessage.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
-            cancelInWarehouseReqMessage.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
-            cancelInWarehouseReqMessage.setMessageType("13");//报文类型
-            cancelInWarehouseReqMessage.setSendTime(dateTool.dateToString());//发报时间
-            cancelInWarehouseReqMessage.setSessionToken(TokenUtils.channelSessionDigest());//标识本次会话唯一标志
-            cancelInWarehouseReqMessage.setMessageBody(cancelInWarehouseReqMessageBody);
-            String jsonString = JSONObject.toJSONString(cancelInWarehouseReqMessage);
+            message.setUniqueIdentification(appId);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
+            message.setFormatVersion("0001");//格式版本
+            message.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
+            message.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
+            message.setMessageType("13");//报文类型
+            message.setSendTime(dateTool.dateToString());//发报时间
+            message.setSessionToken(TokenUtils.channelSessionDigest());//标识本次会话唯一标志
+            message.setMessageBody(messageBody);
+            String jsonString = JSONObject.toJSONString(message, SerializerFeature.DisableCircularReferenceDetect);
             jmsMessagingTemplate.convertAndSend(storageQueue, jsonString);
             if(state.equals(String.valueOf(1))){
                 log.debug("************ 结束：《入库》 报文 13 消息推送 -- 成功 **************：" + jsonString);
@@ -361,9 +362,28 @@ public class Producer {
      * @param body
      * @return
      */
-    public BaseModel sendMessageMinistrantFind(JSONObject body) throws Exception {
+    public BaseModel sendMessageMinistrantFind(SearchGunReqMessageBody messageBody,String appImei) throws Exception {
         BaseModel baseModel = new BaseModel();
-
+        log.debug("================ 开始：《协助查找/紧急支援》 报文 21 消息推送 ================");
+        try {
+            SearchGunReqMessage message=new SearchGunReqMessage();
+            SearchGunReqMessageBody messageBody1=new SearchGunReqMessageBody();
+            message.setUniqueIdentification(appImei);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
+            message.setFormatVersion("0001");//格式版本
+            message.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
+            message.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
+            message.setMessageType("21");//报文类型
+            message.setSendTime(dateTool.dateToString());//发报时间
+            message.setSessionToken(TokenUtils.channelSessionDigest());//标识本次会话唯一标志
+            message.setMessageBody(messageBody);
+            String jsonString = JSONObject.toJSONString(message, SerializerFeature.DisableCircularReferenceDetect);
+            jmsMessagingTemplate.convertAndSend(storageQueue, jsonString);
+            log.debug("================ 结束：《协助查找/紧急支援》 报文 21 消息推送 ================"+jsonString.toString());
+        }catch (Exception e){
+            baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
+            baseModel.setErrorMessage("协助查找/紧急支援：报文 21 发送失败，请稍后再试");
+            log.error("协助查找/紧急支援：报文 21 发送异常，服务器连接失败" + e);
+        }
         return baseModel;
     }
 
@@ -376,9 +396,29 @@ public class Producer {
      * @return
      * @throws ParseException
      */
-    public BaseModel sendMessageOffNormalAlarmStartAndStop(String state, String bluetoothMac) throws ParseException {
+    public BaseModel sendMessageOffNormalAlarmStartAndStop(StartStopSearchGunReqMessageBody messageBody,String appImei) throws ParseException {
+        System.out.println("************"+messageBody.toString());
         BaseModel baseModel = new BaseModel();
+        try {
+            log.debug("================ 开始：《离位报警启停操作》 报文 19 消息推送 ================");
+            StartStopSearchGunReqMessage message = new StartStopSearchGunReqMessage();
 
+            message.setUniqueIdentification(appImei);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
+            message.setFormatVersion("0001");//格式版本
+            message.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
+            message.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
+            message.setMessageType("19");//报文类型
+            message.setSendTime(dateTool.dateToString());//发报时间
+            message.setSessionToken(TokenUtils.channelSessionDigest());//标识本次会话唯一标志
+            message.setMessageBody(messageBody);
+            String jsonString = JSONObject.toJSONString(message, SerializerFeature.DisableCircularReferenceDetect);
+            jmsMessagingTemplate.convertAndSend(storageQueue, jsonString);
+            log.debug("================ 结束：《离位报警启停操作》 报文 19 消息推送 ================"+jsonString);
+        }catch (Exception e){
+            baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
+            baseModel.setErrorMessage("离位报警启停操作：报文 19 发送失败，请稍后再试");
+            log.error("离位报警启停操作：报文 19 发送失败，请稍后再试" + e);
+        }
         return baseModel;
     }
 

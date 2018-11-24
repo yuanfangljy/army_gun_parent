@@ -65,7 +65,7 @@ public class AppGunServiceImpl implements AppGunService {
 
 
         String[] gunId = StringUtilUD.slicerComma(gunIds);
-        System.out.println("---------"+gunIds);
+        //System.out.println("---------"+gunIds);
         for (String gId : gunId) {
 
             appGun.setGunId(gId);
@@ -129,7 +129,14 @@ public class AppGunServiceImpl implements AppGunService {
      * @CreateDate:   2018/11/12 19:09
      */
     @Override
-    public List<AppGun> findAppGunBinding() throws Exception {
-        return appGunMapper.selectAppGunBinding(2);
+    public List<AppGun> findAppGunBinding(String type) throws Exception {
+
+        Integer state=null;
+        if(type.equals("1")){
+            state=1;
+        }else{
+            state=2;
+        }
+        return appGunMapper.selectAppGunBinding(state);
     }
 }
