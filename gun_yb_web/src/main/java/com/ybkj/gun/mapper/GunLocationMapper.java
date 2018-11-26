@@ -41,5 +41,12 @@ public interface GunLocationMapper {
      * @Author:       刘家义
      * @CreateDate:   2018/11/22 19:51
      */
-    List<GunLocation> findRoundDevice(@Param(value = "lng")String lng, @Param(value = "lat")String lat);
+    List<GunLocation> selectRoundDevice(@Param(value = "lng")String lng, @Param(value = "lat")String lat);
+
+    /**
+     * @Description:  功能描述（查询枪支的轨迹）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/26 19:51
+    */
+    List<GunLocation> selectGunTrajectory(@Param(value = "gunId")String gunId);
 }

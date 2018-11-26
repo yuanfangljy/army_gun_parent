@@ -86,4 +86,29 @@ public class GunLocationController {
         return baseModel;
     }
 
+
+    /**
+     * @Description:  功能描述（查询枪支的轨迹）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/26 19:45
+    */
+    @ApiOperation(value = "查询枪支的轨迹", notes = "查询枪支的轨迹")
+    @RequestMapping(value = "/readGunTrajectory", method = RequestMethod.GET)
+    public BaseModel readGunTrajectory(@RequestParam(value = "gunId",defaultValue = "")String gunId,@RequestParam(value = "appImie",defaultValue = "")String appImie){
+        log.debug("--------查询枪支的轨迹！-------gunId-------"+gunId);
+        BaseModel baseModel=new BaseModel();
+        try {
+            List<GunLocation> gunTrajectory = gunLocationService.findGunTrajectory(gunId);
+            baseModel.add("gunTrajectoryList",gunTrajectory);
+            baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
+            baseModel.setErrorMessage("查询成功！");
+        }catch (Exception e){
+            e.printStackTrace();
+            log.error("查询枪支的轨迹异常！", e);
+            baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
+            baseModel.setErrorMessage("查询枪支的轨迹异常！");
+        }
+        return baseModel;
+    }
+
 }

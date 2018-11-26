@@ -6,7 +6,7 @@ import com.ybkj.enums.IStatusMessage;
 import com.ybkj.gun.model.WebUser;
 import com.ybkj.model.BaseModel;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheManager;
@@ -14,10 +14,13 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.DefaultSessionKey;
 import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.subject.Subject;
-import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
+import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.util.WebUtils;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Serializable;
@@ -41,7 +44,12 @@ import java.util.Deque;
  */
 @SuppressWarnings("all")
 @Slf4j
-public class KickoutSessionFilter extends FormAuthenticationFilter {
+@Component
+//说明这是一个web过滤器，它拦截的url为/customFilter，过滤器名字为blogsTest
+@WebFilter(filterName="kickoutSessionFilter",urlPatterns= {"/*"})
+//@Order中的value越小，优先级越高。
+@Order(value = 2)
+public class KickoutSessionFilter extends AccessControlFilter {
 
     //将对象转换成json数据
     private final static ObjectMapper objectMapper = new ObjectMapper();
@@ -89,17 +97,17 @@ public class KickoutSessionFilter extends FormAuthenticationFilter {
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
 
-        boolean allowed=super.isAccessAllowed(request,response,mappedValue);
+     /*   boolean allowed=super.isAccessAllowed(request,response,mappedValue);
         if (!allowed) {
            //判断请求上是否是options请求
             String method=WebUtils.toHttp(request).getMethod();
             if("OPTIONS".equalsIgnoreCase(method.trim())){
                 return true;
             }
-        }
+        }*/
 
        // return this.isAccessAllowed(request, response, mappedValue);
-        return allowed;
+        return false;
     }
 
     /**
@@ -251,6 +259,7 @@ public class KickoutSessionFilter extends FormAuthenticationFilter {
             responseResult.setErrorMessage("您已在别处登录，请您修改密码或重新登录");
             out(response, responseResult);
         } else {
+
             // 重定向
             WebUtils.issueRedirect(request, response, kickoutUrl);
         }

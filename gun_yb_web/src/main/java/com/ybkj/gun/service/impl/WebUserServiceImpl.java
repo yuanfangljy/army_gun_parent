@@ -1,6 +1,11 @@
 package com.ybkj.gun.service.impl;
 
+import com.alibaba.druid.support.json.JSONUtils;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.ybkj.common.entity.PermissionVo;
 import com.ybkj.common.entity.WebUserDTO;
+import com.ybkj.common.util.ActiveUser;
 import com.ybkj.enums.IStatusMessage;
 import com.ybkj.gun.mapper.WebUserMapper;
 import com.ybkj.gun.model.WebUser;
@@ -21,6 +26,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.management.BadBinaryOpValueExpException;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -35,6 +42,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Service
 @Transactional
 @Slf4j
+@SuppressWarnings("all")
 public class WebUserServiceImpl implements WebUserService{
 
     @Autowired
@@ -42,7 +50,7 @@ public class WebUserServiceImpl implements WebUserService{
     @Autowired
     private EhCacheManager ecm;
 
-     /**
+    /**
      * @param user
      * @return
      * @throws Exception
@@ -95,12 +103,14 @@ public class WebUserServiceImpl implements WebUserService{
             // 所以这一步在调用login(token)方法时,它会走到MyRealm.doGetAuthenticationInfo()方法中,具体验证方式详见此方法
             log.debug("用户登录，用户验证开始！user=" + user.getWebUserName());
             subject.login(token);
-
+            //查询当前用户的权限
+            BaseModel treePermissionVo = getTreePermissionVo();
+            baseModel.add("permissionLists",treePermissionVo.getExtend().get("pvo"));
             baseModel.setToken((String) subject.getSession().getId());
             baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
             baseModel.setErrorMessage("用户登录成功");
-            log.info("用户登录，用户验证通过！user=" + user.getWebUserName());
-            System.out.println("000000000000000000--------------"+subject.isAuthenticated());
+            log.info("用户登录，用户验证通过！user=" + user.getWebUserName()+"----"+baseModel);
+            //System.out.println("000000000000000000--------------"+subject.isAuthenticated());
         } catch (UnknownAccountException uae) {
             log.error("用户登录，用户验证未通过：未知用户！user=" + user.getWebUserName(), uae);
             baseModel.setErrorMessage("该用户不存在，请您联系管理员");
@@ -151,10 +161,49 @@ public class WebUserServiceImpl implements WebUserService{
      * @Description:  功能描述（根据用户名查询用户信息）
      * @Author:       刘家义
      * @CreateDate:   2018/11/1 15:03
-    */
+     */
     @Override
     public WebUser findWebUserByUserName(String webUserName) {
 
         return userMapper.selectWebUserByUserName(webUserName);
+    }
+
+    /**
+     * @Description:  功能描述（根据web用户Id,查询用户权限）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/25 12:23
+     */
+    @Override
+    public List<PermissionVo> findPermissionByWebUser(Integer userId,Integer parentId) throws Exception {
+        return userMapper.selectPermissionByWebUser(userId,parentId);
+    }
+
+    /**
+     * @Description:  功能描述（根据用户的Id，查询用户权限树结构）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/26 12:49
+     */
+    public BaseModel getTreePermissionVo(){
+        BaseModel baseModel=new BaseModel();
+        log.debug("根据用户id查询限树列表！");
+        try {
+            List<PermissionVo> pvo=userMapper.selectPermissionByWebUser(ActiveUser.getActiveUser().getId(),0);
+            for (PermissionVo permissionVo : pvo) {
+                //判断父节点是否有子节点
+                List<PermissionVo> ps = userMapper.selectPermissionByWebUser(null,permissionVo.getMid());
+                if(ps.size()!=0){
+                    permissionVo.setChildren(ps);
+                }
+            }
+            baseModel.add("pvo",pvo);
+            //生成页面需要的json格式
+            log.debug("根据用户id查询限树列表查询=pvo:" + JSONUtils.toJSONString(pvo).toString());
+        } catch (Exception e) {
+            baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
+            baseModel.setErrorMessage("查询权限树列表异常");
+            e.printStackTrace();
+            log.error("根据用户id查询权限树列表查询异常！", e);
+        }
+        return baseModel;
     }
 }

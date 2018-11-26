@@ -326,4 +326,67 @@
     from web_user where web_user_name = #{userName,jdbcType=CHAR}
   </select>
   <!--=End selectWebUserByUserName 根据用户名查询用户信息 -->
+
+
+  <!--=Start 用户相关权限 -->
+  <resultMap id="BaseResultMapPermission" type="com.ybkj.common.entity.PermissionVo">
+    <id column="rid" jdbcType="INTEGER" property="rid" />
+    <result column="roleName" jdbcType="CHAR" property="roleName" />
+    <result column="rdescpt" jdbcType="CHAR" property="rdescpt" />
+    <result column="rcode" jdbcType="CHAR" property="rcode" />
+
+    <result column="mid" jdbcType="INTEGER" property="mid" />
+    <result column="name" jdbcType="CHAR" property="name" />
+    <result column="parentId" jdbcType="INTEGER" property="parentId" />
+    <result column="zindex" jdbcType="INTEGER" property="zindex" />
+    <result column="istype" jdbcType="INTEGER" property="istype" />
+    <result column="descpt" jdbcType="CHAR" property="descpt" />
+    <result column="code" jdbcType="CHAR" property="code" />
+    <result column="icon" jdbcType="CHAR" property="icon" />
+    <result column="page" jdbcType="CHAR" property="page" />
+    <result column="enabled" jdbcType="INTEGER" property="enabled" />
+  </resultMap>
+  <!--=End 用户相关权限 -->
+
+  <!--=Start selectPermissionByWebUser 根据web用户Id和父ID,查询用户权限 -->
+  <select id="selectPermissionByWebUser" resultType="com.ybkj.common.entity.PermissionVo">
+    SELECT
+/*    r.rid as rid,r.role_name as roleName,r.descpt as rdescpt,r.code as rcode,*/
+    m.mid as mid,m.name as name,m.parentId as parentId,m.zindex as zindex,
+    m.istype as istype,m.descpt as descpt,m.code as code,m.icon as icon,
+    m.page as page,m.enabled as enabled
+    FROM
+     web_user AS wu INNER JOIN user_role AS ur ON wu.id=ur.uid
+                    INNER JOIN      role AS r  ON ur.rid=r.rid
+                    INNER JOIN role_menu AS rm ON r.rid=rm.rid
+                    INNER JOIN      menu AS m  ON rm.mid=m.mid
+                    <where>
+                      <if test="userId != null">
+                        wu.id = #{userId,jdbcType=INTEGER}
+                      </if>
+                      <if test="parentId != null">
+                      and  m.parentId = #{parentId,jdbcType=INTEGER}
+                      </if>
+                    </where>
+                    GROUP BY m.mid
+                    order by zindex ASC
+  </select>
+  <!--=End selectPermissionByWebUser  根据web用户Id,查询用户权限 -->
+
+  <!--=Start selectPermissionChildNode  -->
+  <select id="selectPermissionChildNode" resultType="com.ybkj.common.entity.PermissionVo">
+    SELECT
+    m.mid as mid,m.name as name,m.parentId as parentId,m.zindex as zindex,
+    m.istype as istype,m.descpt as descpt,m.code as code,m.icon as icon,
+    m.page as page,m.enabled as enabled
+    FROM
+    web_user AS wu INNER JOIN user_role AS ur ON wu.id=ur.uid
+    INNER JOIN      role AS r  ON ur.rid=r.rid
+    INNER JOIN role_menu AS rm ON r.rid=rm.rid
+    INNER JOIN      menu AS m  ON rm.mid=m.mid
+    WHERE m.parentId= #{parentId,jdbcType=INTEGER}
+    GROUP BY m.mid
+    order by zindex ASC
+  </select>
+  <!--=End selectPermissionChildNode  查询该节点是否存在父节点 -->
 </mapper>

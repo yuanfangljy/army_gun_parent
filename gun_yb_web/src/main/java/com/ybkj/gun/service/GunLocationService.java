@@ -28,4 +28,11 @@ public interface GunLocationService {
      * @CreateDate:   2018/11/22 19:50
     */
     List<GunLocation> findRoundDevice(String lng, String lat) throws Exception;
+
+    /**
+     * @Description:  功能描述（查询枪支的轨迹）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/26 19:47
+    */
+    List<GunLocation> findGunTrajectory(String gunId) throws Exception;
 }

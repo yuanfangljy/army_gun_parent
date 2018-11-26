@@ -1,11 +1,13 @@
 package com.ybkj.gun.service;
 
+import com.ybkj.common.entity.PermissionVo;
 import com.ybkj.common.entity.WebUserDTO;
 import com.ybkj.gun.model.WebUser;
 import com.ybkj.model.BaseModel;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * @项目名称：
@@ -31,4 +33,11 @@ public interface WebUserService {
      * @CreateDate:   2018/11/1 15:02
     */
     WebUser findWebUserByUserName(String webUserName) throws Exception;
+
+    /**
+     * @Description:  功能描述（根据web用户Id,查询用户权限）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/25 12:22
+    */
+    List<PermissionVo> findPermissionByWebUser(Integer userId,Integer parentId) throws Exception;
 }

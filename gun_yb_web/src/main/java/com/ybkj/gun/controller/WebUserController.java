@@ -9,6 +9,7 @@ import com.ybkj.gun.service.LogService;
 import com.ybkj.gun.service.impl.WebUserServiceImpl;
 import com.ybkj.model.BaseModel;
 import com.ybkj.pojo.LoginLogOutLogPojo;
+import com.ybkj.redis.RedisUtils;
 import com.ybkj.untils.IpUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -43,52 +44,51 @@ public class WebUserController {
     private WebUserServiceImpl webUserService;
     @Autowired
     private LogService logService;
+    @Autowired
+    private RedisUtils redisUtils;
 
     @ApiOperation(value = "用户登录", notes = "用户名和密码")
     @RequestMapping(value = "/loginWeb", method = RequestMethod.POST)
     public BaseModel loginWeb(WebUserDTO webUserDTO,
                               @RequestParam(value = "rememberMe", required = false) boolean rememberMe, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String origin = request.getHeader("Origin");
-        if(origin == null) {
-            origin = request.getHeader("Referer");
-        }
-        response.setHeader("Access-Control-Allow-Origin", origin);
-        response.setHeader("Access-Control-Allow-Credentials", "true");
-
         BaseModel baseModel = webUserService.shiroLogin(webUserDTO, rememberMe,request,response);
         if(baseModel.getStatus()=="1000"){
-            //记录日志
-            LoginLogOutLogPojo loginLog = IpUtil.createLoginLog(request);
-            WebUserLogin webUserLogin=new WebUserLogin();
-            webUserLogin.setWebIp(loginLog.getIp());
-            webUserLogin.setBrowser(loginLog.getBrowser());
-            webUserLogin.setSystemName(loginLog.getSystemName());
-            webUserLogin.setState(0);
-            webUserLogin.setLogintime(new Date());
-            webUserLogin.setUid(ActiveUser.getActiveUser().getId());
-            webUserLogin.setUserName(ActiveUser.getActiveUser().getName());
-            logService.addLogLoginLogOut(webUserLogin);
+
+            //将登录信息保存到redis中
+            boolean permissionLists = redisUtils.set(baseModel.getToken(), baseModel.getExtend().get("permissionLists"));
+            if(permissionLists){
+                log.debug("登录相关信息【成功】保存到redis中");
+                //记录日志
+                LoginLogOutLogPojo loginLog = IpUtil.createLoginLog(request);
+                insertWebLog(loginLog,0);
+            }else{
+                log.debug("登录相关信息保存到redis中【失败】");
+                baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
+                baseModel.setErrorMessage("登录失败，服务器吃饭中......");
+                return baseModel;
+            }
         }
         return baseModel;
     }
 
+
     @ApiOperation(value = "用户登出", notes = "用户登出")
     @RequestMapping(value = "/loginOut", method = RequestMethod.POST)
     public BaseModel loginOut(HttpServletRequest request, HttpServletResponse response){
-        String origin = request.getHeader("Origin");
-        if(origin == null) {
-            origin = request.getHeader("Referer");
-        }
-
-        response.setHeader("Access-Control-Allow-Origin", origin);
-        response.setHeader("Access-Control-Allow-Credentials", "true");
         BaseModel baseModel=new BaseModel();
         try {
-
+            //清除redis中对应的用户信息
+            redisUtils.remove((String)SecurityUtils.getSubject().getSession().getId());
+            //记录日志
+            LoginLogOutLogPojo loginLog = IpUtil.createLoginLog(request);
+            insertWebLog(loginLog,1);
+            //清空缓存
             RealmSecurityManager rsm = (RealmSecurityManager) SecurityUtils.getSecurityManager();
             ShiroRealm authRealm = (ShiroRealm) rsm.getRealms().iterator().next();
             authRealm.clearCachedAuth();
+            //退出登录
             SecurityUtils.getSubject().logout();
+
             baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
             baseModel.setErrorMessage("退出成功");
             log.debug("用户退出登录");
@@ -100,6 +100,25 @@ public class WebUserController {
         }
         return baseModel;
     }
+
+
+    /**
+     * @Description:  功能描述（日志）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/24 17:39
+    */
+    public void insertWebLog(LoginLogOutLogPojo loginLog,Integer type ) throws Exception {
+        WebUserLogin webUserLogin=new WebUserLogin();
+        webUserLogin.setWebIp(loginLog.getIp());
+        webUserLogin.setBrowser(loginLog.getBrowser());
+        webUserLogin.setSystemName(loginLog.getSystemName());
+        webUserLogin.setState(type);
+        webUserLogin.setLogintime(new Date());
+        webUserLogin.setUid(ActiveUser.getActiveUser().getId());
+        webUserLogin.setUserName(ActiveUser.getActiveUser().getName());
+        logService.addLogLoginLogOut(webUserLogin);
+    }
+
 
     public static void main(String[] args) {
         String s = DigestUtils.md5Hex("123456");

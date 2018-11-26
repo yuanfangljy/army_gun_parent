@@ -1,5 +1,6 @@
 package com.ybkj.gun.mapper;
 
+import com.ybkj.common.entity.PermissionVo;
 import com.ybkj.gun.model.WebUser;
 import com.ybkj.gun.model.WebUserExample;
 import java.util.List;
@@ -34,4 +35,18 @@ public interface WebUserMapper {
      * @CreateDate:   2018/10/31 16:03
      */
     WebUser selectWebUserByUserName(@Param("userName") String userName);
+
+    /**
+     * @Description:  功能描述（根据web用户Id,查询用户权限:树）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/25 12:24
+    */
+    List<PermissionVo> selectPermissionByWebUser(@Param("userId") Integer userId,@Param("parentId") Integer parentId);
+
+    /**
+     * @Description:  功能描述（查询该节点是否存在父节点）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/26 14:43
+    */
+    List<PermissionVo> selectPermissionChildNode(Integer parentId);
 }
