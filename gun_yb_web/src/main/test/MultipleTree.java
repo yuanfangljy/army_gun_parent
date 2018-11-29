@@ -10,6 +10,7 @@ import java.util.Collections;
 /**
  * 多叉树类
  */
+@SuppressWarnings("all")
 public class MultipleTree {
 	public static void main(String[] args) {
 		// 读取层次数据结果集列表
@@ -45,85 +46,7 @@ public class MultipleTree {
 		// 输出有序的树形菜单的JSON字符串
 		System.out.println(root.toString());
 
-		// 程序输出结果如下（无序的树形菜单）（格式化后的结果）：
-		//  {
-		//   id : '100000',
-		//   text : '廊坊银行总行',
-		//   children : [
-		//     {
-		//     id : '110000',
-		//     text : '廊坊分行',
-		//     children : [
-		//       {
-		//       id : '113000',
-		//       text : '廊坊银行开发区支行',
-		//       leaf : true
-		//       },
-		//       {
-		//       id : '111000',
-		//       text : '廊坊银行金光道支行',
-		//       leaf : true
-		//       },
-		//       {
-		//       id : '112000',
-		//       text : '廊坊银行解放道支行',
-		//       children : [
-		//         {
-		//         id : '112200',
-		//         text : '廊坊银行三大街支行',
-		//         leaf : true
-		//         },
-		//         {
-		//         id : '112100',
-		//         text : '廊坊银行广阳道支行',
-		//         leaf : true
-		//         }
-		//       ]
-		//       }
-		//     ]
-		//     }
-		//   ]
-		//  }
 
-		// 程序输出结果如下（有序的树形菜单）（格式化后的结果）：
-		//  {
-		//   id : '100000',
-		//   text : '廊坊银行总行',
-		//   children : [
-		//     {
-		//     id : '110000',
-		//     text : '廊坊分行',
-		//     children : [
-		//       {
-		//       id : '111000',
-		//       text : '廊坊银行金光道支行',
-		//       leaf : true
-		//       },
-		//       {
-		//       id : '112000',
-		//       text : '廊坊银行解放道支行',
-		//       children : [
-		//         {
-		//         id : '112100',
-		//         text : '廊坊银行广阳道支行',
-		//         leaf : true
-		//         },
-		//         {
-		//         id : '112200',
-		//         text : '廊坊银行三大街支行',
-		//         leaf : true
-		//         }
-		//       ]
-		//       },
-		//       {
-		//       id : '113000',
-		//       text : '廊坊银行开发区支行',
-		//       leaf : true
-		//       }
-		//     ]
-		//     }
-		//   ]
-		//  }
 
 	}
 
@@ -229,13 +152,18 @@ class NodeIDComparator implements Comparator {
 	}
 }
 
+
+
+
 /**
  * 构造虚拟的层次数据
  */
+@SuppressWarnings("all")
 class VirtualDataGenerator {
 	// 构造无序的结果集列表，实际应用中，该数据应该从数据库中查询获得；
 	public static List getVirtualResult() {
 		List dataList = new ArrayList();
+
 
 		HashMap dataRecord1 = new HashMap();
 		dataRecord1.put("id", "112000");
@@ -282,4 +210,84 @@ class VirtualDataGenerator {
 
 		return dataList;
 	}
+
+	// 程序输出结果如下（无序的树形菜单）（格式化后的结果）：
+	//  {
+	//   id : '100000',
+	//   text : '廊坊银行总行',
+	//   children : [
+	//     {
+	//     id : '110000',
+	//     text : '廊坊分行',
+	//     children : [
+	//       {
+	//       id : '113000',
+	//       text : '廊坊银行开发区支行',
+	//       leaf : true
+	//       },
+	//       {
+	//       id : '111000',
+	//       text : '廊坊银行金光道支行',
+	//       leaf : true
+	//       },
+	//       {
+	//       id : '112000',
+	//       text : '廊坊银行解放道支行',
+	//       children : [
+	//         {
+	//         id : '112200',
+	//         text : '廊坊银行三大街支行',
+	//         leaf : true
+	//         },
+	//         {
+	//         id : '112100',
+	//         text : '廊坊银行广阳道支行',
+	//         leaf : true
+	//         }
+	//       ]
+	//       }
+	//     ]
+	//     }
+	//   ]
+	//  }
+
+	// 程序输出结果如下（有序的树形菜单）（格式化后的结果）：
+	//  {
+	//   id : '100000',
+	//   text : '廊坊银行总行',
+	//   children : [
+	//     {
+	//     id : '110000',
+	//     text : '廊坊分行',
+	//     children : [
+	//       {
+	//       id : '111000',
+	//       text : '廊坊银行金光道支行',
+	//       leaf : true
+	//       },
+	//       {
+	//       id : '112000',
+	//       text : '廊坊银行解放道支行',
+	//       children : [
+	//         {
+	//         id : '112100',
+	//         text : '廊坊银行广阳道支行',
+	//         leaf : true
+	//         },
+	//         {
+	//         id : '112200',
+	//         text : '廊坊银行三大街支行',
+	//         leaf : true
+	//         }
+	//       ]
+	//       },
+	//       {
+	//       id : '113000',
+	//       text : '廊坊银行开发区支行',
+	//       leaf : true
+	//       }
+	//     ]
+	//     }
+	//   ]
+	//  }
 }

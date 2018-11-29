@@ -82,5 +82,6 @@
         <table tableName="warehouse_records" domainObjectName="WarehouseRecords"></table>
         <table tableName="web_user" domainObjectName="WebUser"></table>
         <table tableName="web_user_login" domainObjectName="WebUserLogin"></table>-->
+
     </context>
 </generatorConfiguration>

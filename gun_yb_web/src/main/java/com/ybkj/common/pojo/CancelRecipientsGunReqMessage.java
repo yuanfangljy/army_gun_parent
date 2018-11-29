@@ -13,6 +13,8 @@ package com.ybkj.common.pojo;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**   
  * @ClassName:  CancelGunReqMessage   
  * @Description:TODO(这里用一句话描述这个类的作用)   
@@ -25,7 +27,7 @@ import lombok.Data;
 
 @Data
 //09号报文
-public class CancelRecipientsGunReqMessage extends TemplateMessage {
+public class CancelRecipientsGunReqMessage extends TemplateMessage implements Serializable{
 	
 	/**   
 	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)   

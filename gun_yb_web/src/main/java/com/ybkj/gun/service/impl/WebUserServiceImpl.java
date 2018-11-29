@@ -6,6 +6,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.ybkj.common.entity.PermissionVo;
 import com.ybkj.common.entity.WebUserDTO;
 import com.ybkj.common.util.ActiveUser;
+import com.ybkj.common.util.MenuTreeUtil;
+import com.ybkj.common.util.Tree;
 import com.ybkj.enums.IStatusMessage;
 import com.ybkj.gun.mapper.WebUserMapper;
 import com.ybkj.gun.model.WebUser;
@@ -15,6 +17,7 @@ import com.ybkj.untils.ValidatorRequestParam;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.cache.Cache;
@@ -23,8 +26,6 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.management.BadBinaryOpValueExpException;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +50,10 @@ public class WebUserServiceImpl implements WebUserService{
     private WebUserMapper userMapper;
     @Autowired
     private EhCacheManager ecm;
+    @Autowired
+    private Tree tree;
+    @Autowired
+    private MenuTreeUtil menuTreeUtil;
 
     /**
      * @param user
@@ -187,17 +192,25 @@ public class WebUserServiceImpl implements WebUserService{
         BaseModel baseModel=new BaseModel();
         log.debug("根据用户id查询限树列表！");
         try {
-            List<PermissionVo> pvo=userMapper.selectPermissionByWebUser(ActiveUser.getActiveUser().getId(),0);
+            //所有的菜单
+            List<PermissionVo> pvos=userMapper.selectPermissionByWebUser(ActiveUser.getActiveUser().getId(),null);
+            //一级菜单
+            List<PermissionVo> pvoss=userMapper.selectPermissionByWebUser(ActiveUser.getActiveUser().getId(),0);
+            for (PermissionVo menu : pvoss) {
+                //进行递归
+                menu.setChildren(menuTreeUtil.orgRecursion(pvos,menu.getMid()));
+            }
+           /* List<PermissionVo> pvo=userMapper.selectPermissionByWebUser(ActiveUser.getActiveUser().getId(),0);
             for (PermissionVo permissionVo : pvo) {
                 //判断父节点是否有子节点
                 List<PermissionVo> ps = userMapper.selectPermissionByWebUser(null,permissionVo.getMid());
                 if(ps.size()!=0){
                     permissionVo.setChildren(ps);
                 }
-            }
-            baseModel.add("pvo",pvo);
+            }*/
+            baseModel.add("pvo",pvoss);
             //生成页面需要的json格式
-            log.debug("根据用户id查询限树列表查询=pvo:" + JSONUtils.toJSONString(pvo).toString());
+            log.debug("根据用户id查询限树列表查询=pvo:" + pvoss);
         } catch (Exception e) {
             baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
             baseModel.setErrorMessage("查询权限树列表异常");
@@ -206,4 +219,8 @@ public class WebUserServiceImpl implements WebUserService{
         }
         return baseModel;
     }
+
+
+
+
 }

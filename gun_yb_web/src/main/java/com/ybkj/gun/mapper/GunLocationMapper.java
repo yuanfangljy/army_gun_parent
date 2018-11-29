@@ -48,5 +48,5 @@ public interface GunLocationMapper {
      * @Author:       刘家义
      * @CreateDate:   2018/11/26 19:51
     */
-    List<GunLocation> selectGunTrajectory(@Param(value = "gunId")String gunId);
+    List<GunLocation> selectGunTrajectory(@Param(value = "appImei")String appImei);
 }

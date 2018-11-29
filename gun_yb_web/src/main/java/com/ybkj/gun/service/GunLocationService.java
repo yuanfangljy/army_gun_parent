@@ -34,5 +34,5 @@ public interface GunLocationService {
      * @Author:       刘家义
      * @CreateDate:   2018/11/26 19:47
     */
-    List<GunLocation> findGunTrajectory(String gunId) throws Exception;
+    List<GunLocation> findGunTrajectory(String appImei) throws Exception;
 }

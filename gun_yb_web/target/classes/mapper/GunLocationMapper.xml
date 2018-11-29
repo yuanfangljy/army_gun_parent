@@ -393,8 +393,8 @@ FROM (
   <!--=End selectGunDynamic 查询枪支实时动态位置信息 -->
 
 
-  <!--=Start findRoundDevice 查询周围的在线设备 -->
-  <select id="findRoundDevice" resultMap="BaseResultMap">
+  <!--=Start selectRoundDevice 查询周围的在线设备 -->
+  <select id="selectRoundDevice" resultMap="BaseResultMap">
        SELECT gl.*,
        ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{lat}*PI()/180-gl.latitude *PI()/180)/2),2)+COS(#{lat}*PI()/180)
        *COS(gl.latitude *PI()/180)*POW(SIN((#{lng}*PI()/180-gl.longitude *PI()/180)/2),2)))*1000)AS juli FROM
@@ -404,5 +404,21 @@ FROM (
       ORDER BY juli DESC
       LIMIT 5
   </select>
-  <!--=End findRoundDevice 查询周围的在线设备 -->
+  <!--=End selectRoundDevice 查询周围的在线设备 -->
+
+
+  <!--=Start selectGunTrajectory 查询枪支的轨迹 -->
+  <select id="selectGunTrajectory" resultMap="BaseResultMap">
+    SELECT app_id,gun_id,gun_mac ,latitude ,longitude ,create_time
+    from gun_location
+    <where>
+      <if test="appImei!=null and appImei!=''">
+        gun_mac = #{appImei} and gun_device_state=0 and create_time BETWEEN
+        SUBDATE(SYSDATE(),interval 20 minute)
+        and SYSDATE() ORDER BY create_time ASC
+      </if>
+    </where>
+
+  </select>
+  <!--=End selectGunTrajectory 查询枪支的轨迹 -->
 </mapper>

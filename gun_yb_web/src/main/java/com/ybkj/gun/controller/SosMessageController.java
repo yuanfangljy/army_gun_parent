@@ -52,10 +52,10 @@ public class SosMessageController {
         PageHelper.startPage(pn,ps);
         log.debug("--------获取警告信息列表------！");
         try {
-            List<SosMessage> sosMessagesList =this.sosMessageService.findSosMessages(gunCode,appCode);
-            for (SosMessage sosMessage : sosMessagesList) {
+            List<SosMessage> sosMessagesList =this.sosMessageService.findSosMessages(gunCode);
+           /* for (SosMessage sosMessage : sosMessagesList) {
                 System.out.println("ssss---"+sosMessage);
-            }
+            }*/
             PageInfo<SosMessage> page = new PageInfo<SosMessage>(sosMessagesList,5);
             baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
             baseModel.setErrorMessage("获取警告信息成功！");
@@ -81,7 +81,7 @@ public class SosMessageController {
      * @return
      */
     @ApiOperation(value = "推送消息给指定的设备", notes = "推送消息给指定的设备")
-    @RequestMapping(value = "/createForHelpGun", method = RequestMethod.GET)
+    @RequestMapping(value = "/createForHelpGun", method = RequestMethod.POST)
     public BaseModel createForHelpGun(@RequestParam(value = "appImei")String appImei,@RequestParam(value = "sosId")Integer sosId,@RequestParam(value = "type")Integer type){
         log.debug("--------推送消息给指定的设备----appImei----"+appImei+"---sosId---"+sosId);
         BaseModel baseModel=new BaseModel();

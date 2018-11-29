@@ -20,7 +20,7 @@ public interface SosMessageService {
      * @Author:       刘家义
      * @CreateDate:   2018/11/3 16:46
     */
-    List<SosMessage> findSosMessages(String gunCode,String appCode) throws Exception;
+    List<SosMessage> findSosMessages(String gunCode) throws Exception;
 
     /**
      * @Description:  功能描述（推送消息给指定的设备）

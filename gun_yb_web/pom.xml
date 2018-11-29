@@ -65,7 +65,7 @@
                 </plugin>
 
                 <!-- mybatis generator 自动生成代码插件,打包的时候，一定要删除-->
-                <plugin>
+      <!--          <plugin>
                     <groupId>org.mybatis.generator</groupId>
                     <artifactId>mybatis-generator-maven-plugin</artifactId>
                     <version>1.3.5</version>
@@ -74,7 +74,70 @@
                         <overwrite>true</overwrite>
                         <verbose>true</verbose>
                     </configuration>
+                </plugin>-->
+
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>3.0.0</version>
+                    <configuration>
+                        <!-- not append assembly id in release file name -->
+
+                        <descriptors>
+                            <descriptor>src/main/resources/assembly/assembly.xml</descriptor>
+                        </descriptors>
+                        <finalName>${project.artifactId}</finalName>
+                        <appendAssemblyId>true</appendAssemblyId>
+                    </configuration>
+
+                    <executions>
+                        <execution>
+                            <id>make-assembly</id>
+                            <!-- 绑定到package生命周期阶段上 -->
+                            <phase>package</phase>
+                            <goals>
+                                <!-- 绑定到package生命周期阶段上 -->
+                                <goal>single</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
+
+                <!--同时需将默认生成的spring-boot-maven-plugin依赖删除，否则最终打出的发行包启动会有问题-->
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                </plugin>
+
+
+
+
+
+                <!--配置linux脚本启动项目-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                        <mainClass>com.ybkj.App</mainClass>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
 
             </plugins>
         </pluginManagement>

@@ -305,63 +305,63 @@ public class SosMessageExample {
             return (Criteria) this;
         }
 
-        public Criteria andAppIdIsNull() {
-            addCriterion("app_id is null");
+        public Criteria andGunImeiIsNull() {
+            addCriterion("gun_imei is null");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdIsNotNull() {
-            addCriterion("app_id is not null");
+        public Criteria andGunImeiIsNotNull() {
+            addCriterion("gun_imei is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdEqualTo(Integer value) {
-            addCriterion("app_id =", value, "appId");
+        public Criteria andGunImeiEqualTo(Integer value) {
+            addCriterion("gun_imei =", value, "gunImei");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdNotEqualTo(Integer value) {
-            addCriterion("app_id <>", value, "appId");
+        public Criteria andGunImeiNotEqualTo(Integer value) {
+            addCriterion("gun_imei <>", value, "gunImei");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdGreaterThan(Integer value) {
-            addCriterion("app_id >", value, "appId");
+        public Criteria andGunImeiGreaterThan(Integer value) {
+            addCriterion("gun_imei >", value, "gunImei");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("app_id >=", value, "appId");
+        public Criteria andGunImeiGreaterThanOrEqualTo(Integer value) {
+            addCriterion("gun_imei >=", value, "gunImei");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdLessThan(Integer value) {
-            addCriterion("app_id <", value, "appId");
+        public Criteria andGunImeiLessThan(Integer value) {
+            addCriterion("gun_imei <", value, "gunImei");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdLessThanOrEqualTo(Integer value) {
-            addCriterion("app_id <=", value, "appId");
+        public Criteria andGunImeiLessThanOrEqualTo(Integer value) {
+            addCriterion("gun_imei <=", value, "gunImei");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdIn(List<Integer> values) {
-            addCriterion("app_id in", values, "appId");
+        public Criteria andGunImeiIn(List<Integer> values) {
+            addCriterion("gun_imei in", values, "gunImei");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdNotIn(List<Integer> values) {
-            addCriterion("app_id not in", values, "appId");
+        public Criteria andGunImeiNotIn(List<Integer> values) {
+            addCriterion("gun_imei not in", values, "gunImei");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdBetween(Integer value1, Integer value2) {
-            addCriterion("app_id between", value1, value2, "appId");
+        public Criteria andGunImeiBetween(Integer value1, Integer value2) {
+            addCriterion("gun_imei between", value1, value2, "gunImei");
             return (Criteria) this;
         }
 
-        public Criteria andAppIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("app_id not between", value1, value2, "appId");
+        public Criteria andGunImeiNotBetween(Integer value1, Integer value2) {
+            addCriterion("gun_imei not between", value1, value2, "gunImei");
             return (Criteria) this;
         }
 

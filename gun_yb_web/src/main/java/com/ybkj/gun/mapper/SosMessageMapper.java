@@ -33,5 +33,6 @@ public interface SosMessageMapper {
      * @Author:       刘家义
      * @CreateDate:   2018/11/3 16:49
      */
-    List<SosMessage> selectSosMessageAll(@Param(value = "gunCode") String gunCode,@Param(value = "appCode") String appCode);
+    List<SosMessage> selectSosMessageAll(@Param(value = "gunCode") String gunCode);
+
 }

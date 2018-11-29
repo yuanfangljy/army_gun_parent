@@ -412,10 +412,10 @@ FROM (
     SELECT app_id,gun_id,gun_mac ,latitude ,longitude ,create_time
     from gun_location
     <where>
-      <if test="gunId!=null and gunId!=''">
-        gun_id = #{gunId} and gun_device_state=0 and create_time BETWEEN
-        SUBDATE(now(),interval 20 minute)
-        and now() ORDER BY create_time ASC
+      <if test="appImei!=null and appImei!=''">
+        gun_mac = #{appImei} and gun_device_state=0 and create_time BETWEEN
+        SUBDATE(SYSDATE(),interval 20 minute)
+        and SYSDATE() ORDER BY create_time ASC
       </if>
     </where>
 

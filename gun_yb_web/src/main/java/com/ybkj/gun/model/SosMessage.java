@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.List;
 
 @Data
 public class SosMessage {
@@ -15,7 +14,8 @@ public class SosMessage {
 
     private String longitude;
 
-    private Integer appId;
+
+    private String gunImei;
 
     private String gunMac;
 
@@ -55,13 +55,6 @@ public class SosMessage {
         this.longitude = longitude == null ? null : longitude.trim();
     }
 
-    public Integer getAppId() {
-        return appId;
-    }
-
-    public void setAppId(Integer appId) {
-        this.appId = appId;
-    }
 
     public String getGunMac() {
         return gunMac;
@@ -118,7 +111,6 @@ public class SosMessage {
     public void setVersion(Integer version) {
         this.version = version;
     }
-
 
 
     //一对多

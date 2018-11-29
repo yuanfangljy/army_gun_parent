@@ -5,7 +5,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="latitude" jdbcType="CHAR" property="latitude" />
     <result column="longitude" jdbcType="CHAR" property="longitude" />
-    <result column="app_id" jdbcType="INTEGER" property="appId" />
+    <result column="gun_imei" jdbcType="CHAR" property="gunImei" />
     <result column="gun_mac" jdbcType="CHAR" property="gunMac" />
     <result column="sos_time" jdbcType="TIMESTAMP" property="sosTime" />
     <result column="handle_time" jdbcType="TIMESTAMP" property="handleTime" />
@@ -14,11 +14,11 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="version" jdbcType="INTEGER" property="version" />
     <association property="apps" javaType="com.ybkj.gun.model.App">
-     <!-- <id column="id" jdbcType="INTEGER" property="id" />-->
+      <!-- <id column="id" jdbcType="INTEGER" property="id" />-->
       <result column="app_phone_type_name" jdbcType="CHAR" property="appPhoneTypeName" />
     </association>
     <association property="guns" javaType="com.ybkj.gun.model.Gun">
-     <!-- <id column="id" jdbcType="INTEGER" property="id" />-->
+      <!-- <id column="id" jdbcType="INTEGER" property="id" />-->
       <result column="gun_id" jdbcType="CHAR" property="gunId" />
       <result column="gun_mac" jdbcType="CHAR" property="gunMac" />
     </association>
@@ -82,7 +82,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, latitude, longitude, app_id, gun_mac, sos_time, handle_time, state, create_time, 
+    id, latitude, longitude, gun_imei, gun_mac, sos_time, handle_time, state, create_time, 
     update_time, version
   </sql>
   <select id="selectByExample" parameterType="com.ybkj.gun.model.SosMessageExample" resultMap="BaseResultMap">
@@ -117,11 +117,11 @@
   </delete>
   <insert id="insert" parameterType="com.ybkj.gun.model.SosMessage">
     insert into sos_message (id, latitude, longitude, 
-      app_id, gun_mac, sos_time, 
+      gun_imei, gun_mac, sos_time, 
       handle_time, state, create_time, 
       update_time, version)
     values (#{id,jdbcType=INTEGER}, #{latitude,jdbcType=CHAR}, #{longitude,jdbcType=CHAR}, 
-      #{appId,jdbcType=INTEGER}, #{gunMac,jdbcType=CHAR}, #{sosTime,jdbcType=TIMESTAMP}, 
+      #{gunImei,jdbcType=CHAR}, #{gunMac,jdbcType=CHAR}, #{sosTime,jdbcType=TIMESTAMP},
       #{handleTime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER})
   </insert>
@@ -137,8 +137,8 @@
       <if test="longitude != null">
         longitude,
       </if>
-      <if test="appId != null">
-        app_id,
+      <if test="gunImei != null">
+        gun_imei,
       </if>
       <if test="gunMac != null">
         gun_mac,
@@ -172,8 +172,8 @@
       <if test="longitude != null">
         #{longitude,jdbcType=CHAR},
       </if>
-      <if test="appId != null">
-        #{appId,jdbcType=INTEGER},
+      <if test="gunImei != null">
+        #{gunImei,jdbcType=CHAR},
       </if>
       <if test="gunMac != null">
         #{gunMac,jdbcType=CHAR},
@@ -216,8 +216,8 @@
       <if test="record.longitude != null">
         longitude = #{record.longitude,jdbcType=CHAR},
       </if>
-      <if test="record.appId != null">
-        app_id = #{record.appId,jdbcType=INTEGER},
+      <if test="record.gunImei != null">
+        gun_imei = #{record.gunImei,jdbcType=CHAR},
       </if>
       <if test="record.gunMac != null">
         gun_mac = #{record.gunMac,jdbcType=CHAR},
@@ -250,7 +250,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       latitude = #{record.latitude,jdbcType=CHAR},
       longitude = #{record.longitude,jdbcType=CHAR},
-      app_id = #{record.appId,jdbcType=INTEGER},
+      gun_imei = #{record.gunImei,jdbcType=CHAR},
       gun_mac = #{record.gunMac,jdbcType=CHAR},
       sos_time = #{record.sosTime,jdbcType=TIMESTAMP},
       handle_time = #{record.handleTime,jdbcType=TIMESTAMP},
@@ -271,8 +271,8 @@
       <if test="longitude != null">
         longitude = #{longitude,jdbcType=CHAR},
       </if>
-      <if test="appId != null">
-        app_id = #{appId,jdbcType=INTEGER},
+      <if test="gunImei != null">
+        gun_imei = #{gunImei,jdbcType=CHAR},
       </if>
       <if test="gunMac != null">
         gun_mac = #{gunMac,jdbcType=CHAR},
@@ -302,7 +302,7 @@
     update sos_message
     set latitude = #{latitude,jdbcType=CHAR},
       longitude = #{longitude,jdbcType=CHAR},
-      app_id = #{appId,jdbcType=INTEGER},
+      gun_imei = #{gunImei,jdbcType=CHAR},
       gun_mac = #{gunMac,jdbcType=CHAR},
       sos_time = #{sosTime,jdbcType=TIMESTAMP},
       handle_time = #{handleTime,jdbcType=TIMESTAMP},
@@ -313,27 +313,23 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
+
   <!--=Start selectSosMessageAll 查询警告信息列表:枪号 -->
   <select id="selectSosMessageAll" resultMap="BaseResultMap">
     SELECT
     sm.id,
     g.gun_id,
-    g.gun_mac,
-    a.app_phone_type_name,
+    sm.gun_mac,
     sm.longitude,
     sm.latitude,
     sm.sos_time,
-    sm.state
+    sm.state,
+    sm.gun_imei
     FROM
     sos_message AS sm
-    LEFT JOIN app AS a
-    ON sm.app_id = a.id
     LEFT JOIN gun AS g
-    ON sm.gun_mac = g.gun_mac
+    ON sm.gun_imei = g.gun_imei
     <where>
-      <if test="appCode != null and appCode !=''">
-        a.app_phone_type_name like '%' #{appCode} '%'
-      </if>
       <if test="gunCode != null and gunCode !=''">
         g.gun_id like '%' #{gunCode} '%'
       </if>

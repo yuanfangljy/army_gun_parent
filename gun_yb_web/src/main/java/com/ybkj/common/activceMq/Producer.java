@@ -93,9 +93,9 @@ public class Producer {
         try {
             BindingResMessage bindingResMessage = new BindingResMessage();
             bindingResMessage.setUniqueIdentification(appId);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
-            bindingResMessage.setFormatVersion("0001");//格式版本
+            bindingResMessage.setFormatVersion("V1");//格式版本
             bindingResMessage.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
-            bindingResMessage.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
+            bindingResMessage.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getRandomNumber());//交易流水号
             bindingResMessage.setMessageType("05");//报文类型
             bindingResMessage.setSendTime(dateTool.dateToString());//发报时间
             bindingResMessage.setSessionToken(TokenUtils.channelSessionDigest());//标识本次会话唯一标志
@@ -135,6 +135,7 @@ public class Producer {
 
             messageBody.setGunId(String.valueOf(userId));//人员编号
             messageBody.setUsername(userName);//人员姓名
+            messageBody.setUserId(String.valueOf(userId));
             messageBody.setGunId(gun);//枪号
             messageBody.setGunMac(mac);//枪支设备蓝牙号
             messageBody.setBegintime(dateTool.dateToString());//领用开始时间
@@ -143,9 +144,9 @@ public class Producer {
 
 
             message.setUniqueIdentification(appImei);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
-            message.setFormatVersion("0001");//格式版本
+            message.setFormatVersion("V1");//格式版本
             message.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
-            message.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
+            message.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getRandomNumber());//交易流水号
             message.setMessageType("07");//报文类型
             message.setSendTime(dateTool.dateToString());//发报时间
             message.setSessionToken(TokenUtils.channelSessionDigest());//标识本次会话唯一标志
@@ -192,9 +193,9 @@ public class Producer {
 
 
             message.setUniqueIdentification(appImei);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
-            message.setFormatVersion("0001");//格式版本
+            message.setFormatVersion("V1");//格式版本
             message.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
-            message.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
+            message.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getRandomNumber());//交易流水号
             message.setMessageType("07");//报文类型
             message.setSendTime(dateTool.dateToString());//发报时间
             message.setSessionToken(TokenUtils.channelSessionDigest());//标识本次会话唯一标志
@@ -231,9 +232,9 @@ public class Producer {
 
 
             message.setUniqueIdentification(IMEI);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
-            message.setFormatVersion("0001");//格式版本
+            message.setFormatVersion("V1");//格式版本
             message.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
-            message.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
+            message.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getRandomNumber());//交易流水号
             message.setMessageType("09");//报文类型
             message.setSendTime(dateTool.dateToString());//发报时间
             message.setSessionToken(TokenUtils.channelSessionDigest());//标识本次会话唯一标志
@@ -267,9 +268,9 @@ public class Producer {
 
 
             message.setUniqueIdentification(appImei);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
-            message.setFormatVersion("0001");//格式版本
+            message.setFormatVersion("V1");//格式版本
             message.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
-            message.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
+            message.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getRandomNumber());//交易流水号
             message.setMessageType("11");//报文类型
             message.setSendTime(dateTool.dateToString());//发报时间
             message.setSessionToken(TokenUtils.channelSessionDigest());//标识本次会话唯一标志
@@ -309,9 +310,9 @@ public class Producer {
 
 
             message.setUniqueIdentification(appId);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
-            message.setFormatVersion("0001");//格式版本
+            message.setFormatVersion("V1");//格式版本
             message.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
-            message.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
+            message.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getRandomNumber());//交易流水号
             message.setMessageType("13");//报文类型
             message.setSendTime(dateTool.dateToString());//发报时间
             message.setSessionToken(TokenUtils.channelSessionDigest());//标识本次会话唯一标志
@@ -369,9 +370,9 @@ public class Producer {
             SearchGunReqMessage message=new SearchGunReqMessage();
             SearchGunReqMessageBody messageBody1=new SearchGunReqMessageBody();
             message.setUniqueIdentification(appImei);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
-            message.setFormatVersion("0001");//格式版本
+            message.setFormatVersion("V1");//格式版本
             message.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
-            message.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
+            message.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getRandomNumber());//交易流水号
             message.setMessageType("21");//报文类型
             message.setSendTime(dateTool.dateToString());//发报时间
             message.setSessionToken(TokenUtils.channelSessionDigest());//标识本次会话唯一标志
@@ -404,9 +405,9 @@ public class Producer {
             StartStopSearchGunReqMessage message = new StartStopSearchGunReqMessage();
 
             message.setUniqueIdentification(appImei);//报文唯一标识：默认.208POSITIONSYSTEM 或设备IMEI
-            message.setFormatVersion("0001");//格式版本
+            message.setFormatVersion("V1");//格式版本
             message.setDeviceType("2");//设备类型：1.离位置报警设备 2.随行设备 3.腕表 4.定位模块
-            message.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getNumber(1));//交易流水号
+            message.setSerialNumber(dateTool.dateToString() + progressiveIncreaseNumber.getRandomNumber());//交易流水号
             message.setMessageType("19");//报文类型
             message.setSendTime(dateTool.dateToString());//发报时间
             message.setSessionToken(TokenUtils.channelSessionDigest());//标识本次会话唯一标志

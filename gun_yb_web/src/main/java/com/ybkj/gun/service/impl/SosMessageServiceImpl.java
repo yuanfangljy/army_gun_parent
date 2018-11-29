@@ -20,6 +20,7 @@ import com.ybkj.untils.DateTool;
 import com.ybkj.untils.TokenUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,8 +60,8 @@ public class SosMessageServiceImpl implements SosMessageService {
      * @CreateDate: 2018/11/3 16:47
      */
     @Override
-    public List<SosMessage> findSosMessages(String gunCode, String appCode) throws Exception {
-        return sosMessageMapper.selectSosMessageAll(gunCode, appCode);
+    public List<SosMessage> findSosMessages(String gunCode) throws Exception {
+        return sosMessageMapper.selectSosMessageAll(gunCode);
     }
 
     /**
@@ -121,3 +122,9 @@ public class SosMessageServiceImpl implements SosMessageService {
 
 
 }
+
+
+
+
+
+
