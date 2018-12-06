@@ -1,8 +1,14 @@
 package com.ybkj.gun.service.impl;
 
 import com.ybkj.enums.IStatusMessage;
+import com.ybkj.gun.mapper.AppGunMapper;
+import com.ybkj.gun.mapper.AppGunUserMapper;
 import com.ybkj.gun.mapper.GunUserMapper;
+import com.ybkj.gun.mapper.WarehouseRecordsMapper;
+import com.ybkj.gun.model.AppGun;
+import com.ybkj.gun.model.AppGunUser;
 import com.ybkj.gun.model.GunUser;
+import com.ybkj.gun.model.WarehouseRecords;
 import com.ybkj.gun.service.GunUserService;
 import com.ybkj.model.BaseModel;
 import com.ybkj.untils.ValidatorRequestParam;
@@ -31,6 +37,12 @@ public class GunUserServiceImpl implements GunUserService{
 
     @Autowired
     private GunUserMapper gunUserMapper;
+    @Autowired
+    private AppGunUserMapper appGunUserMapper;
+    @Autowired
+    private WarehouseRecordsMapper warehouseRecordsMapper;
+    @Autowired
+    private AppGunMapper appGunMapper;
 
     /**
      * @Description:  功能描述（新增警员信息）
@@ -171,6 +183,59 @@ public class GunUserServiceImpl implements GunUserService{
     @Override
     public  List<GunUser>  findGunUserNoBinding() throws Exception {
         return gunUserMapper.selectGunUserNoBinding();
+    }
+
+
+    /**
+     * @Description:  功能描述（初始化出库状态）
+     * @Author:       刘家义
+     * @CreateDate:   2018/12/6 9:30
+     * 1、需要将 worehouse_records 所以不是 state=4 的数据改成 4
+     * 2、    将 gun_user 所有状态不是2的数据，改成 2
+     * 3、    将 app_gun_user 状态不是 0 的数据，改成 0
+    */
+    @Override
+    public BaseModel updateOutboundInitialization() throws Exception {
+        BaseModel baseModel=new BaseModel();
+        //1、worehouse_records 所以不是 state=4 的数据改成 4
+        List<WarehouseRecords> warehouseRecords=warehouseRecordsMapper.selectWareHouseRecordsNoState(4);
+        if(warehouseRecords.size()>0){
+            for (WarehouseRecords warehouseRecord : warehouseRecords) {
+                warehouseRecord.setState(4);
+                int i = warehouseRecordsMapper.updateByPrimaryKeySelective(warehouseRecord);
+                if(i<0){
+                    baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
+                    baseModel.setErrorMessage("初始化失败");
+                }
+            }
+        }
+        //2、将 app_gun 所有状态不是0的数据，改成 0
+        List<AppGun> appGuns=appGunMapper.selectGunUserNoState(0);
+        if(appGuns.size()>0){
+            for (AppGun appGun : appGuns) {
+                appGun.setAllotState(0);
+                int i = appGunMapper.updateByPrimaryKeySelective(appGun);
+                if(i<0){
+                    baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
+                    baseModel.setErrorMessage("初始化失败");
+                }
+            }
+        }
+        //3、将 app_gun_user 状态不是 0 的数据，改成 0
+        List<AppGunUser> appGunUsers=appGunUserMapper.selectAppGunUserNoState(0);
+        if(appGunUsers.size()>0){
+            for (AppGunUser appGunUser : appGunUsers) {
+                appGunUser.setBindingState(0);
+                int i = appGunUserMapper.updateByPrimaryKeySelective(appGunUser);
+                if(i<0){
+                    baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
+                    baseModel.setErrorMessage("初始化失败");
+                }
+            }
+        }
+        baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
+        baseModel.setErrorMessage("初始化成功");
+        return baseModel;
     }
 
 }

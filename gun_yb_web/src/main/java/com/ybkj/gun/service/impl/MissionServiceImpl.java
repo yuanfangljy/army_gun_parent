@@ -81,7 +81,7 @@ public class MissionServiceImpl implements MissionService{
         //3、发送19报文
         baseModel = producer.sendMessageOffNormalAlarmStartAndStop(messageBody, appImei);
         baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
-        baseModel.setErrorMessage("枪支预出库成功！");
+        baseModel.setErrorMessage("推送成功！");
         return baseModel;
     }
 

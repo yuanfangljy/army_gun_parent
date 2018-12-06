@@ -70,6 +70,33 @@ public class GunLocationController {
         return baseModel;
     }
 
+    /**
+     * @Description:  功能描述（优化实时枪支显示）
+     * @Author:       刘家义
+     * @CreateDate:   2018/12/5 10:27
+     * 1、查询app_gun,查询所有状态为 1 的枪支
+     * 2、根据获取到的枪支，获取到最新的数据，根据时间排序获取到最新的数据 limit 1
+     * 3、根据相应的信息，查询对应的app和gun数据
+    */
+    @ApiOperation(value = "优化查询枪支动态信息", notes = "获取枪支动态信息")
+    @RequestMapping(value = "/readGunDynamicOptimize", method = RequestMethod.GET)
+    public BaseModel readGunDynamicOptimize(@RequestParam(value = "gunId",defaultValue = "")String gunId
+            ,@RequestParam(value = "appName",defaultValue = "")String appName){
+        log.debug("--------获取枪支动态信息！-------gunId-------"+gunId+"-----appName-----"+appName);
+
+        BaseModel baseModel=new BaseModel();
+        try {
+            baseModel = gunLocationService.findGunDynamicOptimize(gunId,appName);
+        }catch (Exception e){
+            e.printStackTrace();
+            log.error("获取枪支动态信息异常！", e);
+            baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
+            baseModel.setErrorMessage("获取枪支动态信息异常！");
+        }
+        return baseModel;
+    }
+
+
 
     /**
      * @Description:  功能描述（查询枪支动态信息）
@@ -105,14 +132,18 @@ public class GunLocationController {
     }
 
 
-
+    /**
+     * @Description:  功能描述（查找周围在线的设备）
+     * @Author:       刘家义
+     * @CreateDate:   2018/12/1 18:35
+    */
     @ApiOperation(value = "查找周围在线的设备", notes = "获取周围在线的设备")
     @RequestMapping(value = "/readRoundDevice", method = RequestMethod.GET)
-    public BaseModel readRoundDevice(@RequestParam(value = "lng",defaultValue = "")String lng,@RequestParam(value = "lat",defaultValue = "")String lat){
-        log.debug("--------查找周围在线的设备！-------lng-------"+lng+"-----lat-----"+lat);
+    public BaseModel readRoundDevice(@RequestParam(value = "lng",defaultValue = "")String lng,@RequestParam(value = "lat",defaultValue = "")String lat,@RequestParam(value = "gunMac",defaultValue = "")String gunMac){
+        log.debug("--------查找周围在线的设备！-------lng-------"+lng+"-----lat-----"+lat+"-----gunMac-----"+gunMac);
         BaseModel baseModel=new BaseModel();
         try{
-            List<GunLocation> gunRoundDevice = gunLocationService.findRoundDevice(lng,lat);
+            List<GunLocation> gunRoundDevice = gunLocationService.findRoundDevice(lng,lat,gunMac);
             baseModel.add("gunRoundDevices",gunRoundDevice);
             baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
             baseModel.setErrorMessage("查询成功！");

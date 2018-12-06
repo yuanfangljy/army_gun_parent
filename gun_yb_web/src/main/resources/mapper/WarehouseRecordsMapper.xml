@@ -31,6 +31,7 @@
       <result column="gun_model" jdbcType="CHAR" property="gunModel" />
       <result column="gun_type" jdbcType="CHAR" property="gunType" />
       <result column="gun_mac" jdbcType="CHAR" property="gunMac" />
+      <result column="gun_imei" jdbcType="CHAR" property="gunImei" />
       <result column="is_del" jdbcType="TINYINT" property="isDel" />
       <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
       <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
@@ -333,4 +334,27 @@
     WHERE wr.state=#{type,jdbcType=INTEGER}
   </select>
   <!--=End selectWareHouseRecords 查询库存记录表 -->
+
+
+  <!--=Start selectWareHouseRecordsNOState 查询出库中的枪支相关列表 -->
+  <select id="selectWareHouseRecordsNOState" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List_WR"/>,
+    g.gun_id,g.gun_model,g.gun_type,g.gun_mac,g.gun_imei,a.id,a.app_name,a.app_imei,wr.cancel_time
+    FROM warehouse_records  AS wr
+    left JOIN gun AS g ON g.gun_id=wr.gun_id
+    left JOIN app AS a ON wr.app_id=a.id
+    WHERE wr.state=#{type,jdbcType=INTEGER}
+  </select>
+  <!--=End selectWareHouseRecordsNOState 查询出库中的枪支相关列表 -->
+
+  <!--=Start selectWareHouseRecordsNoState 查询所有状态，之外的状态数据 -->
+  <select id="selectWareHouseRecordsNoState" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM warehouse_records
+    WHERE state!=#{type,jdbcType=INTEGER}
+  </select>
+  <!--=End selectWareHouseRecordsNoState 查询所有状态，之外的状态数据 -->
+
 </mapper>

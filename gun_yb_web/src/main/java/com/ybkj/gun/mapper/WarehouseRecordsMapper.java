@@ -34,4 +34,18 @@ public interface WarehouseRecordsMapper {
      * @CreateDate:   2018/11/10 12:17
     */
     List<WarehouseRecords> selectWareHouseRecords(@Param(value = "type") Integer type);
+
+    /**
+     * @Description:  功能描述（查询库存记录表）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/10 12:17
+     */
+    List<WarehouseRecords> selectWareHouseRecordsNOState(@Param(value = "type") Integer type);
+
+    /**
+     * @Description:  功能描述（查询所有状态，之外的状态数据）
+     * @Author:       刘家义
+     * @CreateDate:   2018/12/6 9:33
+    */
+    List<WarehouseRecords> selectWareHouseRecordsNoState(@Param(value = "type") Integer type);
 }

@@ -272,6 +272,17 @@
     </select>
     <!--=End selectAppGunUserByGunIdAndState 通过gun_id，在app_gun_user状态为 1 的用户id -->
 
-
+    <!--=Start selectAppGunUserNoState  查询所有状态，之外的状态数据-->
+    <select id="selectAppGunUserNoState" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM app_gun_user
+        <where>
+            <if test="state != null">
+                binding_state!=#{state,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
+    <!--=End selectAppGunUserNoState  查询所有状态，之外的状态数据 -->
 
 </mapper>

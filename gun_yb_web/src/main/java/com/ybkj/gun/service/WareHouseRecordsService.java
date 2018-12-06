@@ -69,7 +69,7 @@ public interface WareHouseRecordsService {
 
 
     /**
-     * @Description: 功能描述（枪支预入库）
+     * @Description: 功能描述（枪支入库）
      * @Author: 刘家义
      * @CreateDate: 2018/11/6 17:27
      */
@@ -80,7 +80,7 @@ public interface WareHouseRecordsService {
      * @Author: 刘家义
      * @CreateDate: 2018/11/6 19:44
      */
-    BaseModel revocationWareHouseRecordsStorage(String gunId, String gunMac,String appId,String state) throws Exception;
+    BaseModel revocationWareHouseRecordsStorage(String gunId, String gunMac,String appId) throws Exception;
 
     /**
      * @Description:  功能描述（查询库存记录表）
@@ -90,5 +90,10 @@ public interface WareHouseRecordsService {
     List<WarehouseRecords> findWareHouseRecords(Integer type) throws Exception;
 
 
-
+    /**
+     * @Description:  功能描述（读取累计射弹计数的申请数据:25）
+     * @Author:       刘家义
+     * @CreateDate:   2018/12/1 17:06
+    */
+    BaseModel theProjectileBase(Integer appId, String gunId) throws Exception;
 }

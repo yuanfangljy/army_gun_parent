@@ -64,6 +64,7 @@ public class ShiroConfig {
         //配置记住我或认证通过可以访问的地址
         // 配置不会被拦截的链接 从上向下顺序判断
 
+        filterChainDefinitionMap.put("/static/*", "anon");
         filterChainDefinitionMap.put("/META-INF/*", "anon");
         filterChainDefinitionMap.put("/webUser/loginWeb", "anon");
         // <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问【放行】-->

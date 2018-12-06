@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>gun_yb_web</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <name>gun_yb_web Maven Webapp</name>
     <!-- FIXME change it to the project's website -->
@@ -32,37 +32,8 @@
 
     <build>
         <finalName>gun_yb_web</finalName>
-        <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
-                <plugin>
-                    <artifactId>maven-clean-plugin</artifactId>
-                    <version>3.0.0</version>
-                </plugin>
-                <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
-                <plugin>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>3.0.2</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.7.0</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.20.1</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>3.2.0</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-install-plugin</artifactId>
-                    <version>2.5.2</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>2.8.2</version>
-                </plugin>
+
 
                 <!-- mybatis generator 自动生成代码插件,打包的时候，一定要删除-->
       <!--          <plugin>
@@ -83,14 +54,12 @@
                     <version>3.0.0</version>
                     <configuration>
                         <!-- not append assembly id in release file name -->
-
                         <descriptors>
                             <descriptor>src/main/resources/assembly/assembly.xml</descriptor>
                         </descriptors>
                         <finalName>${project.artifactId}</finalName>
                         <appendAssemblyId>true</appendAssemblyId>
                     </configuration>
-
                     <executions>
                         <execution>
                             <id>make-assembly</id>
@@ -103,17 +72,11 @@
                         </execution>
                     </executions>
                 </plugin>
-
                 <!--同时需将默认生成的spring-boot-maven-plugin依赖删除，否则最终打出的发行包启动会有问题-->
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                 </plugin>
-
-
-
-
-
                 <!--配置linux脚本启动项目-->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -140,6 +103,5 @@
 
 
             </plugins>
-        </pluginManagement>
     </build>
 </project>

@@ -3,6 +3,8 @@ package com.ybkj.gun.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ybkj.enums.IStatusMessage;
+import com.ybkj.gun.mapper.WarehouseRecordsMapper;
+import com.ybkj.gun.model.Gun;
 import com.ybkj.gun.model.WarehouseRecords;
 import com.ybkj.gun.service.WareHouseRecordsService;
 import com.ybkj.model.BaseModel;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -37,6 +41,8 @@ public class WareHouseRecordsController {
 
     @Autowired
     private WareHouseRecordsService wareHouseRecordsService;
+    @Autowired
+    private WarehouseRecordsMapper warehouseRecordsMapper;
 
 
     //****** START *************************** 出库 *************************** START ******
@@ -240,28 +246,28 @@ public class WareHouseRecordsController {
 //****** START *************************** 入库 *************************** START ******
 
     /**
-     * @Description: 功能描述（预入库）
+     * @Description: 功能描述（入库推送）
      * @Author: 刘家义
      * @CreateDate: 2018/11/6 17:24
      */
-    @ApiOperation(value = "11号报文：枪支预入库", notes = "07：枪支预入库")
+    @ApiOperation(value = "11号报文：枪支推送入库", notes = "07：枪支入库")
     @RequestMapping(value = "/createWareHouseRecordsBeforehandStorage", method = RequestMethod.POST)
     public BaseModel createWareHouseRecordsBeforehandStorage(@RequestParam(value = "gunId") String gunId,@RequestParam(value = "appImei") String appImei) {
-        log.debug("11号报文：枪支预入库----gunId----" + gunId+"-----appImei----" + appImei);
+        log.debug("11号报文：枪支入库----gunId----" + gunId+"-----appImei----" + appImei);
         BaseModel baseModel = new BaseModel();
         try {
             if (StringUtils.isEmpty(gunId) || StringUtils.isEmpty(appImei)) {
                 baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
-                baseModel.setErrorMessage("枪支入库失败！");
-                log.debug("枪支预入库失败！--gunId为空---" + gunId + "----" + baseModel);
+                baseModel.setErrorMessage("枪支入库推送失败！");
+                log.debug("枪支入库推送失败！--gunId为空---" + gunId + "----" + baseModel);
                 return baseModel;
             }
             baseModel = wareHouseRecordsService.addWareHouseRecordsBeforehandStorage(gunId,appImei);
         } catch (Exception e) {
             baseModel.setStatus(IStatusMessage.SystemStatus.PARAM_ERROR.getCode());
-            baseModel.setErrorMessage("枪支预入库撤销！异常");
+            baseModel.setErrorMessage("枪支入库推送！异常");
             e.printStackTrace();
-            log.error("枪支预入库撤销！异常！", e);
+            log.error("枪支入库推送！异常！", e);
         }
         return baseModel;
     }
@@ -276,33 +282,22 @@ public class WareHouseRecordsController {
      */
     @ApiOperation(value = "13号报文：是否撤销入库 0：撤销 1：入库", notes = "13：是否撤销入库")
     @RequestMapping(value = "/revocationWareHouseRecordsStorage", method = RequestMethod.DELETE)
-    public BaseModel revocationWareHouseRecordsStorage(@RequestParam(value = "gunId") String gunId, @RequestParam(value = "gunMac") String gunMac, @RequestParam(value = "appId") String appId,@RequestParam(value = "state") String state) {
-        log.debug("13号报文：是否撤销入库----gunId----" + gunId + "----" + "----gunMac---" + gunMac + "----appId---" + appId + "----state---" + state);
+    public BaseModel revocationWareHouseRecordsStorage(@RequestParam(value = "gunId") String gunId, @RequestParam(value = "gunMac") String gunMac, @RequestParam(value = "appId") String appId) {
+        log.debug("13号报文：是否撤销入库----gunId----" + gunId + "----" + "----gunMac---" + gunMac + "----appId---" + appId);
         BaseModel baseModel = new BaseModel();
         try {
             if (StringUtils.isEmpty(gunMac) || StringUtils.isEmpty(gunId)) {
                 baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
-                if(state.equals(String.valueOf(1))){
-                    baseModel.setErrorMessage("枪支入库，响应异常！");
-                    log.debug("枪支入库，响应异常！--revocationWareHouseRecordsStorage-" + baseModel);
-                }else{
-                    baseModel.setErrorMessage("枪支撤销入库，响应异常！");
-                    log.debug("枪支撤销入库，响应异常！--revocationWareHouseRecordsStorage-" + baseModel);
-                }
+                baseModel.setErrorMessage("枪支撤销入库推送失败");
+                log.debug("枪支撤销推送入库，响应异常！--revocationWareHouseRecordsStorage-" + baseModel);
                 return baseModel;
             }
-            baseModel = wareHouseRecordsService.revocationWareHouseRecordsStorage(gunId, gunMac,appId,state);
+            baseModel = wareHouseRecordsService.revocationWareHouseRecordsStorage(gunId, gunMac,appId);
         } catch (Exception e) {
             baseModel.setStatus(IStatusMessage.SystemStatus.PARAM_ERROR.getCode());
-            if(state.equals(String.valueOf(1))){
-                baseModel.setErrorMessage("枪支入库！异常");
-                log.error("枪支入库！异常！", e);
-            }else{
-                baseModel.setErrorMessage("枪支撤销入库，异常！");
+                baseModel.setErrorMessage("枪支撤销推送入库，异常！");
                 log.error("枪支撤销入库！异常！", e);
-            }
             e.printStackTrace();
-
         }
         return baseModel;
     }
@@ -342,5 +337,54 @@ public class WareHouseRecordsController {
     }
 
 
+    /**
+     * @Description:  功能描述（25：读取累计射弹计数的申请数据）
+     * @Author:       刘家义
+     * @CreateDate:   2018/12/1 16:14
+     */
+    @ApiOperation(value = "25:读取累计射弹计数的申请数据", notes = "读取累计射弹计数的申请数据")
+    @RequestMapping(value = "/theProjectileBase", method = RequestMethod.GET)
+    public BaseModel theProjectileBase (@RequestParam(value = "appId", defaultValue = "1") Integer appId, @RequestParam(value = "gunId", defaultValue = "") String gunId) throws Exception {
+        BaseModel baseModel=new BaseModel();
+        log.debug("25:读取累计射弹计数的申请数据----appId----" + appId + "----" + "----gunId---" + gunId );
+        try {
+            baseModel=this.wareHouseRecordsService.theProjectileBase(appId,gunId);
+            baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
+            baseModel.setErrorMessage("发送成功！");
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("读取累计射弹计数的申请数据异常！", e);
+            baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
+            baseModel.setErrorMessage("读取累计射弹计数的申请数据异常！");
+        }
+        return baseModel;
+    }
 
+    /**
+     * @Description: 功能描述（查询枪支已出库列表）
+     * @Author: 刘家义
+     * @CreateDate: 2018/11/1 20:01
+     * 1、查询状态为 2 的所有的枪支，为了保险，根据gunId 进行分组
+     * 2、通过gunId,获取相应的枪支信息
+     */
+    @ApiOperation(value = "查询枪支已出库列表", notes = "获取枪支已出库列表")
+    @RequestMapping(value = "/readWareHouseRecordsByDelivery", method = RequestMethod.GET)
+    public BaseModel readWareHouseRecordsByDelivery(@RequestParam(value="pn",defaultValue="1") Integer pn, @RequestParam(value = "ps",defaultValue="5")Integer ps){
+        BaseModel baseModel=new BaseModel();
+        PageHelper.startPage(pn,ps);
+        log.debug("--------查询枪支已出库列表！");
+        try {
+            List<WarehouseRecords> warehouseRecords =this.warehouseRecordsMapper.selectWareHouseRecordsNOState(2);
+            PageInfo<WarehouseRecords> page = new PageInfo<WarehouseRecords>(warehouseRecords,5);
+            baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
+            baseModel.setErrorMessage("查询成功！");
+            baseModel.add("pageInfo",page);
+        }catch (Exception e){
+            e.printStackTrace();
+            log.error("获取枪支已出库列表异常！", e);
+            baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
+            baseModel.setErrorMessage("获取枪支已出库列表异常！");
+        }
+        return baseModel;
+    }
 }

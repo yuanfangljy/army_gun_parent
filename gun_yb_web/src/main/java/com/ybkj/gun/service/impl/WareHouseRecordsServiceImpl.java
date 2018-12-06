@@ -125,7 +125,7 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
         //6、推送消息给服务器
         baseModel = producer.sendMessageAdvanceTheDelivery(bindingReqMessageBody, appIMEI);
         baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
-        baseModel.setErrorMessage("枪支预出库成功！");
+        baseModel.setErrorMessage("枪支预出库推送成功！");
         return baseModel;
     }
 
@@ -205,7 +205,7 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
         //7、发送05报文
         baseModel = producer.sendMessageAdvanceTheDelivery(bindingReqMessageBody, appIMEI);
         baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
-        baseModel.setErrorMessage("枪支预出库成功！");
+        baseModel.setErrorMessage("枪支预出库推送成功！");
         return baseModel;
     }
 
@@ -225,7 +225,7 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
         List<AppGun> appGuns=appGunMapper.selectAppGunByAppIdAndState(appId,1);
         if(appGuns.size()<1){
             baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
-            baseModel.setErrorMessage("出库失败！");
+            baseModel.setErrorMessage("出库推送失败！");
             log.debug("查询记录不存在");
             return baseModel;
         }
@@ -259,12 +259,12 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
                 //6.1、用户存在的时候 发送 07号报文
                 baseModel = producer.sendMessageEndDelivery(gunUser.getUserId(), gunUser.getUserName(), gun.getGunId(), gun.getGunMac(), endTime, appIMEI);
                 baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
-                baseModel.setErrorMessage("枪支出库成功！【警员存在】");
+                baseModel.setErrorMessage("枪支出库推送成功！【警员存在】");
             }else{
                 //6.2 用户不存在的时候 发送 07号报文
                 baseModel = producer.sendMessageEndDelivery(gun.getGunId(), gun.getGunMac(), endTime, appIMEI);
                 baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
-                baseModel.setErrorMessage("枪支出库成功！【警员不存在】");
+                baseModel.setErrorMessage("枪支出库推送成功！【警员不存在】");
             }
         }
         return baseModel;
@@ -298,7 +298,7 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
             baseModel = producer.sendMessageEndDelivery(userId, gunUser.getUserName(), gun, mac, endTime, appId);
         }
         baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
-        baseModel.setErrorMessage("最终出库成功！");
+        baseModel.setErrorMessage("最终出库推送成功！");
         return baseModel;
     }
 
@@ -322,7 +322,7 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
             baseModel = producer.sendMessageEndDelivery(gun, mac, endTime, appId);
         }
         baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
-        baseModel.setErrorMessage("最终出库成功！");
+        baseModel.setErrorMessage("最终出库推送成功！");
         return baseModel;
     }
 
@@ -342,7 +342,7 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
             baseModel = producer.sendMessageRevocationDelivery(gId, app.getAppImei());
         }
         baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
-        baseModel.setErrorMessage("撤销出库成功！");
+        baseModel.setErrorMessage("撤销出库推送成功！");
         return baseModel;
     }
 
@@ -358,7 +358,7 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
         App app = appMapper.selectByPrimaryKey(appId);
         if(null==app){
             baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
-            baseModel.setErrorMessage("撤销失败！");
+            baseModel.setErrorMessage("撤销推送失败！");
             log.debug("----App ID ----为"+appId+"不存在");
             return baseModel;
         }
@@ -372,12 +372,12 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
             baseModel = producer.sendMessageRevocationDelivery(gun.getGunId(), IMEI);
         }
         baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
-        baseModel.setErrorMessage("撤销出库成功！");
+        baseModel.setErrorMessage("撤销出库推送成功！");
         return baseModel;
     }
 
     /**
-     * @Description: 功能描述（枪支预入库）
+     * @Description: 功能描述（枪支入库）
      * @Author: 刘家义
      * @CreateDate: 2018/11/6 17:28
      */
@@ -393,7 +393,7 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
         }
 
         baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
-        baseModel.setErrorMessage("预入库成功！");
+        baseModel.setErrorMessage("入库推送成功！");
         return baseModel;
     }
 
@@ -404,7 +404,7 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
      * @CreateDate: 2018/11/6 19:45
      */
     @Override
-    public BaseModel revocationWareHouseRecordsStorage(String gunId, String gunMac, String appId, String state) throws Exception {
+    public BaseModel revocationWareHouseRecordsStorage(String gunId, String gunMac, String appId) throws Exception {
         BaseModel baseModel = new BaseModel();
         //1、对gunId，gunMmc以“，”分割进行解析
         String[] gunIds = StringUtilUD.slicerComma(gunId);
@@ -413,15 +413,10 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
             //2、下发07报文给服务器，进行最终出库操作
             String mac = gunMacs[i];
             String gun = gunIds[i];
-            baseModel = producer.sendMessageRevocationStorage(gun, mac, appId, state);
+            baseModel = producer.sendMessageRevocationStorage(gun, mac, appId);
         }
         baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
-        if (state.equals(String.valueOf(1))) {
-            baseModel.setErrorMessage("入库成功！");
-        } else {
-            baseModel.setErrorMessage("入库撤销成功！");
-        }
-
+        baseModel.setErrorMessage("入库撤销成功！");
         return baseModel;
     }
 
@@ -433,5 +428,34 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
     @Override
     public List<WarehouseRecords> findWareHouseRecords(Integer type) throws Exception {
         return warehouseRecordsMapper.selectWareHouseRecords(type);
+    }
+
+    /**
+     * @Description:  功能描述（读取累计射弹计数的申请数据:25）
+     * @Author:       刘家义
+     * @CreateDate:   2018/12/1 17:07
+    */
+    @Override
+    public BaseModel theProjectileBase(Integer appId, String gunId) throws Exception {
+        BaseModel baseModel=new BaseModel();
+        //1、查询appImei   //2、查询枪支mac
+        App app = appMapper.selectByPrimaryKey(appId);
+        Gun gun = gunMapper.selectGunByGunCode(gunId);
+        baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
+        if(null==app ){
+            baseModel.setErrorMessage("操作失败！");
+            log.debug("25-------查询不存在------"+appId);
+            return baseModel;
+        }
+        if(null==gun ){
+            baseModel.setErrorMessage("操作失败！");
+            log.debug("25-------查询不存在------"+gunId);
+            return baseModel;
+        }
+        //3、发送25报文
+        baseModel = producer.sendMessageBulletNumberApply(app.getAppImei(), gun.getGunMac());
+        baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
+        baseModel.setErrorMessage("撤销出库推送成功！");
+        return baseModel;
     }
 }

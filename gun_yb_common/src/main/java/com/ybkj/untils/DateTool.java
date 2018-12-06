@@ -85,7 +85,7 @@ public class DateTool {
     public static String  cutToString(String time) throws ParseException {
         Date date=null;
         SimpleDateFormat formatter=null;
-        System.out.println("---"+time.length());
+        //System.out.println("---"+time.length());
         if(time.length()==10){
             formatter=new SimpleDateFormat(formatDate);
         }else{

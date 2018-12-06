@@ -328,7 +328,7 @@
     FROM
     sos_message AS sm
     LEFT JOIN gun AS g
-    ON sm.gun_imei = g.gun_imei
+    ON sm.gun_imei = g.gun_imei and sm.exception_id=8
     <where>
       <if test="gunCode != null and gunCode !=''">
         g.gun_id like '%' #{gunCode} '%'

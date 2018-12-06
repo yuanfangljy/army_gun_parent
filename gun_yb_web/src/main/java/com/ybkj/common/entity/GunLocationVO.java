@@ -29,5 +29,6 @@ public class GunLocationVO {
     private String appIMEI;//IMEI号
     private String appPhone;//腕表/手机app绑定的电话号码
     private String appBatteryPower;//随行设备的电量
+    private Integer realTimeState;//枪支状态
 
 }

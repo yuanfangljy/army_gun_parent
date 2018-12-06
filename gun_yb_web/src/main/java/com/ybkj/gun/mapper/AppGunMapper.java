@@ -50,4 +50,19 @@ public interface AppGunMapper {
      * @CreateDate:   2018/11/12 20:00
      */
     List<AppGun> selectAppGunByAppIdAndState(@Param(value = "appId") String appId, @Param(value = "state")Integer state);
+
+
+    /**
+     * @Description:  功能描述（根据状态查询对应的数据）
+     * @Author:       刘家义
+     * @CreateDate:   2018/11/12 20:00
+     */
+    List<AppGun> selectAppGunState(@Param(value = "state")Integer state);
+
+    /**
+     * @Description:  功能描述（查询所有状态，之外的状态数据）
+     * @Author:       刘家义
+     * @CreateDate:   2018/12/6 9:45
+    */
+    List<AppGun> selectGunUserNoState(@Param(value = "state")Integer state);
 }

@@ -15,6 +15,10 @@ public class Gun {
 
     private String gunModel;
 
+    @Getter
+    @Setter
+    private String gunImei;
+
     private String gunType;
 
     private String gunMac;

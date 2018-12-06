@@ -54,5 +54,10 @@ public interface GunUserService {
      */
     List<GunUser> findGunUserNoBinding() throws Exception;
 
-
+    /**
+     * @Description:  功能描述（初始化，出库状态）
+     * @Author:       刘家义
+     * @CreateDate:   2018/12/6 9:30
+    */
+    BaseModel updateOutboundInitialization() throws Exception;
 }

@@ -239,4 +239,31 @@
   </select>
   <!--=End selectAppGunByAppIdAndState 根据app_id,查询app_gun所有状态为 1 的相关信息 -->
 
+
+  <!--=Start selectAppGunState 根据状态查询对应的数据-->
+  <select id="selectAppGunState" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM app_gun
+    <where>
+      <if test="state != null and state !=''">
+        allot_state=#{state,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+  <!--=End selectAppGunState 根据状态查询对应的数据 -->
+
+  <!--=Start selectGunUserNoState  查询所有状态，之外的状态数据-->
+  <select id="selectGunUserNoState" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM app_gun
+    <where>
+      <if test="state != null and state !=''">
+        allot_state!=#{state,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+  <!--=End selectGunUserNoState  查询所有状态，之外的状态数据 -->
+
 </mapper>

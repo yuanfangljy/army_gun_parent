@@ -1,5 +1,8 @@
 package com.ybkj.gun.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 
 public class GunLocation {
@@ -30,6 +33,10 @@ public class GunLocation {
     private String gunDeviceBatteryPower;
 
     private Integer gunDeviceState;
+
+    @Getter
+    @Setter
+    private String appImei;
 
     public Long getId() {
         return id;
@@ -141,5 +148,27 @@ public class GunLocation {
 
     public void setGunDeviceState(Integer gunDeviceState) {
         this.gunDeviceState = gunDeviceState;
+    }
+
+
+    @Override
+    public String toString() {
+        return "GunLocation{" +
+                "id=" + id +
+                ", appId=" + appId +
+                ", gunId='" + gunId + '\'' +
+                ", gunMac='" + gunMac + '\'' +
+                ", latitude='" + latitude + '\'' +
+                ", longitude='" + longitude + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", version=" + version +
+                ", areaCode='" + areaCode + '\'' +
+                ", speed='" + speed + '\'' +
+                ", director='" + director + '\'' +
+                ", gunDeviceBatteryPower='" + gunDeviceBatteryPower + '\'' +
+                ", gunDeviceState=" + gunDeviceState +
+                ", appImei='" + appImei + '\'' +
+                '}';
     }
 }

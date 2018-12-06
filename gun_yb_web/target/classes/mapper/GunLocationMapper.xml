@@ -16,6 +16,7 @@
     <result column="director" jdbcType="CHAR" property="director" />
     <result column="gun_device_battery_power" jdbcType="CHAR" property="gunDeviceBatteryPower" />
     <result column="gun_device_state" jdbcType="INTEGER" property="gunDeviceState" />
+    <result column="appImei" jdbcType="CHAR" property="appImei" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -372,18 +373,17 @@
   <!--=Start selectGunDynamic 查询枪支实时动态位置信息 -->
   <select id="selectGunDynamic" resultMap="BaseResultMapGunLocation">
    SELECT gl.gun_id as gunId,g.gun_model as gunModel,g.gun_type as gunType,gl.gun_mac as gunMac,
-          gl.latitude as latitude,gl.longitude as longitude,gl.gun_device_battery_power as gunDeviceBatteryPower,gl.gun_device_state as gunDeviceState,gbc.bullet_number as bulletNumber,
+          gl.latitude as latitude,gl.longitude as longitude,gl.gun_device_battery_power as gunDeviceBatteryPower,gl.gun_device_state as gunDeviceState,/*gbc.bullet_number as bulletNumber,*/
  g.total_bullet_number as totalBulletNumber,g.warehouse_name as warehouseName,a.app_imei as appIMEI,
- a.app_phone as appPhone,adda.app_battery_power as appBatteryPower
+ a.app_phone as appPhone
 FROM (
       SELECT * FROM gun_location t
       WHERE (create_time =(SELECT MAX(create_time) FROM gun_location WHERE gun_mac = t.gun_mac) )
       AND t.gun_device_state=0 GROUP BY  gun_mac
      ) AS gl
      LEFT JOIN gun AS g ON gl.gun_mac=g.gun_mac
-     LEFT JOIN gun_bullet_count AS gbc ON g.gun_id=g.gun_id
+     /*LEFT JOIN gun_bullet_count AS gbc ON g.gun_id=g.gun_id*/
      LEFT JOIN app AS a ON gl.app_id=a.id
-     LEFT JOIN app_dynamic_data AS adda ON a.id=adda.app_id
     <where>
       <if test="gunId != null and gunId !=''">
         gl.gun_mac = #{gunId}
@@ -393,18 +393,18 @@ FROM (
   <!--=End selectGunDynamic 查询枪支实时动态位置信息 -->
 
 
-  <!--=Start selectRoundDevice 查询周围的在线设备 -->
-  <select id="selectRoundDevice" resultMap="BaseResultMap">
-       SELECT gl.*,
-       ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{lat}*PI()/180-gl.latitude *PI()/180)/2),2)+COS(#{lat}*PI()/180)
-       *COS(gl.latitude *PI()/180)*POW(SIN((#{lng}*PI()/180-gl.longitude *PI()/180)/2),2)))*1000)AS juli FROM
-       gun_location AS gl WHERE gl.gun_device_state=0
-       GROUP BY gl.app_id
-      HAVING juli > 100
-      ORDER BY juli DESC
-      LIMIT 5
+  <!--=Start selectGunLocationByGunIdNewest 根据枪支Id和时间排序获取到最新的数据 limit 1 -->
+  <select id="selectGunLocationByGunIdNewest" resultMap="BaseResultMap">
+    SELECT id,gun_id,app_id,latitude ,longitude ,gun_device_state,gun_device_battery_power
+    from gun_location
+    <where>
+      <if test="gunId!=null and gunId!=''">
+        gun_mac=#{gunId,jdbcType=CHAR}
+      </if>
+    </where>
+    ORDER BY id DESC LIMIT 1
   </select>
-  <!--=End selectRoundDevice 查询周围的在线设备 -->
+  <!--=End selectGunLocationByGunIdNewest 根据枪支Id和时间排序获取到最新的数据 limit 1 -->
 
 
   <!--=Start selectGunTrajectory 查询枪支的轨迹 -->
@@ -418,7 +418,22 @@ FROM (
         and SYSDATE() ORDER BY create_time ASC
       </if>
     </where>
-
   </select>
   <!--=End selectGunTrajectory 查询枪支的轨迹 -->
+
+  <!--=Start selectRoundDevice 查询周围的在线设备 -->
+  <select id="selectRoundDevice" resultMap="BaseResultMap">
+      SELECT gl.*,a.app_Imei AS appImei,
+       ROUND(6378.138*2*ASIN(SQRT(POW(SIN((#{lat}*PI()/180-gl.latitude *PI()/180)/2),2)+COS(#{lat}*PI()/180)
+       *COS(gl.latitude *PI()/180)*POW(SIN((#{lng}*PI()/180-gl.longitude *PI()/180)/2),2)))*1000)AS juli FROM
+       gun_location AS gl,app AS a WHERE  gl.app_id=a.id AND gl.gun_device_state=0 AND gl.gun_mac!=#{gunMac}
+       GROUP BY gl.gun_id
+       HAVING juli > 0
+      ORDER BY juli DESC
+      LIMIT 5
+  </select>
+  <!--=End selectRoundDevice 查询周围的在线设备 -->
+
+
+
 </mapper>

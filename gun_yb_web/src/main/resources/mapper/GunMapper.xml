@@ -7,6 +7,7 @@
     <result column="gun_id" jdbcType="CHAR" property="gunId" />
     <result column="gun_model" jdbcType="CHAR" property="gunModel" />
     <result column="gun_type" jdbcType="CHAR" property="gunType" />
+    <result column="gun_imei" jdbcType="CHAR" property="gunImei" />
     <result column="gun_mac" jdbcType="CHAR" property="gunMac" />
     <result column="is_del" jdbcType="TINYINT" property="isDel" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -86,7 +87,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, uid, gun_id, gun_model, gun_type, gun_mac, is_del, create_time, update_time, 
+    id, uid, gun_id, gun_model, gun_type,gun_imei, gun_mac, is_del, create_time, update_time,
     warehouse_id, warehouse_name, version, total_bullet_number, real_time_state
   </sql>
   <select id="selectByExample" parameterType="com.ybkj.gun.model.GunExample" resultMap="BaseResultMap">
@@ -121,12 +122,12 @@
   </delete>
   <insert id="insert" parameterType="com.ybkj.gun.model.Gun">
     insert into gun (id, uid, gun_id, 
-      gun_model, gun_type, gun_mac, is_del, 
+      gun_model, gun_type, gun_mac,gun_imei, is_del,
       create_time, update_time, warehouse_id, 
       warehouse_name, version, total_bullet_number, 
       real_time_state)
     values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{gunId,jdbcType=CHAR}, 
-      #{gunModel,jdbcType=CHAR}, #{gunType,jdbcType=CHAR}, #{gunMac,jdbcType=CHAR}, #{isDel,jdbcType=TINYINT}, 
+      #{gunModel,jdbcType=CHAR}, #{gunType,jdbcType=CHAR}, #{gunMac,jdbcType=CHAR},#{gunImei,jdbcType=CHAR}, #{isDel,jdbcType=TINYINT},
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{warehouseId,jdbcType=INTEGER}, 
       #{warehouseName,jdbcType=CHAR}, #{version,jdbcType=INTEGER}, #{totalBulletNumber,jdbcType=INTEGER}, 
       #{realTimeState,jdbcType=INTEGER})
@@ -151,6 +152,9 @@
       </if>
       <if test="gunMac != null">
         gun_mac,
+      </if>
+      <if test="gunImei != null">
+        gun_imei,
       </if>
       <if test="isDel != null">
         is_del,
@@ -195,6 +199,9 @@
       </if>
       <if test="gunMac != null">
         #{gunMac,jdbcType=CHAR},
+      </if>
+      <if test="gunImei != null">
+        #{gunImei,jdbcType=CHAR},
       </if>
       <if test="isDel != null">
         #{isDel,jdbcType=TINYINT},
@@ -249,6 +256,9 @@
       <if test="record.gunMac != null">
         gun_mac = #{record.gunMac,jdbcType=CHAR},
       </if>
+      <if test="record.gunImei != null">
+        gun_imei = #{record.gunImei,jdbcType=CHAR},
+      </if>
       <if test="record.isDel != null">
         is_del = #{record.isDel,jdbcType=TINYINT},
       </if>
@@ -286,6 +296,7 @@
       gun_model = #{record.gunModel,jdbcType=CHAR},
       gun_type = #{record.gunType,jdbcType=CHAR},
       gun_mac = #{record.gunMac,jdbcType=CHAR},
+      gun_imei = #{record.gunImei,jdbcType=CHAR},
       is_del = #{record.isDel,jdbcType=TINYINT},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
@@ -315,6 +326,9 @@
       </if>
       <if test="gunMac != null">
         gun_mac = #{gunMac,jdbcType=CHAR},
+      </if>
+      <if test="gunImei != null">
+        gun_Imei = #{gunImei,jdbcType=CHAR},
       </if>
       <if test="isDel != null">
         is_del = #{isDel,jdbcType=TINYINT},
@@ -350,6 +364,7 @@
       gun_model = #{gunModel,jdbcType=CHAR},
       gun_type = #{gunType,jdbcType=CHAR},
       gun_mac = #{gunMac,jdbcType=CHAR},
+      gun_imei = #{gunImei,jdbcType=CHAR},
       is_del = #{isDel,jdbcType=TINYINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
@@ -387,7 +402,7 @@
   <!--=End selectGuns 查询枪支信息列表 -->
 
     <sql id="Base_Column_List_G">
-         g.uid, g.gun_id, g.gun_model, g.gun_type, g.gun_mac, g.is_del, g.create_time, g.update_time,
+         g.uid, g.gun_id, g.gun_model, g.gun_type, g.gun_mac, g.gun_imei,g.is_del, g.create_time, g.update_time,
         g.warehouse_id, g.warehouse_name, g.version, g.total_bullet_number, g.real_time_state
     </sql>
 

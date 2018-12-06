@@ -41,7 +41,7 @@ public interface GunLocationMapper {
      * @Author:       刘家义
      * @CreateDate:   2018/11/22 19:51
      */
-    List<GunLocation> selectRoundDevice(@Param(value = "lng")String lng, @Param(value = "lat")String lat);
+    List<GunLocation> selectRoundDevice(@Param(value = "lng")String lng, @Param(value = "lat")String lat,@Param(value = "gunMac")String gunMac);
 
     /**
      * @Description:  功能描述（查询枪支的轨迹）
@@ -49,4 +49,11 @@ public interface GunLocationMapper {
      * @CreateDate:   2018/11/26 19:51
     */
     List<GunLocation> selectGunTrajectory(@Param(value = "appImei")String appImei);
+
+    /**
+     * @Description:  功能描述（根据枪支Id和时间排序获取到最新的数据 limit 1）
+     * @Author:       刘家义
+     * @CreateDate:   2018/12/5 12:18
+    */
+    GunLocation selectGunLocationByGunIdNewest(@Param(value = "gunId")String gunId);
 }

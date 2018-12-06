@@ -1,6 +1,7 @@
 package com.ybkj.gun.controller;
 
 import com.ybkj.common.entity.WebUserDTO;
+import com.ybkj.common.redis.RedisUtils;
 import com.ybkj.common.shiro.ShiroRealm;
 import com.ybkj.common.util.ActiveUser;
 import com.ybkj.enums.IStatusMessage;
@@ -9,7 +10,6 @@ import com.ybkj.gun.service.LogService;
 import com.ybkj.gun.service.impl.WebUserServiceImpl;
 import com.ybkj.model.BaseModel;
 import com.ybkj.pojo.LoginLogOutLogPojo;
-import com.ybkj.redis.RedisUtils;
 import com.ybkj.untils.IpUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

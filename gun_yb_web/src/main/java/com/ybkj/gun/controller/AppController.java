@@ -2,6 +2,7 @@ package com.ybkj.gun.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.ybkj.common.activceMq.Producer;
 import com.ybkj.enums.IStatusMessage;
 import com.ybkj.gun.model.App;
 import com.ybkj.gun.model.Gun;
@@ -38,6 +39,8 @@ public class AppController {
 
     @Autowired
     private AppService appService;
+    @Autowired
+    private Producer producer;
 
     /**
      * @Description: 功能描述（创建 腕表/手机 账号）
@@ -168,6 +171,30 @@ public class AppController {
             log.error("腕表/手机查询异常！", e);
             baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
             baseModel.setErrorMessage("获取腕表/手机异常！");
+        }
+        return baseModel;
+    }
+
+
+    /**
+     * @Description: 功能描述（服务器向随行设备或腕表推送参数设置信息：27）
+     * @Author: 刘家义
+     * @CreateDate: 2018/11/1 20:01
+     */
+    @ApiOperation(value = "27：服务器向随行设备或腕表推送参数设置信息", notes = "")
+    @RequestMapping(value = "/appSetUpParameters", method = RequestMethod.GET)
+    public BaseModel appSetUpParameters(@RequestParam(value="appImei",defaultValue="1") String appImei) {
+        BaseModel baseModel=new BaseModel();
+        log.debug("--------27：服务器向随行设备或腕表推送参数设置信息------！");
+        try {
+            baseModel = producer.sendMessageAppSetUpParameters(appImei);
+            baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
+            baseModel.setErrorMessage("发送成功！");
+        }catch (Exception e){
+            e.printStackTrace();
+            log.error("27：服务器向随行设备或腕表推送参数设置信息异常！", e);
+            baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
+            baseModel.setErrorMessage("27：服务器向随行设备或腕表推送参数设置信息异常！");
         }
         return baseModel;
     }
