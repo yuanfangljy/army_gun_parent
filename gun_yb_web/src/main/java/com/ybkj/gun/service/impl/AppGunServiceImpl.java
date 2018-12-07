@@ -132,10 +132,10 @@ public class AppGunServiceImpl implements AppGunService {
     public List<AppGun> findAppGunBinding(String type) throws Exception {
 
         Integer state=null;
-        if(type.equals("1")){
-            state=1;
-        }else{
+        if(type.equals("2")){
             state=2;
+        }else{
+            state=3;
         }
         return appGunMapper.selectAppGunBinding(state);
     }

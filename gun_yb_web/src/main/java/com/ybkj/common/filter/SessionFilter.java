@@ -49,8 +49,8 @@ public class SessionFilter extends GenericFilter {
         //resp.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
 
 
-        System.out.println(RequestMethod.OPTIONS.toString()+"-----"+req.getMethod());
-        System.out.println("---------++++++=0000000000--------"+RequestMethod.OPTIONS.toString().equals(req.getMethod()));
+        //System.out.println(RequestMethod.OPTIONS.toString()+"-----"+req.getMethod());
+        //System.out.println("---------++++++=0000000000--------"+RequestMethod.OPTIONS.toString().equals(req.getMethod()));
         if(RequestMethod.OPTIONS.toString().equals(req.getMethod())) {
             String allowMethod = req.getHeader("Access-Control-Request-Method");
             String allowHeaders = req.getHeader("Access-Control-Request-Headers");

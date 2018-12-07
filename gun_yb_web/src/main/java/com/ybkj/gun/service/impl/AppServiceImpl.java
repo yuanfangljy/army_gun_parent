@@ -107,7 +107,7 @@ public class AppServiceImpl implements AppService{
         BaseModel baseModel = new BaseModel();
         //1、查询当前的版本号是否与开始的相同
         App existApp = this.appMapper.selectByPrimaryKey(app.getId());
-        System.out.println(app.getVersion()+"-----------------"+existApp.getVersion());
+        //System.out.println(app.getVersion()+"-----------------"+existApp.getVersion());
         if (null == existApp || null == existApp.getVersion() || !String.valueOf(app.getVersion()).equals(String.valueOf(existApp.getVersion()))) {
             baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
             baseModel.setErrorMessage("腕表/手机信息更新失败，请重新进去，再更新");

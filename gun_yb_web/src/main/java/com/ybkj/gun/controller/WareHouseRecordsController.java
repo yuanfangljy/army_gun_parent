@@ -322,7 +322,7 @@ public class WareHouseRecordsController {
         log.debug("--------查询  【" + ((type == 1) ? "出库中" : (type == 2) ? "已出库" : (type == 3) ? "入库中" : "已入库") + "】！" + "库存记录");
         try {
             List<WarehouseRecords> warehouseRecords = this.wareHouseRecordsService.findWareHouseRecords(type);
-            System.out.println(warehouseRecords.size());
+            //System.out.println(warehouseRecords.size());
             PageInfo<WarehouseRecords> page = new PageInfo<WarehouseRecords>(warehouseRecords, 5);
             baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
             baseModel.setErrorMessage("查询成功！");

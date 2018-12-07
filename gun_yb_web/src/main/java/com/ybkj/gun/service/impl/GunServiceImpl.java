@@ -128,7 +128,7 @@ public class GunServiceImpl implements GunService{
         BaseModel baseModel = new BaseModel();
         //1、查询当前的版本号是否与开始的相同
         Gun existGun = this.gunMapper.selectByPrimaryKey(gun.getId());
-        System.out.println("----------------------------"+gun.getId());
+       // System.out.println("----------------------------"+gun.getId());
         if (null == existGun || null == existGun.getVersion() || !String.valueOf(existGun.getVersion()).equals(String.valueOf(gun.getVersion()))) {
             baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
             baseModel.setErrorMessage("枪支信息更新失败，请重新进去，再更新");

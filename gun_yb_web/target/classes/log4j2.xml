@@ -34,7 +34,21 @@
             <PatternLayout
                     pattern="[%date{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%level][%class][%line]:%message%n"/>
         </Console>
-
+        <!-- debug级别的日志信息 -->
+        <RollingRandomAccessFile name="debugLog"
+                                 fileName="${log.dir}/${instance}-debug.log"
+                                 filePattern="${log.dir}/%d{yyyy-MM}/${instance}-error-%d{yyyy-MM-dd}-%i.log.gz"
+                                 append="true">
+            <Filters>
+                <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout
+                    pattern="[%date{yyyy-MM-dd HH:mm:ss.SSS}]:%message%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="200MB"/>
+            </Policies>
+        </RollingRandomAccessFile>
         <!-- info及以上级别的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档
         <RollingRandomAccessFile> filepattern 中的日期格式精确位数决定了生成日志的日期单位，
             如果按月生成日志，那么 filePath 修改为 "${LOG_HOME}/app-%d{yyyy-MM}.log";
@@ -79,7 +93,7 @@
         </RollingRandomAccessFile>
 
         <!-- warn级别的日志信息 -->
-        <!--<RollingRandomAccessFile name="warnLog"
+        <RollingRandomAccessFile name="warnLog"
                                  fileName="${log.dir}/${instance}-warn.log"
                                  filePattern="${log.dir}/%d{yyyy-MM}/${instance}-warn-%d{yyyy-MM-dd}-%i.log.gz"
                                  append="true">
@@ -96,10 +110,10 @@
                                            modulate="true"/>
                 <SizeBasedTriggeringPolicy size="200MB"/>
             </Policies>
-        </RollingRandomAccessFile>-->
+        </RollingRandomAccessFile>
 
         <!-- error级别的日志信息 -->
-       <!-- <RollingRandomAccessFile name="errorLog"
+       <RollingRandomAccessFile name="errorLog"
                                  fileName="${log.dir}/${instance}-error.log"
                                  filePattern="${log.dir}/%d{yyyy-MM}/${instance}-error-%d{yyyy-MM-dd}-%i.log.gz"
                                  append="true">
@@ -114,7 +128,9 @@
                                            modulate="true"/>
                 <SizeBasedTriggeringPolicy size="200MB"/>
             </Policies>
-        </RollingRandomAccessFile>-->
+        </RollingRandomAccessFile>
+
+
     </Appenders>
 
     <!-- 全局配置，默认所有的Logger都继承此配置 -->
@@ -126,6 +142,7 @@
             <AppenderRef ref="infoLog"/>
             <AppenderRef ref="warnLog"/>
             <AppenderRef ref="errorLog"/>
+            <AppenderRef ref="debugLog"/>
         </logger>
         <logger name="java.sql.PreparedStatement" level="debug"
                 additivity="true">
@@ -137,6 +154,7 @@
             <AppenderRef ref="infoLog"/>
             <AppenderRef ref="Console"/>
             <AppenderRef ref="errorLog"/>
+            <AppenderRef ref="debugLog"/>
         </Root>
         <!-- AsyncRoot - 异步记录日志 - 需要LMAX Disruptor的支持 -->
         <!-- <AsyncRoot level="info" additivity="false"> <AppenderRef ref="Console"

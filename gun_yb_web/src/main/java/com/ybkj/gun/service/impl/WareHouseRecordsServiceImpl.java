@@ -153,8 +153,8 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
         List<Gun> guns=new ArrayList<>();
         String appIMEI="";
         //1、根据app_id,查询app_gun所有状态为 1 的相关信息
-        List<AppGun> appGuns=appGunMapper.selectAppGunByAppIdAndState(appId,2);
-        System.out.println("-----------"+appGuns.size());
+        List<AppGun> appGuns=appGunMapper.selectAppGunByAppIdAndState(appId,3);
+        //System.out.println("-----------"+appGuns.size());
         for (AppGun appGun : appGuns) {
             //防止往ArrayList添加值的时候进行覆盖，让每次都是一次新的new
             BindingReqMessageBody.GunInfo gunInfo = new BindingReqMessageBody.GunInfo();
@@ -201,7 +201,7 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
        // bindingReqMessageBodies.add(bindingReqMessageBody);
 
         String jsonString = JSONObject.toJSONString(bindingReqMessageBody, SerializerFeature.DisableCircularReferenceDetect);
-        System.out.println("----------------"+jsonString);
+        //System.out.println("----------------"+jsonString);
         //7、发送05报文
         baseModel = producer.sendMessageAdvanceTheDelivery(bindingReqMessageBody, appIMEI);
         baseModel.setStatus(IStatusMessage.SystemStatus.SUCCESS.getCode());
@@ -222,7 +222,7 @@ public class WareHouseRecordsServiceImpl implements WareHouseRecordsService {
         List<Gun> guns=new ArrayList<>();
         String appIMEI="";
         //1、根据app_id,查询app_gun所有状态为 1 的相关信息
-        List<AppGun> appGuns=appGunMapper.selectAppGunByAppIdAndState(appId,1);
+        List<AppGun> appGuns=appGunMapper.selectAppGunByAppIdAndState(appId,2);
         if(appGuns.size()<1){
             baseModel.setStatus(IStatusMessage.SystemStatus.ERROR.getCode());
             baseModel.setErrorMessage("出库推送失败！");
