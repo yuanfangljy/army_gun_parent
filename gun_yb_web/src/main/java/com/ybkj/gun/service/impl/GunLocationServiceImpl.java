@@ -194,6 +194,6 @@ public class GunLocationServiceImpl implements GunLocationService {
      */
     @Override
     public List<GunLocation> findGunTrajectory(String appImei) throws Exception {
-        return gunLocationMapper.selectGunTrajectory(appImei);
+        return gunLocationMapper.selectGunTrajectory(appImei,new Date());
     }
 }

@@ -3,6 +3,8 @@ package com.ybkj.gun.mapper;
 import com.ybkj.common.entity.GunLocationVO;
 import com.ybkj.gun.model.GunLocation;
 import com.ybkj.gun.model.GunLocationExample;
+
+import java.util.Date;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -48,7 +50,7 @@ public interface GunLocationMapper {
      * @Author:       刘家义
      * @CreateDate:   2018/11/26 19:51
     */
-    List<GunLocation> selectGunTrajectory(@Param(value = "appImei")String appImei);
+    List<GunLocation> selectGunTrajectory(@Param(value = "appImei")String appImei,@Param(value = "time")Date time);
 
     /**
      * @Description:  功能描述（根据枪支Id和时间排序获取到最新的数据 limit 1）

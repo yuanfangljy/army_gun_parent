@@ -414,8 +414,8 @@ FROM (
     <where>
       <if test="appImei!=null and appImei!=''">
         gun_mac = #{appImei} and gun_device_state=0 and create_time BETWEEN
-        SUBDATE(SYSDATE(),interval 20 minute)
-        and SYSDATE() ORDER BY create_time ASC
+        SUBDATE(#{time},interval 20 minute)
+        and #{time} ORDER BY create_time ASC
       </if>
     </where>
   </select>
