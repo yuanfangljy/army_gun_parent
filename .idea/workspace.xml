@@ -2,316 +2,360 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="108a475c-bc5d-4853-bb79-dd07c97d793f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_common/gun_yb_common.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_common/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_common/src/main/java/com/ybkj/enums/ExceptionEnum.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_common/src/main/java/com/ybkj/enums/IStatusMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_common/src/main/java/com/ybkj/model/BaseModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_common/src/main/java/com/ybkj/model/Constants.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_common/src/main/java/com/ybkj/model/ResponseResult.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_common/src/main/java/com/ybkj/pojo/LoginLogOutLogPojo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_common/src/main/java/com/ybkj/untils/DateTool.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_common/src/main/java/com/ybkj/untils/DateUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_common/src/main/java/com/ybkj/untils/IpUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_common/src/main/java/com/ybkj/untils/JSONUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_common/src/main/java/com/ybkj/untils/ProgressiveIncreaseNumber.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_common/src/main/java/com/ybkj/untils/Result.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_common/src/main/java/com/ybkj/untils/TokenUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_common/src/main/java/com/ybkj/untils/ValidateUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_common/src/main/java/com/ybkj/untils/ValidatorRequestParam.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_common/src/main/java/com/ybkj/说明" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_common/src/main/resources/application.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_common/src/main/resources/log4j2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/App.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/activceMq/Producer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/activceMq/QueueConfig.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/baiduMap/BaiDuUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/baiduMap/ElectronicFence.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/baiduMap/HttpUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/baiduMap/LocationUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/config/DataSourceConfig.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/config/DruidConfiguration.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/config/MultipleDataSource.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/entity/AppAndGunLocationVO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/entity/GunLocationVO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/entity/PermissionVo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/entity/RoleMenuVO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/entity/WebUserDTO.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/filter/KickoutSessionFilter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/filter/SessionFilter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/initialize/Operation.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/interceptor/UserActionInterceptor.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/interceptor/WebAppConfig.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/AuthorizationReqMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/AuthorizationReqMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/AuthorizationResMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/AuthorizationResMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/BindingReqMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/BindingReqMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/BindingResMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/BindingResMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/CancelInWarehouseReqMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/CancelInWarehouseReqMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/CancelInWarehouseResMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/CancelInWarehouseResMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/CancelRecipientsGunReqMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/CancelRecipientsGunReqMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/CancelRecipientsGunResMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/CancelRecipientsGunResMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/DeviceHeartReqMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/DeviceHeartReqMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/DeviceHeartResMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/DeviceHeartResMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/GetBulletNumberReqMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/GetBulletNumberReqMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/GetBulletNumberResMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/GetBulletNumberResMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/InWarehouseReqMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/InWarehouseReqMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/InWarehouseResMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/InWarehouseResMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/OutWarehouseReqMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/OutWarehouseReqMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/OutWarehouseResMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/OutWarehouseResMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/ParamSettingMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/ParamSettingReqMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/ParamSettingResMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/RegistReqMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/RegistReqMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/RegistResMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/RegistResMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/ReportBulletNumberReqMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/ReportBulletNumberReqMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/ReportBulletNumberResMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/ReportBulletNumberResMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/SearchGunReqMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/SearchGunReqMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/SearchGunResMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/SearchGunResMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/StartStopSearchGunReqMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/StartStopSearchGunReqMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/StartStopSearchGunResMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/StartStopSearchGunResMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/TemplateMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/WatchHeartReqMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/WatchHeartReqMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/WatchHeartResMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/pojo/WatchHeartResMessageBody.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/redis/RedisConfig.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/redis/RedisUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/shiro/RetryLimitHashedCredentialsMatcher.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/shiro/ShiroConfig.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/shiro/ShiroFilterUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/shiro/ShiroRealm.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/util/ActiveUser.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/util/MenuTreeUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/util/StringUtilUD.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/util/Tree.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/common/说明" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/controller/AppController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/controller/AppDynamicDataController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/controller/AppGunController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/controller/AppGunUserController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/controller/GunController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/controller/GunLocationController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/controller/GunUserController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/controller/LogController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/controller/MenuController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/controller/MissionController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/controller/RoleController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/controller/SosMessageController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/controller/WareHouseController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/controller/WareHouseRecordsController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/controller/WebUserController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/mapper/AppDynamicDataMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/mapper/AppGunMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/mapper/AppGunUserMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/mapper/AppMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/mapper/DepartmentMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/mapper/ExceptionMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/mapper/GunBulletCountMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/mapper/GunLocationMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/mapper/GunMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/mapper/GunUserMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/mapper/MenuMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/mapper/MessageRecordsMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/mapper/MissionMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/mapper/RoleMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/mapper/RoleMenuMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/mapper/SosMessageMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/mapper/SysSerialNumberMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/mapper/ThirdServerUserMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/mapper/UserRoleMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/mapper/WarehouseMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/mapper/WarehouseRecordsMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/mapper/WebUserLoginMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/mapper/WebUserMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/App.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/AppDynamicData.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/AppDynamicDataExample.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/AppExample.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/AppGun.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/AppGunExample.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/AppGunUser.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/AppGunUserExample.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/Department.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/DepartmentExample.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/Exception.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/ExceptionExample.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/Gun.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/GunBulletCount.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/GunBulletCountExample.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/GunExample.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/GunLocation.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/GunLocationExample.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/GunUser.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/GunUserExample.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/Menu.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/MenuExample.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/MessageRecords.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/MessageRecordsExample.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/Mission.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/MissionExample.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/Role.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/RoleExample.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/RoleMenu.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/RoleMenuExample.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/SosMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/SosMessageExample.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/SysSerialNumber.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/SysSerialNumberExample.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/ThirdServerUser.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/ThirdServerUserExample.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/UserRole.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/UserRoleExample.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/Warehouse.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/WarehouseExample.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/WarehouseRecords.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/WarehouseRecordsExample.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/WebUser.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/WebUserExample.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/WebUserLogin.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/model/WebUserLoginExample.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/AppDynamicDataService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/AppGunService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/AppGunUserService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/AppService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/GunLocationService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/GunService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/GunUserService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/LogService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/MenuService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/MissionService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/RoleService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/SosMessageService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/WareHouseRecordsService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/WareHouseService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/WebUserService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/impl/AppDynamciDataImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/impl/AppGunServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/impl/AppGunUserServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/impl/AppServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/impl/GunLocationServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/impl/GunServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/impl/GunUserServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/impl/LogServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/impl/MenuServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/impl/MissionServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/impl/RoleServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/impl/SosMessageServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/impl/WareHouseRecordsServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/impl/WareHouseServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/impl/WebUserServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/service/说明" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/gun/说明" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/说明" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/META-INF/resources/webjars/springfox-swagger-ui/lang/ca.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/META-INF/resources/webjars/springfox-swagger-ui/lang/el.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/META-INF/resources/webjars/springfox-swagger-ui/lang/en.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/META-INF/resources/webjars/springfox-swagger-ui/lang/es.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/META-INF/resources/webjars/springfox-swagger-ui/lang/fr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/META-INF/resources/webjars/springfox-swagger-ui/lang/geo.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/META-INF/resources/webjars/springfox-swagger-ui/lang/it.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/META-INF/resources/webjars/springfox-swagger-ui/lang/ja.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/META-INF/resources/webjars/springfox-swagger-ui/lang/ko-kr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/META-INF/resources/webjars/springfox-swagger-ui/lang/pl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/META-INF/resources/webjars/springfox-swagger-ui/lang/pt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/META-INF/resources/webjars/springfox-swagger-ui/lang/ru.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/META-INF/resources/webjars/springfox-swagger-ui/lang/tr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/META-INF/resources/webjars/springfox-swagger-ui/lang/translator.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/META-INF/resources/webjars/springfox-swagger-ui/lang/zh-cn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/META-INF/swagger-ui.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/application-dev.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/application-prod.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/application-test.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/application.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/assembly/assembly.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/assembly/start.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/assembly/stop.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/config/ehcache.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/generator/generatorConfig.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/log4j2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/mapper/AppDynamicDataMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/mapper/AppGunMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/mapper/AppGunUserMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/mapper/AppMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/mapper/DepartmentMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/mapper/ExceptionMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/mapper/GunBulletCountMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/mapper/GunLocationMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/mapper/GunMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/mapper/GunUserMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/mapper/MenuMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/mapper/MessageRecordsMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/mapper/MissionMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/mapper/RoleMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/mapper/RoleMenuMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/mapper/SosMessageMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/mapper/SysSerialNumberMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/mapper/ThirdServerUserMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/mapper/UserRoleMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/mapper/WarehouseMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/mapper/WarehouseRecordsMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/mapper/WebUserLoginMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/resources/mapper/WebUserMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/test/ListQC.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/test/Menu.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/test/MenuRecursion.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/test/MultipleTree.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/test/TraditionalThread.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/test/miansdf.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gun_yb_web/src/main/说明" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_common/target/classes/application.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_common/target/classes/com/ybkj/enums/ExceptionEnum.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_common/target/classes/com/ybkj/enums/IStatusMessage$SystemStatus.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_common/target/classes/com/ybkj/enums/IStatusMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_common/target/classes/com/ybkj/model/BaseModel.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_common/target/classes/com/ybkj/model/Constants.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_common/target/classes/com/ybkj/model/ResponseResult.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_common/target/classes/com/ybkj/pojo/LoginLogOutLogPojo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_common/target/classes/com/ybkj/untils/DateTool.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_common/target/classes/com/ybkj/untils/DateUtil$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_common/target/classes/com/ybkj/untils/DateUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_common/target/classes/com/ybkj/untils/IpUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_common/target/classes/com/ybkj/untils/JSONUtils$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_common/target/classes/com/ybkj/untils/JSONUtils$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_common/target/classes/com/ybkj/untils/JSONUtils.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_common/target/classes/com/ybkj/untils/ProgressiveIncreaseNumber.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_common/target/classes/com/ybkj/untils/Result.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_common/target/classes/com/ybkj/untils/TokenUtils.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_common/target/classes/com/ybkj/untils/ValidateUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_common/target/classes/com/ybkj/untils/ValidatorRequestParam.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_common/target/classes/log4j2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/ca.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/el.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/en.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/es.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/fr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/geo.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/it.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/ja.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/ko-kr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/pl.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/pt.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/ru.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/tr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/translator.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/zh-cn.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/swagger-ui.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/application-dev.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/application-prod.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/application-test.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/application.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/assembly/assembly.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/assembly/start.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/assembly/stop.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/App.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/activceMq/Producer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/activceMq/QueueConfig.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/baiduMap/BaiDuUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/baiduMap/ElectronicFence.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/baiduMap/HttpUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/baiduMap/LocationUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/config/DataSourceConfig.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/entity/AppAndGunLocationVO.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/entity/GunLocationVO.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/entity/PermissionVo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/entity/RoleMenuVO.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/entity/WebUserDTO.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/filter/KickoutSessionFilter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/filter/SessionFilter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/initialize/Operation.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/interceptor/UserActionInterceptor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/interceptor/WebAppConfig.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/AuthorizationReqMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/AuthorizationReqMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/AuthorizationResMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/AuthorizationResMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/BindingReqMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/BindingReqMessageBody$GunInfo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/BindingReqMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/BindingResMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/BindingResMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/CancelInWarehouseReqMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/CancelInWarehouseReqMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/CancelInWarehouseResMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/CancelInWarehouseResMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/CancelRecipientsGunReqMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/CancelRecipientsGunReqMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/CancelRecipientsGunResMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/CancelRecipientsGunResMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/DeviceHeartReqMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/DeviceHeartReqMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/DeviceHeartResMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/DeviceHeartResMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/GetBulletNumberReqMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/GetBulletNumberReqMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/GetBulletNumberResMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/GetBulletNumberResMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/InWarehouseReqMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/InWarehouseReqMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/InWarehouseResMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/InWarehouseResMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/OutWarehouseReqMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/OutWarehouseReqMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/OutWarehouseResMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/OutWarehouseResMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/ParamSettingMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/ParamSettingReqMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/ParamSettingResMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/RegistReqMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/RegistReqMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/RegistResMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/RegistResMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/ReportBulletNumberReqMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/ReportBulletNumberReqMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/ReportBulletNumberResMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/ReportBulletNumberResMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/SearchGunReqMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/SearchGunReqMessageBody$GunInfo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/SearchGunReqMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/SearchGunResMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/SearchGunResMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/StartStopSearchGunReqMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/StartStopSearchGunReqMessageBody$GunInfo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/StartStopSearchGunReqMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/StartStopSearchGunResMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/StartStopSearchGunResMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/TemplateMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/WatchHeartReqMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/WatchHeartReqMessageBody$Guninfo.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/WatchHeartReqMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/WatchHeartResMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/pojo/WatchHeartResMessageBody.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/redis/RedisConfig.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/redis/RedisUtils.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/shiro/RetryLimitHashedCredentialsMatcher.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/shiro/ShiroConfig.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/shiro/ShiroFilterUtils.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/shiro/ShiroRealm.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/util/ActiveUser.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/util/MenuTreeUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/util/StringUtilUD.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/util/Tree$Children.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/util/Tree$Node.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/util/Tree$NodeIDComparator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/util/Tree.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/common/说明" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/controller/AppController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/controller/AppDynamicDataController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/controller/AppGunController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/controller/AppGunUserController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/controller/GunController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/controller/GunLocationController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/controller/GunUserController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/controller/LogController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/controller/MenuController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/controller/MissionController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/controller/RoleController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/controller/SosMessageController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/controller/WareHouseController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/controller/WareHouseRecordsController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/controller/WebUserController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/mapper/AppDynamicDataMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/mapper/AppGunMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/mapper/AppGunUserMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/mapper/AppMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/mapper/DepartmentMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/mapper/ExceptionMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/mapper/GunBulletCountMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/mapper/GunLocationMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/mapper/GunMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/mapper/GunUserMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/mapper/MenuMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/mapper/MessageRecordsMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/mapper/MissionMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/mapper/RoleMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/mapper/RoleMenuMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/mapper/SosMessageMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/mapper/SysSerialNumberMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/mapper/ThirdServerUserMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/mapper/UserRoleMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/mapper/WarehouseMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/mapper/WarehouseRecordsMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/mapper/WebUserLoginMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/mapper/WebUserMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/App.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/AppDynamicData.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/AppDynamicDataExample$Criteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/AppDynamicDataExample$Criterion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/AppDynamicDataExample$GeneratedCriteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/AppDynamicDataExample.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/AppExample$Criteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/AppExample$Criterion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/AppExample$GeneratedCriteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/AppExample.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/AppGun.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/AppGunExample$Criteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/AppGunExample$Criterion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/AppGunExample$GeneratedCriteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/AppGunExample.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/AppGunUser.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/AppGunUserExample$Criteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/AppGunUserExample$Criterion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/AppGunUserExample$GeneratedCriteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/AppGunUserExample.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/Department.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/DepartmentExample$Criteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/DepartmentExample$Criterion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/DepartmentExample$GeneratedCriteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/DepartmentExample.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/Exception.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/ExceptionExample$Criteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/ExceptionExample$Criterion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/ExceptionExample$GeneratedCriteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/ExceptionExample.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/Gun.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/GunBulletCount.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/GunBulletCountExample$Criteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/GunBulletCountExample$Criterion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/GunBulletCountExample$GeneratedCriteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/GunBulletCountExample.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/GunExample$Criteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/GunExample$Criterion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/GunExample$GeneratedCriteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/GunExample.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/GunLocation.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/GunLocationExample$Criteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/GunLocationExample$Criterion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/GunLocationExample$GeneratedCriteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/GunLocationExample.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/GunUser.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/GunUserExample$Criteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/GunUserExample$Criterion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/GunUserExample$GeneratedCriteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/GunUserExample.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/Menu.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/MenuExample$Criteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/MenuExample$Criterion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/MenuExample$GeneratedCriteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/MenuExample.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/MessageRecords.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/MessageRecordsExample$Criteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/MessageRecordsExample$Criterion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/MessageRecordsExample$GeneratedCriteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/MessageRecordsExample.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/Mission.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/MissionExample$Criteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/MissionExample$Criterion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/MissionExample$GeneratedCriteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/MissionExample.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/Role.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/RoleExample$Criteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/RoleExample$Criterion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/RoleExample$GeneratedCriteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/RoleExample.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/RoleMenu.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/RoleMenuExample$Criteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/RoleMenuExample$Criterion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/RoleMenuExample$GeneratedCriteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/RoleMenuExample.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/SosMessage.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/SosMessageExample$Criteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/SosMessageExample$Criterion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/SosMessageExample$GeneratedCriteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/SosMessageExample.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/SysSerialNumber.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/SysSerialNumberExample$Criteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/SysSerialNumberExample$Criterion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/SysSerialNumberExample$GeneratedCriteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/SysSerialNumberExample.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/ThirdServerUser.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/ThirdServerUserExample$Criteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/ThirdServerUserExample$Criterion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/ThirdServerUserExample$GeneratedCriteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/ThirdServerUserExample.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/UserRole.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/UserRoleExample$Criteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/UserRoleExample$Criterion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/UserRoleExample$GeneratedCriteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/UserRoleExample.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/Warehouse.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/WarehouseExample$Criteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/WarehouseExample$Criterion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/WarehouseExample$GeneratedCriteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/WarehouseExample.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/WarehouseRecords.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/WarehouseRecordsExample$Criteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/WarehouseRecordsExample$Criterion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/WarehouseRecordsExample$GeneratedCriteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/WarehouseRecordsExample.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/WebUser.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/WebUserExample$Criteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/WebUserExample$Criterion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/WebUserExample$GeneratedCriteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/WebUserExample.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/WebUserLogin.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/WebUserLoginExample$Criteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/WebUserLoginExample$Criterion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/WebUserLoginExample$GeneratedCriteria.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/model/WebUserLoginExample.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/AppDynamicDataService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/AppGunService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/AppGunUserService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/AppService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/GunLocationService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/GunService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/GunUserService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/LogService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/MenuService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/MissionService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/RoleService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/SosMessageService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/WareHouseRecordsService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/WareHouseService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/WebUserService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/impl/AppDynamciDataImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/impl/AppGunServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/impl/AppGunUserServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/impl/AppServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/impl/GunLocationServiceImpl$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/impl/GunLocationServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/impl/GunServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/impl/GunUserServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/impl/LogServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/impl/MenuServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/impl/MissionServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/impl/RoleServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/impl/SosMessageServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/impl/WareHouseRecordsServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/impl/WareHouseServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/impl/WebUserServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/service/说明" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/gun/说明" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/com/ybkj/说明" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/config/ehcache.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/generator/generatorConfig.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/log4j2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/AppDynamicDataMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/AppGunMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/AppGunUserMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/AppMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/DepartmentMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/ExceptionMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/GunBulletCountMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/GunLocationMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/GunMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/GunUserMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/MenuMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/MessageRecordsMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/MissionMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/RoleMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/RoleMenuMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/SosMessageMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/SysSerialNumberMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/ThirdServerUserMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/UserRoleMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/WarehouseMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/WarehouseRecordsMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/WebUserLoginMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/WebUserMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/logs/army_gun-debug.log" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/logs/army_gun-error.log" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/logs/army_gun-info.log" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/logs/army_gun-warn.log" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_common/target/classes/log4j2.xml" afterPath="$PROJECT_DIR$/gun_yb_common/target/classes/log4j2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/gun_yb_web.iml" afterPath="$PROJECT_DIR$/gun_yb_web/gun_yb_web.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/pom.xml" afterPath="$PROJECT_DIR$/gun_yb_web/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/ca.js" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/ca.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/el.js" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/el.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/en.js" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/en.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/es.js" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/es.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/fr.js" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/fr.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/geo.js" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/geo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/it.js" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/it.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/ja.js" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/ja.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/ko-kr.js" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/ko-kr.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/pl.js" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/pl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/pt.js" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/pt.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/ru.js" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/ru.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/tr.js" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/tr.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/translator.js" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/translator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/zh-cn.js" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/resources/webjars/springfox-swagger-ui/lang/zh-cn.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/swagger-ui.html" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/META-INF/swagger-ui.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/application-dev.properties" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/application-dev.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/application-prod.properties" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/application-prod.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/application-test.properties" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/application-test.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/application.properties" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/application.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/generator/generatorConfig.xml" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/generator/generatorConfig.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/log4j2.xml" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/log4j2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/AppDynamicDataMapper.xml" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/AppDynamicDataMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/AppGunMapper.xml" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/AppGunMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/GunLocationMapper.xml" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/GunLocationMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/GunMapper.xml" afterPath="$PROJECT_DIR$/gun_yb_web/target/classes/mapper/GunMapper.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/gun_yb_web/target/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -355,11 +399,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="App.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="App.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gun_yb_web/src/main/java/com/ybkj/App.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="108">
               <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="army_gun_parent.iml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/army_gun_parent.iml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="138">
+              <caret line="6" column="28" lean-forward="false" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -402,11 +456,21 @@
   </component>
   <component name="MavenProjectNavigator">
     <treeState>
-      <expand />
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="army_gun_parent" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="army_gun_parent" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="686" />
@@ -433,46 +497,6 @@
             <path>
               <item name="army_gun_parent" type="b2602c69:ProjectViewProjectNode" />
               <item name="army_gun_parent" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="army_gun_parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="army_gun_parent" type="462c0819:PsiDirectoryNode" />
-              <item name="gun_yb_common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="army_gun_parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="army_gun_parent" type="462c0819:PsiDirectoryNode" />
-              <item name="gun_yb_web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="army_gun_parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="army_gun_parent" type="462c0819:PsiDirectoryNode" />
-              <item name="gun_yb_web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="army_gun_parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="army_gun_parent" type="462c0819:PsiDirectoryNode" />
-              <item name="gun_yb_web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="army_gun_parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="army_gun_parent" type="462c0819:PsiDirectoryNode" />
-              <item name="gun_yb_web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="army_gun_parent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="army_gun_parent" type="462c0819:PsiDirectoryNode" />
-              <item name="gun_yb_web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ybkj" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -615,15 +639,15 @@
       <option name="presentableId" value="Default" />
       <updated>1557456655689</updated>
       <workItem from="1557456658645" duration="61000" />
-      <workItem from="1557456734785" duration="1023000" />
+      <workItem from="1557456734785" duration="1150000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1084000" />
+    <option name="totallyTimeSpent" value="1211000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28821656" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" x="0" y="265" width="1362" height="197" />
@@ -634,12 +658,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32961783" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16236722" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32961783" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3535032" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35323384" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2245827" sideWeight="0.48337027" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2245827" sideWeight="0.48337027" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928678" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928678" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962063" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -647,7 +671,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26251897" sideWeight="0.5166297" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34991708" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34991708" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -681,14 +705,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/army_gun_parent.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="28" lean-forward="false" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
           <folding />
         </state>
       </provider>
@@ -801,6 +817,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/army_gun_parent.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="28" lean-forward="false" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
           <folding />
         </state>
       </provider>

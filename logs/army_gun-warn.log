@@ -1,1 +1,0 @@
-[2019-05-10 11:09:16.835][main][WARN][org.springframework.boot.autoconfigure.thymeleaf.AbstractTemplateResolverConfiguration][60]:Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
