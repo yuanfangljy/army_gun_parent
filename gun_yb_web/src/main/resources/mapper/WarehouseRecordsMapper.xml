@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ybkj.gun.mapper.WarehouseRecordsMapper">
+  <resultMap id="BaseResultMap" type="com.ybkj.gun.model.WarehouseRecords">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="warehouse_id" jdbcType="INTEGER" property="warehouseId" />
+    <result column="warehouse_in_time" jdbcType="TIMESTAMP" property="warehouseInTime" />
+    <result column="warehouse_out_time" jdbcType="TIMESTAMP" property="warehouseOutTime" />
+    <result column="web_user_id" jdbcType="INTEGER" property="webUserId" />
+    <result column="app_id" jdbcType="INTEGER" property="appId" />
+    <result column="gun_id" jdbcType="CHAR" property="gunId" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="cancel_time" jdbcType="TIMESTAMP" property="cancelTime" />
+    <association property="apps" javaType="com.ybkj.gun.model.App">
+      <id column="id" jdbcType="INTEGER" property="id" />
+      <result column="app_system" jdbcType="CHAR" property="appSystem" />
+      <result column="app_system_version" jdbcType="CHAR" property="appSystemVersion" />
+      <result column="app_phone_type_name" jdbcType="CHAR" property="appPhoneTypeName" />
+      <result column="app_name" jdbcType="CHAR" property="appName" />
+      <result column="app_mac" jdbcType="CHAR" property="appMac" />
+      <result column="app_imei" jdbcType="CHAR" property="appImei" />
+      <result column="app_phone" jdbcType="CHAR" property="appPhone" />
+      <result column="app_readable_code" jdbcType="CHAR" property="appReadableCode" />
+      <result column="app_type" jdbcType="INTEGER" property="appType" />
+      <result column="version" jdbcType="INTEGER" property="version" />
+    </association>
+    <association property="guns" javaType="com.ybkj.gun.model.Gun">
+      <result column="uid" jdbcType="INTEGER" property="uid" />
+      <result column="gun_id" jdbcType="CHAR" property="gunId" />
+      <result column="gun_model" jdbcType="CHAR" property="gunModel" />
+      <result column="gun_type" jdbcType="CHAR" property="gunType" />
+      <result column="gun_mac" jdbcType="CHAR" property="gunMac" />
+      <result column="gun_imei" jdbcType="CHAR" property="gunImei" />
+      <result column="is_del" jdbcType="TINYINT" property="isDel" />
+      <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+      <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+      <result column="warehouse_id" jdbcType="INTEGER" property="warehouseId" />
+      <result column="warehouse_name" jdbcType="CHAR" property="warehouseName" />
+      <result column="version" jdbcType="INTEGER" property="version" />
+      <result column="total_bullet_number" jdbcType="INTEGER" property="totalBulletNumber" />
+      <result column="real_time_state" jdbcType="INTEGER" property="realTimeState" />
+    </association>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, warehouse_id, warehouse_in_time, warehouse_out_time, web_user_id, app_id, gun_id, 
+    state, version, cancel_time
+  </sql>
+  <select id="selectByExample" parameterType="com.ybkj.gun.model.WarehouseRecordsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from warehouse_records
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from warehouse_records
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from warehouse_records
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ybkj.gun.model.WarehouseRecordsExample">
+    delete from warehouse_records
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ybkj.gun.model.WarehouseRecords">
+    insert into warehouse_records (id, warehouse_id, warehouse_in_time, 
+      warehouse_out_time, web_user_id, app_id, 
+      gun_id, state, version, 
+      cancel_time)
+    values (#{id,jdbcType=INTEGER}, #{warehouseId,jdbcType=INTEGER}, #{warehouseInTime,jdbcType=TIMESTAMP}, 
+      #{warehouseOutTime,jdbcType=TIMESTAMP}, #{webUserId,jdbcType=INTEGER}, #{appId,jdbcType=INTEGER}, 
+      #{gunId,jdbcType=CHAR}, #{state,jdbcType=INTEGER}, #{version,jdbcType=INTEGER}, 
+      #{cancelTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ybkj.gun.model.WarehouseRecords">
+    insert into warehouse_records
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="warehouseId != null">
+        warehouse_id,
+      </if>
+      <if test="warehouseInTime != null">
+        warehouse_in_time,
+      </if>
+      <if test="warehouseOutTime != null">
+        warehouse_out_time,
+      </if>
+      <if test="webUserId != null">
+        web_user_id,
+      </if>
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="gunId != null">
+        gun_id,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="cancelTime != null">
+        cancel_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseId != null">
+        #{warehouseId,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseInTime != null">
+        #{warehouseInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="warehouseOutTime != null">
+        #{warehouseOutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="webUserId != null">
+        #{webUserId,jdbcType=INTEGER},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=INTEGER},
+      </if>
+      <if test="gunId != null">
+        #{gunId,jdbcType=CHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="cancelTime != null">
+        #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ybkj.gun.model.WarehouseRecordsExample" resultType="java.lang.Long">
+    select count(*) from warehouse_records
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update warehouse_records
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.warehouseId != null">
+        warehouse_id = #{record.warehouseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.warehouseInTime != null">
+        warehouse_in_time = #{record.warehouseInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.warehouseOutTime != null">
+        warehouse_out_time = #{record.warehouseOutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.webUserId != null">
+        web_user_id = #{record.webUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.appId != null">
+        app_id = #{record.appId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gunId != null">
+        gun_id = #{record.gunId,jdbcType=CHAR},
+      </if>
+      <if test="record.state != null">
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.version != null">
+        version = #{record.version,jdbcType=INTEGER},
+      </if>
+      <if test="record.cancelTime != null">
+        cancel_time = #{record.cancelTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update warehouse_records
+    set id = #{record.id,jdbcType=INTEGER},
+      warehouse_id = #{record.warehouseId,jdbcType=INTEGER},
+      warehouse_in_time = #{record.warehouseInTime,jdbcType=TIMESTAMP},
+      warehouse_out_time = #{record.warehouseOutTime,jdbcType=TIMESTAMP},
+      web_user_id = #{record.webUserId,jdbcType=INTEGER},
+      app_id = #{record.appId,jdbcType=INTEGER},
+      gun_id = #{record.gunId,jdbcType=CHAR},
+      state = #{record.state,jdbcType=INTEGER},
+      version = #{record.version,jdbcType=INTEGER},
+      cancel_time = #{record.cancelTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ybkj.gun.model.WarehouseRecords">
+    update warehouse_records
+    <set>
+      <if test="warehouseId != null">
+        warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseInTime != null">
+        warehouse_in_time = #{warehouseInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="warehouseOutTime != null">
+        warehouse_out_time = #{warehouseOutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="webUserId != null">
+        web_user_id = #{webUserId,jdbcType=INTEGER},
+      </if>
+      <if test="appId != null">
+        app_id = #{appId,jdbcType=INTEGER},
+      </if>
+      <if test="gunId != null">
+        gun_id = #{gunId,jdbcType=CHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="cancelTime != null">
+        cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ybkj.gun.model.WarehouseRecords">
+    update warehouse_records
+    set warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      warehouse_in_time = #{warehouseInTime,jdbcType=TIMESTAMP},
+      warehouse_out_time = #{warehouseOutTime,jdbcType=TIMESTAMP},
+      web_user_id = #{webUserId,jdbcType=INTEGER},
+      app_id = #{appId,jdbcType=INTEGER},
+      gun_id = #{gunId,jdbcType=CHAR},
+      state = #{state,jdbcType=INTEGER},
+      version = #{version,jdbcType=INTEGER},
+      cancel_time = #{cancelTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <sql id="Base_Column_List_WR">
+     wr.warehouse_id, wr.warehouse_in_time, wr.warehouse_out_time, wr.web_user_id, wr.app_id, wr.gun_id,wr.state, wr.version, wr.cancel_time
+  </sql>
+
+
+  <!--=Start selectWareHouseRecords 查询库存记录表 -->
+  <select id="selectWareHouseRecords" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List_WR"/>,
+    g.gun_id,g.gun_model,g.gun_type,g.gun_mac,a.app_name,a.app_imei
+    FROM warehouse_records  AS wr
+    left JOIN gun AS g ON g.gun_id=wr.gun_id
+    left JOIN app AS a ON wr.app_id=a.id
+    WHERE wr.state=#{type,jdbcType=INTEGER}
+  </select>
+  <!--=End selectWareHouseRecords 查询库存记录表 -->
+
+
+  <!--=Start selectWareHouseRecordsNOState 查询出库中的枪支相关列表 -->
+  <select id="selectWareHouseRecordsNOState" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List_WR"/>,
+    g.gun_id,g.gun_model,g.gun_type,g.gun_mac,g.gun_imei,a.id,a.app_name,a.app_imei,wr.cancel_time
+    FROM warehouse_records  AS wr
+    left JOIN gun AS g ON g.gun_id=wr.gun_id
+    left JOIN app AS a ON wr.app_id=a.id
+    WHERE wr.state=#{type,jdbcType=INTEGER}
+  </select>
+  <!--=End selectWareHouseRecordsNOState 查询出库中的枪支相关列表 -->
+
+  <!--=Start selectWareHouseRecordsNoState 查询所有状态，之外的状态数据 -->
+  <select id="selectWareHouseRecordsNoState" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM warehouse_records
+    WHERE state!=#{type,jdbcType=INTEGER}
+  </select>
+  <!--=End selectWareHouseRecordsNoState 查询所有状态，之外的状态数据 -->
+
+</mapper>
