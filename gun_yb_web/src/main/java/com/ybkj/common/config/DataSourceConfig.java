@@ -1,3 +1,4 @@
+/*
 package com.ybkj.common.config;
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -15,6 +16,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 
+*/
 /**
  * @项目名称：
  * @包名：DataSourceConfig
@@ -22,15 +24,18 @@ import javax.sql.DataSource;
  * @创建人：liujiayi
  * @创建时间：2018年9月16日9:16:23
  * @version：V1.0
- */
+ *//*
+
 @Configuration
 //指明了扫描mapper层，并且给dao层注入指定的SqlSessionTemplate
 @MapperScan(basePackages = "com.ybkj.gun.mapper", sqlSessionTemplateRef  = "testSqlSessionTemplate")
 public class DataSourceConfig {
-	/**
+	*/
+/**
 	 * 创建datasource对象
 	 * @return
-	 */
+	 *//*
+
 	@Bean(name = "testDataSource")
 	@ConfigurationProperties(prefix = "slave.datasource.test")// prefix值必须是application.properteis中对应属性的前缀
 	@Primary
@@ -38,12 +43,14 @@ public class DataSourceConfig {
 		return DataSourceBuilder.create().build();
 	}
 
-	/**
+	*/
+/**
 	 * 创建sql工程
 	 * @param dataSource
 	 * @return
 	 * @throws Exception
-	 */
+	 *//*
+
 	@Bean(name = "testSqlSessionFactory")
 	@Primary
 	public SqlSessionFactory testSqlSessionFactory(@Qualifier("testDataSource") DataSource dataSource) throws Exception {
@@ -58,26 +65,31 @@ public class DataSourceConfig {
 		return bean.getObject();
 	}
 
-	/**
+	*/
+/**
 	 * 配置事务管理
 	 * @param dataSource
 	 * @return
-	 */
+	 *//*
+
 	@Bean(name = "testTransactionManager")
 	@Primary
 	public DataSourceTransactionManager testTransactionManager(@Qualifier("testDataSource") DataSource dataSource) {
 		return new DataSourceTransactionManager(dataSource);
 	}
 
-	/**
+	*/
+/**
 	 * sqlSession模版，用于配置自动扫描pojo实体类
 	 * @param sqlSessionFactory
 	 * @return
 	 * @throws Exception
-	 */
+	 *//*
+
 	@Bean(name = "testSqlSessionTemplate")
 	@Primary
 	public SqlSessionTemplate testSqlSessionTemplate(@Qualifier("testSqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
 		return new SqlSessionTemplate(sqlSessionFactory);
 	}
 }
+*/
